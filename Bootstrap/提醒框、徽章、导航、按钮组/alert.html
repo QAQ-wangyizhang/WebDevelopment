@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100rem;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="alert alert-dark">
+        这是一个<a href="#" class="alert-link">连接</a>
+    </div>
+
+    <div class="alert alert-success alert-dismiss fade show">
+        <button class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">这是一个标题</h4>
+        <p> 这是一个可以关闭的警告框 但是必须引入jquery和bootstrap.js</p>
+
+    </div>
+
+    <div class="row mt-3">
+        <span class="badge badge-info">徽章</span>
+        <button class="btn btn-primary">在按钮使用徽章<span class="badge badge-dark badge-pill">5</span></button>
+    </div>
+
+    <div class="row mt-5 d-block">
+        <h3>面包屑导航</h3>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">首页</a></li>
+                <li class="breadcrumb-item">关于我们</li>
+                <li class="breadcrumb-item active">联系我们</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row mt-5 d-block">
+        <button class="btn btn-outline-success btn-block ">按钮</button>
+        <button class="btn btn-outline-success btn-block " disabled>停用状态</button>
+        <button class="btn btn-outline-success btn-block " data-toggle="button">点击切换状态</button>
+    </div>
+
+    <div class="row mt-5">
+        <div class="btn-group btn-group-toggle">
+            <label for="" class="btn btn-secondary active">
+                <input type="radio" name="options"> Active
+            </label>
+            <label for="" class="btn btn-secondary">
+                <input type="radio" name="options"> radio
+            </label>
+            <label for="" class="btn btn-secondary">
+                <input type="radio" name="options"> btn
+            </label>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <button id="btn" class="btn btn-warning">点击切换状态</button>
+    </div>
+
+    <div class="row mt-5">
+        <div class="btn-group">
+            <button class="btn btn-success">left</button>
+            <button class="btn btn-success">center</button>
+            <button class="btn btn-success">right</button>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="btn-toolbar mr-2">
+            <button class="btn btn-success">left</button>
+            <button class="btn btn-success">center</button>
+            <button class="btn btn-success">right</button>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+               <div class="input-group-text">@</div> 
+            </div>
+            <input type="text" class="form-control" placeholder="Input group example">
+        </div>
+
+        <div class="row mt-5">
+            <div class="btn-group-vertical">
+                <button class="btn btn-danger">1</button>
+                <button class="btn btn-danger">2</button>
+                <div class="btn-group-lg">
+                    <button type="" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">城市</button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item">上海</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下拉菜单 -->
+        <div class="row mt-5">
+            <div class="btn-group"></div>
+        </div>
+    </div>
+
+</div>
+
+<body>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // $('#btn').button('toggle') 变成激活状态
+    </script>
+</body>
+
+</html>

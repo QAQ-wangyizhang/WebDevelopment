@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- parents parents('shop') -->
+            
+    <div class="shop" data-id='101'>
+        <div>
+            <p>basketball-nike</p>
+            <button></button>
+        </div>
+    </div>
+
+    <div class="shop" data-id='102'>
+        <div>
+            <p>basketball-adidas</p>
+            <button></button>                
+        </div>
+    </div> 
+   
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // parents() 只要是选取的元素的父级全部获取到
+           console.log( $('button').parents() );
+    </script>
+</body>
+</html>

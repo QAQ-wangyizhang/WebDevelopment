@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    function test(k) {
+        for (var i = 0; i < k; i++) {
+            console.log(i)
+        }
+    }
+
+    setTimeout(function () {
+    	console.log('start');
+    },10); //这个异步放到了Event Queue里 所以setTimeout最小执行建议大于4ms
+    test(10000);
+    // 这是同步放到执行栈之中这个执行完了之后再从Event Queue队列中读取任务放到执行栈中执行任务达到异步
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <script>
+        var timer = null;
+
+        var width = window.innerWidth;
+
+        // v = speed + at;
+        function getStyle(dom, attr) {
+            return window.getComputedStyle(dom, null)[attr];
+        }
+        var div = document.getElementsByTagName('div')[0];
+        div.onclick = function () {
+            clearInterval(timer)
+            var speed = 20;
+                iCur = null;
+                a = 1;
+
+            timer = setInterval(() => {
+               
+                iCur = parseInt(getStyle(div, 'left'));
+                if (iCur >= width - 100 ){
+                    clearInterval(timer);
+                } else {
+                    speed += a;
+                    div.style.left = div.offsetLeft + speed + 'px';
+                }
+            }, 30);
+
+
+        }
+    </script>
+
+</body>
+
+</html>

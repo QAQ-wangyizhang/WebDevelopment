@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* .demo {
+            width: 100px;
+            height: 100px;
+            background: orange;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- <div class="demo"></div> -->
+
+
+    <!-- <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul> -->
+
+    <!-- <a href="http://www.baidu.com">jump</a> -->
+
+    <input type="text" class="demo">
+    <!-- <script src="/jQuery/self-jquery.js"></script> -->
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // on
+        // on
+        // 系统事件
+        // 1.type 2.selector 3.data 4.handle
+        // 可以绑定多次
+        // $('.demo').on('click',function(){
+        //     alert(0)
+        // })
+        // $('.demo').on('click',function(){
+        //     alert(1)
+        // })
+        // $('.demo').on('mouseenter',function(){
+        //     alert(0)
+        // })
+
+        // data
+        // $('.demo').on('click',{name : 'cst'},function(e){
+        //     console.log(e.data);
+        // })
+
+        // selector 进一步精准的去筛选 事件委托更精准
+        // $('ul').on('click','li',function(e){
+        //     alert($(e.target).text());
+        // })
+
+        // $('<li>9</li>').appendTo('ul');
+
+
+        // one  绑定完只执行一次
+        // $('a').one('click',function(){
+        //     window.open('http://www.taobao.com');
+        //     return false; // 取消默认事件
+        // })
+
+        // on 绑定多个事件
+        // $('.demo').on({
+        //     click : function(){
+        //         console.log(1);
+        //     },
+        //     mouseenter : function(){
+        //         console.log(2);
+        //     },
+        //     mouseleave : function(){
+        //         console.log(3);
+        //     }
+        // })
+
+        // off 解绑事件
+        // function clickOne() {
+        //     console.log('one');
+        // }
+
+        // function clickTwo() {
+        //     console.log('two');
+        // }
+        // $('.demo').on('click', clickOne);
+        // $('.demo').on('click', clickTwo);
+
+        // function enterOne() {
+        //     console.log('eone');
+        // }
+
+        // function enterTwo() {
+        //     console.log('etwo');
+        // }
+
+        // $('.demo').on('mouseenter', enterOne);
+        // $('.demo').on('mouseenter', enterTwo);
+
+        // // $('.demo').off(); // 解绑所有事件
+        // // $('.demo').off('click');
+        // // $('.demo').off('click',clickTwo); // 删除绑定的指定的函数
+
+        // $('ul').on('click','li',clickTwo);
+        // $('ul').off();// 事件委托解绑 绑定谁 解绑誰 不能li : even 偶数奇数解绑
+
+        // trigger 执行绑定的事件
+        // $('.demo').on('click',function(e,a,b,c,d){
+        //     console.log(1,a,b,c,d);
+        // })
+        // $('.demo').trigger('click',[10,20,30,40])
+
+        // 自定义事件触发
+        // $('.demo').on('pageLoad',function(e,a,b,c,d){
+        //     console.log(0,a,b,c,d);
+        // })
+        // $('.demo').trigger('pageLoad',[10,20,30,40]);// 触发 0 10 20 30 40
+
+        // trigger 原理
+        // Node event
+
+        // $('.demo').myOn('pageLoad', function (a, b, c) {
+        //     console.log('cst', a, b, c);
+        // })
+        // $('.demo').myTrigger('pageLoad', 10, 20, 30); // 触发 0 10 20 30 40
+
+        // hover 相当于移入移出 双function
+        // $('.demo').on('mouseenter',function(){
+        //     console.log('enter');
+        // }).on('mouseleave',function(){
+        //     console.log('leave');
+        // })
+        // $('.demo').hover(function(){
+        //     console.log('enter');
+        // },function(){
+        //     console.log('leave');
+        // })
+
+        // $('.demo').keydown(function(e){
+        //     console.log(e.key)
+        // })
+        // var timer = null;
+        // $('.demo').on('input',function(e){
+        //     var self = this;
+        //     var event = e;
+        //     clearTimeout(timer);
+        //     timer = setTimeout(function(){
+        //         console.log(self.value,event);
+        //     },1000)
+        // })
+        $('.demo').mousewheel(function(e,delta){
+            console.log(delta);
+        })
+    </script>
+</body>
+
+</html>

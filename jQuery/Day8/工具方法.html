@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #demo {
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // 工具方法 不是基于选择的jq对象的
+        // typeof();
+        // undefined String Object Boolean Number Function
+
+        // $.type() 里面的数据到底是什么 返回的也是字符串
+        // 自定义对象 返回的object
+        // var arr = [1,2,3,4,5,6];
+        // var date = new Date();
+        // console.log($.type(date)) // date
+
+        // $.trim() 返回去除前后空格的字符串
+
+        // 改变this指向 类似于bind
+        // $.proxy(); 
+
+        // function show(){
+        //     console.log(this);
+        // }
+        // var obj = {
+        //     name : 'qaq',
+        //     age : 22
+        // }
+
+        // var showObj = $.proxy(show,obj);
+        // showObj();
+
+        // var showobj = show.bind(obj);
+        // showobj();
+
+
+        // 单对象编程
+        // var list = {
+        //     init : function(){
+        //         this.ms = 123;
+        //         this.dom = document.getElementById('demo');
+        //         this.bindEvent();
+        //     },
+
+        //     bindEvent : function(){
+        //         this.dom.onclick = $.proxy(this.show,this);
+        //         // this.dom.onclick = this.show;
+        //     },
+
+        //     show : function(){
+        //         console.log(this.produseMs(this.ms));
+        //     },
+
+        //     produseMs : function(ms){
+        //         return ms + 'test';
+        //     }
+        // }
+        // list.init();
+        //     console.log($('#demo'));
+
+        //    var $C =  $.noConflict() // 防止冲突
+        //     // 加入其它有 $ 变量可以改变$
+
+        //     console.log($C('#demo'));
+
+        // var arr = [1, 2, 3, 4];
+        // 不改变原数组也不能生成新数组 只能输出数组值
+        // $.each(arr, function (index, ele) {
+        //     console.log(ele + 1);
+        // })
+        
+        // 不改变原数组但是可以生成改变的新数组
+        // var arr1 = $.map(arr, function (index, ele) {
+        //     return ele + 2;
+        // })
+
+        // $.parseJSON() ----> JSON.parse(data + "")
+        // 严格json 字符转换为对象  json就是对象字符串 对象属性名必须双引号
+        var json = {
+            "a" : 123,
+            "b" : 'str',
+            "c" : true
+        }
+        var jsonStr = '{"a" : 123,"b" : "str","c" : true}';
+        console.log($.parseJSON(jsonStr));
+        var jsonObj = $.parseJSON(jsonStr);
+        // jQuery没有把JSON对象转换为字符串
+
+
+        $.makeArray() // 传一个类数组，变成数组
+
+        var obj = {
+            0 : 'a',
+            1 : 'b',
+            2 : 'c',
+            length : 3,
+            slice : Array.prototype.slice
+        }
+        // 一个参数
+       var arr =  $.makeArray(obj);
+       // [].slice.call(obj,0);
+
+       // 两个参数
+       console.log($.makeArray(5,obj))
+       // 改变原类数组把对象前的参数传到类数组里
+       console.log($.makeArray(5,arr))
+       // 拼接 吧前面的参数拼接到后面的数组/类数组中 后面类型是啥返回的最终类型就是啥
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+    <!-- <link rel="stylesheet" href="/CSS3/Css/flex.css"> -->
+    <style>
+        /* 圣杯布局 */
+        .wrapper{
+            resize: both;
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header, .footer{
+            flex: 0 0 20%;
+            /* flex = flex-grow flex-shrink flex-basis */
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+
+        .contain{
+            flex: 1 1 auto;
+            display: flex;
+        }
+
+        .left, .right{
+            flex: 0 0 20%;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        .center{
+            flex: 1 1 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="wrapper">
+        <div class="content">asfasfssjfjkskgdsklgsd</div>
+        <div class="content">2</div>
+        <div class="content">3</div>
+        <div class="content">4</div>
+        <div class="content">5</div>
+        <div class="content">6</div>
+        <div class="content">7</div>
+    </div> -->
+
+    <div class="wrapper">
+        <div class="header">head</div>
+        <div class="contain">
+            <div class="left"></div>
+            <div class="center"></div>
+            <div class="right"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

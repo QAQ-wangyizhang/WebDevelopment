@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <script>
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var div = document.getElementsByTagName('div')[0];
+        var lastX = 0;
+        var lastY = 0;
+        var iSpeedX = 0;
+        var iSpeedY = 0;
+        div.onmousedown = function (e) {
+            clearInterval(this.timer);
+            var event = event || e;
+            var disX = event.clientX - this.offsetLeft;
+            var disY = event.clientY - this.offsetTop;
+            var self = this;
+            // console.log(this+'down');
+            document.onmousemove = function (e) {
+                var event = event || e;
+                var newLeft = event.clientX - disX;
+                var newTop = event.clientY - disY;
+                iSpeedX = newLeft - lastX;
+                iSpeedY = newTop - lastY;
+                lastX = newLeft;
+                lastY = newTop;
+
+                // var oSpan = document.createElement('span');
+                // oSpan.style.position = 'absolute';
+                // oSpan.style.left = newLeft + 'px';
+                // oSpan.style.top = newTop + 'px';
+                // oSpan.style.width = '5px';
+                // oSpan.style.height = '5px';
+                // oSpan.style.backgroundColor = 'black';
+                // document.body.appendChild(oSpan);
+
+
+
+                self.style.left = newLeft + 'px';
+                self.style.top = newTop + 'px';
+            }
+            document.onmouseup = function (e) {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                startMove(self,iSpeedX,iSpeedY);
+            }
+
+        }
+
+        // f 位置决定f大小
+        function startMove(dom, isSpeedX, isSpeedY) {
+            clearInterval(dom.timer);
+            var g = 3;
+            dom.timer = setInterval(() => {
+                isSpeedY += g;
+
+                var newTop = dom.offsetTop + isSpeedY;
+                var newLeft = dom.offsetLeft + isSpeedX;
+                // console.log(newTop);
+                if (newTop >= height - 100) {
+                    isSpeedY *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newTop = height - 100;
+                }
+                if (newTop <= 0) {
+                    isSpeedY *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newTop = 0;
+                }
+                if (newLeft >= width - 100) {
+                    isSpeedX *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newLeft = width - 100;
+                }
+                if (newLeft <= 0) {
+                    isSpeedX *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newLeft = 0;
+                }
+                if (Math.abs(isSpeedX) < 1) {
+                    isSpeedX = 0;
+                }
+                if (Math.abs(isSpeedY) < 1) {
+                    isSpeedY = 0;
+                }
+                if (isSpeedX == 0 && isSpeedY == 0 && newTop == height - 100) {
+                    clearInterval(dom.timer);
+                    console.log('over');
+
+                } else {
+                    dom.style.top = newTop + 'px';
+                    dom.style.left = newLeft + 'px';
+                }
+
+            }, 30);
+
+        }
+    </script>
+
+</body>
+
+</html>

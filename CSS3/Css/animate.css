@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes run{
+    from{
+        left: 0;
+        top:0;
+        background-color: salmon;
+    }
+    25%{
+        left: 100px;
+        top: 0;
+    }
+    50%{
+        left: 100px;
+        top: 100px;
+        background-color:#eee;
+    }
+    75%{
+        left: 0;
+        top: 100px;
+    }
+    to{
+        left: 0;
+        top: 0;
+        background-color:#000;
+    }
+}
+div{
+    width: 200px;
+    height: 200px;
+    background-color: salmon;
+    position: absolute;
+    animation: run 4s cubic-bezier(.5,1,1,1) 1s both;
+}
+
+/*
+
+forwards : 动画结束后 设置对象为最后一帧的样子
+backwards : 动画结束后 设置为第一帧动画开始的样子 
+both: 动画开始是第一帧状态 动画结束后是最后一帧的状态
+*/
+
+div:hover{
+    animation-play-state: paused;
+}

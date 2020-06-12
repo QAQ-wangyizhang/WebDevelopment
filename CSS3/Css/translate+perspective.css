@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+:root{
+    height: 100%;
+
+}
+body {
+    perspective: 800px;
+    height: 100%;
+    perspective-origin: 300px 200px;
+    transform-style: preserve-3d;
+    /* 投影 */
+    /* 景深 我们距离屏幕有一个纵深的距离800 必须设置到父级上*/
+    /* 该属性允许您改变 3D 元素查看 3D 元素的视图。 */
+}
+
+/* .wrapper{
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    height: 200px;
+    background-color: salmon;
+    transform: rotateY(25deg);
+    transform-style: preserve-3d;
+}
+
+.demo{
+    width: 200px;
+    height: 200px;
+    background-image: url(/CSS3实现转轴展开图片列表/img/2.jpg);
+    background-size: cover;
+    transform: translateZ(100px);
+ 
+} */
+
+div {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    width: 200px;
+    height: 200px;
+    background-image: url(/CSS3实现转轴展开图片列表/img/2.jpg);
+    background-size: cover;
+    transform: rotateY(0deg);
+    transform-origin: 100px 100px 200px;
+   
+}
+/* 
+div:hover{
+    transform:rotateY(90deg) translateZ(200px);
+} */
+/* 
+.box{
+    width: 200px;
+    height: 200px;
+    background-image: url(/CSS3实现转轴展开图片列表/img/2.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 200px;
+    transform:perspective(800px) rotateY(45deg);
+    transform: rotateY(45deg);
+} */
+
+/* .content1{
+    left: 0;
+}
+.content2{
+    left: 250px;
+}
+.content3{
+    left: 500px;
+}
+.content4{
+    left: 750px;
+}
+.content5{
+    left: 1000px;
+} */

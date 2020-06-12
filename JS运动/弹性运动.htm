@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        span{
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            background: black;
+            width: 1px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <span></span>
+    <script>
+        var timer = null;
+
+        var width = window.innerWidth;
+
+        // v = speed + at;
+        function getStyle(dom, attr) {
+            return window.getComputedStyle(dom, null)[attr];
+        }
+        var div = document.getElementsByTagName('div')[0];
+        div.onclick = function () {
+            startMove(this,300);
+        }
+
+        // f 位置决定f大小
+        function startMove(dom, target){
+            clearInterval(timer);
+            // 正 -> 负 <-
+            var a = 2;
+            var isSpeed = 0;
+            var u = 0.8;
+            timer = setInterval(() => {
+                a = (target - dom.offsetLeft) / 5;
+                isSpeed += a;
+                isSpeed *= 0.9;
+                // 近似把小于1 当成速度为0
+                if(Math.abs(isSpeed) < 1 && Math.abs(target - dom.offsetLeft)  < 1){
+                    clearInterval(timer);
+                    dom.style.left = target + 'px';
+                }else{
+                    dom.style.left = dom.offsetLeft + isSpeed + 'px';
+                }      
+            }, 30);
+        }
+        
+    </script>
+</body>
+
+</html>

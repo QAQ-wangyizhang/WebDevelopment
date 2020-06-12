@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>头条</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="headSearch clearfix">
+            <span class="hot">搜索热点</span>
+            <span class="change">换一换</span>
+        </div>
+        <ul class="showSearch clearfix">
+            <li class="tql">
+                <span class="number">1</span>
+                <span class="title">金星秀停播</span>
+                <span class="mes">3433</span>
+              
+            </li>
+        </ul>
+    </div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script src="/jQuery/Day7/serverData.js"></script>
+    <script>
+        (function(data){
+            // 初始化变量
+            var wrapper = $('.wrapper');
+            var showSearch = wrapper.find('.showSearch');
+            var colorsArry = ['#f54545', '#ff8547', '#ffac38','#74b9ff','#81ecec'];
+            var curPage = 0;
+            var page = Math.ceil(data.length / 10);
+
+            function bindEvent(){
+                wrapper.find('.change').on('click',function(){
+                   curPage =  ++curPage % page;
+                   renderPage(data)
+                })
+            }
+
+            function randerColr(arr){
+                return arr[Math.floor(Math.random()*6)]
+            }
+
+           
+
+            // 渲染数据
+            function renderPage(data){
+                showSearch.hide().find('.showItem').remove();
+                // 控制每一页应该渲染多少数据
+                var len = (data.length - curPage * 10) >= 10 ? 10 : data.length - curPage * 10;
+                for(var i = 0 ; i < len; i++){
+                    var clone = wrapper.find('.tql').clone().removeClass('tql').addClass('showItem');
+                    var ele = data[i + curPage * 10];
+
+
+                    clone.children('span').eq(0).text(i + curPage *10 + 1)
+                    .css('backgroundColor',colorsArry[i] == undefined ? colorsArry[3] : colorsArry[i])
+                         .next().text(ele.title)
+                            .next().text(ele.search)
+                                .addClass(ele.search > ele.hisSearch ? 'up' : 'down');
+                    showSearch.append(clone);
+                }
+
+                showSearch.fadeIn();
+            }
+            bindEvent();
+            renderPage(data);
+        })(data);
+    </script>
+</body>
+</html>

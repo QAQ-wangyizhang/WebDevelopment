@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>柯里化</title>
+</head>
+
+<body>
+    <script>
+        // fixed parmas4
+        function add(a, b, c, d) {
+            // add.length == 4 true
+            // console.log(add.length); 4
+            return a + b + c + d;
+        }
+        // curry 柯里化
+        function FixedParmasCurry(fn) {
+            // [add,1,2]
+            var _arg = [].slice.call(arguments, 1);
+            return function () {
+                // arguments [2,3]
+                // [1,2,2,3]
+                var arg = _arg.concat([].slice.call(arguments, 0));
+                return fn.apply(this, arg);
+            }
+        }
+        // var newAdd = FixedParmasCurry(add, 1, 2);
+        // console.log(newAdd(2, 3));// 8 
+
+
+
+
+        // look forward to Parms 凑齐参数
+        function Curry(fn, length){
+            // length 4
+            var length = length || fn.length;
+            return function (){
+                if(arguments.length < length){
+                    // [fn].concat([1]) [fn,1];
+                    var combined = [fn].concat([].slice.call(arguments,0));
+                    return Curry(FixedParmasCurry.apply(this,combined),length - arguments.length);
+                    //  必须固定参数
+                }else{
+                    return fn.apply(this,arguments);
+                }
+            }
+        }
+        var newAdd = Curry(add);
+        console.log(newAdd(1)(2)(3)(4)) // 10
+
+        // 应用柯里化 实现了函数的累积极大消除了函数调用的重复 例如
+
+        // var nA1 = newAdd(1); // 返回函数已经累加一次（1）
+        // var nA11 = nA1(2);  // 返回函数已经累加2次 （1,2）
+        // var nA22 = nA11(2); // 返回函数为（1,2,2）还需要再传一个
+        // var result = nA22(4); // 返回数值（1,2,2,4）
+        // console.log(result); // 9 
+        // console.log(nA11(3,4)); // 10
+        // newAdd(1, 2, 3, 4);
+        // newAdd(1)(2, 3)(4);
+        // newAdd(1, 2)(3, 4);
+        // newAdd(1)(2)(3)(4);
+
+        // 第二个例子ajax
+        // POST www.test1.com 'name=cst&code = 111';
+        // POST www.test1.com 'key = 22;
+        // POST www.test2.com 'name=cst&code = 111';
+        // POST www.test2.com 'key = 11';
+
+        function ajax (method,url,data){
+            console.log(method,url,data);
+        }
+        // ajax('POST', 'www.test1.com', 'name=cst&code = 111')
+        // ajax('POST', 'www.test1.com', 'key = 11')
+        // ajax('POST', 'www.test2.com', 'name=cst&code = 111')
+        // ajax('POST', 'www.test2.com', 'key = 22')
+        var ajaxCurry = Curry(ajax);
+        var PostAjax = ajaxCurry('POST');
+        var Test1Ajax = ajaxCurry('POST')('www.test1.com')
+        Test1Ajax('name=cst&code = 111'); 
+        Test1Ajax('key = 11');// ajax('POST', 'www.test1.com', 'name=cst&code = 111')
+        var Test2Ajax = PostAjax('www.test2.com'); // ajax('POST', 'www.test2.com', 'name=cst&code = 111')
+        Test2Ajax('name = cst&code = 111');// ajax('POST', 'www.test2.com', 'name=cst&code = 111')
+        Test2Ajax('key = 22')// ajax('POST', 'www.test2.com', 'key = 22')
+    </script>
+</body>
+
+</html>

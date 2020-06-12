@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{
+            padding: 50px 0;
+            border: 1px solid black;
+        }
+        div::after{
+            content: '这是一所房子';
+        }
+        @media (max-width: 700px){
+            div{
+                background-color: green;
+
+            }
+            div::after{
+                content: '哇房子好大哦，可以放下炕了';
+            }
+        }
+
+        @media (max-width:500px) {
+            div{
+                background-color: gray;
+            }
+            div::after{
+                content: '房子变小了,双人床';
+            }
+        }
+
+        @media all and (max-width:300px) {
+            div{
+                background: hotpink;
+            }
+            div::after{
+                content: '房子更小了 单人床';
+            }
+        }
+
+        @media all and (max-width:00px) {
+            div{
+                background: turquoise;
+            }
+            div::after{
+                content: '房子忒小了 什么都放不下';
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>svg</title>
+    <style>
+        line {
+            stroke: black;
+            stroke-width: 10px;
+            stroke-dasharray: 200px;
+            /* 边虚线 每一个间隔第一个距离 */
+            stroke-dashoffset: 0px;
+            /* 虚线偏移量 向右位移 10px */
+            animation: move 2s linear infinite alternate;
+            /* 是否轮流反向播放动画 */
+        }
+
+        @keyframes move {
+            0%{
+                stroke-dashoffset: 200px;
+            }
+            100%{
+                stroke-dashoffset: 0px;
+            }
+        }
+
+        polygon,
+        circle,
+        polyline {
+            /* fill: transparent; */
+            /* 填充半透明 */
+            fill-opacity: 0.5;
+            stroke: blueviolet;
+            stroke-opacity: 0.5;
+            /* 边框半透明 */
+            stroke-linecap: round;
+            stroke-width: 15px;
+            stroke-linejoin: round;
+        }
+
+        path {
+            stroke-width: 5px;
+            stroke: black;
+            fill: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        svg 矢量图， 放大不会失真 适合大面积的贴图 通常动画较少或者较简单
+        cavas 适合小面积绘图 适合动画
+     -->
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
+        <polygon points="100,10 40,180 190,60 10,60 160,180"
+        style="fill:red;stroke:blue;stroke-width:3;fill-rule:evenodd;" />
+     </svg> -->
+     <!-- viewBox 比例尺 里面内容不变  只是放大 -->
+    <svg width="500px" height="300px" viewBox="0,0,250,150" style="border: 1px solid">
+        <!-- <line x1="100" y1="100" x2="300" y2="100"></line> -->
+        <!-- <line x1="200" y1="100" x2="200" y2="200"></line> -->
+        <!-- 所有闭合图形在SVG里都是自动填充并且paint 
+            rx 圆角
+        -->
+        <rect height="50" width="100" x="0" y="0"  rx="10"></rect>
+        <!-- 正圆 -->
+        <!-- <circle r="50" cx="100" cy="220"></circle> -->
+        <!-- 椭圆 -->
+        <!-- <ellipse rx="100" ry="30" cx="400" cy="200"></ellipse> -->
+        <!-- 折线 -->
+        <!-- <polyline points="0 0,50 50,50 100,100,150,150,100,0,0"></polyline> -->
+        <!-- 选择填充和line一样的 首尾自动连接 -->
+        <!-- <polygon points="0 0,50 50,50 100,100,150,150,100"></polygon> -->
+        <!-- 文本 -->
+        <!-- <text x = "300" y="200">我想你了</text> -->
+        <!-- 大写表示绝对位置 小写表示相对位置 -->
+        <!-- <path d="M 100 100 L 200 100 l 100 100"></path> -->
+        <!-- h 水平方向 v 垂直方向 z 闭合区间 还是符合小写相对 大写绝对-->
+        <!-- <path d="M 100 100 H 200 V 200 z"></path> -->
+        <!-- 画弧 起始点 x y 长半径100 短半径 50 选择角度 0 选择大弧小弧1 0 顺时针逆时针  -->
+        <!-- <path d="M 100 100 A 100 50 90 0 1 150 200" ></path> -->
+        <!-- <defs>
+            渐变色
+            <linearGradient id="bgl" xl="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" style="stop-color: rgb(255, 255, 0);"></stop>
+                <stop offset="100%" style="stop-color: rgb(255, 0, 0);"></stop>
+            </linearGradient>
+            高斯模糊
+            <filter id="Gaussian">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="20"></feGaussianBlur>
+            </filter>
+        </defs> -->
+        <!-- <rect x="100" y="100" height="100" width="200" style="fill:url(#bgl); filter:url(#Gaussian)"></rect> -->
+    </svg>
+
+</body>
+
+</html>

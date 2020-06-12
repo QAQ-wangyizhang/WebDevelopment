@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+
+    <script>
+        // 源码中 fn = jQuery.prototype
+        //  1. 扩展插件 $.extend = $.fn.extend({a : function}) 只能为一个参数 谁调用的extend就放在谁里面 也就是说扩展的方法放在$ / fn里
+        //                                                                  target = this;
+        //  2. 浅层克隆 $.extend(obj1,obj2,obj3);              至少为两个参数 target = argument[0];
+        //  3. 深层克隆 $.extend(true,obj1,obj2,obj3);         至少为三个参数 target = argument[1];
+
+        // jQuery.fn.extend ----> $('').extend()
+
+        var a = {
+            // son : a,
+        }
+
+        var b = {
+            son : a
+        }
+
+        // a.son = b.son// 循环引用
+        $.extend(a,b);
+        // $.extend = function () {
+        //         var i = 1;
+        //         var target = argumemt[0] || {};
+        //         if (typeof target == "boolean") {
+        //             判断是否是深度克隆
+        //             i++;
+        //             i = 2
+        //         }
+        //         if (typeof target !== "object" && !isFunction(target)) {
+        //             判断参数的合法性
+        //             target = {};
+        //         }
+        //         if (i = length) {
+        //             target = this;
+        //             只有一个参数
+        //             i--;
+        //             i = 0
+        //         }
+        //         if () {
+        //             判断是否是深度克隆
+        //         }
+        //         if () {
+        //             判断是否是深度克隆
+        //         }
+    </script>
+</body>
+
+</html>

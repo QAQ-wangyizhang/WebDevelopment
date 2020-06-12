@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 150rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container ">
+        <div class="row pt-5">
+            <div class="col">
+                <ul class="list-group">
+                    <li class="list-group-item active">red</li>
+                    <li class="list-group-item disable">green</li>
+                    <li class="list-group-item">yellow</li>
+                    <li class="list-group-item">pink</li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">red</a>
+                    <a href="#" class="list-group-item list-group-item-action">yellow</a>
+                    <a href="#" class="list-group-item list-group-item-action">blue</a>
+                    <a href="#" class="list-group-item list-group-item-action">pink</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-danger  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-secondary  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-primary  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-success  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-info  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-danger  list-group-item-action">red</div>
+                    <div class="list-group-item list-group-item-dark  list-group-item-action">red</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        red
+                        <span class="badge badge-danger badge-pill">14</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        blue
+                        <span class="badge badge-primary badge-pill">14</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        green
+                        <span class="badge badge-success badge-pill">14</span>
+                    </li>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1">List group item</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">
+                            内容
+                        </p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1">List group item</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">
+                            内容
+                        </p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1">List group item</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">
+                            内容
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项卡 -->
+        <div class="row mt-5">
+            <div class="col-4">
+                <div class="list-group">
+                    <a href="#list-home" class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
+                    <a href="#list-message" class="list-group-item list-group-item-action" data-toggle="list">Message</a>
+                    <span data-target="#list-settings" class="list-group-item list-group-item-action" data-toggle="list">Settings</span>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content">
+                    <div class="tab-pane active fade" id="list-home">
+                        home
+                    </div>
+                    <div class="tab-pane fade" id="list-message">
+                        message
+                    </div>
+                    <div class="tab-pane fade" id="list-settings">
+                        settings
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 方法和事件 -->
+        <div class="row mt-5">
+            <div class="col-4">
+                <div class="list-group" id="myList">
+                    <a href="#list-home1" class="list-group-item list-group-item-action" >Home</a>
+                    <a href="#list-message1" class="list-group-item list-group-item-action" >Message</a>
+                    <a href="#list-settings1" class="list-group-item list-group-item-action" >Settings</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="list-home1">
+                        home
+                    </div>
+                    <div class="tab-pane fade" id="list-message1">
+                        message
+                    </div>
+                    <div class="tab-pane fade" id="list-settings1">
+                        settings
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // 方法
+        $('#myList a:first-child').tab('show'); // 修改当前选中项
+        $('#myList a').on('click',function(){
+            $(this).tab('show');
+        })
+        // 事件
+        $('#myList a:last-child').on('show.bs.tab',function(e){
+            console.log('该内容要显示了')
+        })
+        $('#myList a:last-child').on('shown.bs.tab',function(e){
+            console.log('该内容显示完了')
+        })
+        $('#myList a:last-child').on('hide.bs.tab',function(e){
+            console.log('该内容要隐藏了')
+        })
+        $('#myList a:last-child').on('hidden.bs.tab',function(e){
+            console.log('该内容隐藏完了')
+        })
+    </script>
+</body>
+
+</html>

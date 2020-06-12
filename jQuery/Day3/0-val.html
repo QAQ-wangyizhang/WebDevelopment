@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./" method='GET'>
+        <h3>选择你喜欢的明星</h3>
+        <select name='star'>
+            <option value="s">詹姆斯</option>
+            <option value="a">库里</option>
+            <option value="b">奥拉迪波</option>
+        </select>
+        <h3>一句话简单介绍你喜欢的明星</h3>
+        <input type="text" name='easy' value='cst'>
+        <h3></h3>
+        三分准：<input type="checkbox" name='special' value='three'>
+        组织好：<input type="checkbox" name='special' value='org'>
+        突破强：<input type="checkbox" name='special' value='strong'>
+        <h3>具体描述该明显的技术特点</h3>
+        <textarea name="des" id="" cols="30" rows="10"></textarea>
+        <!-- 文本域 -->
+        <input type="submit" value='login'>
+    </form>
+
+    <div></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+
+        // .val  获取 表单 相关元素的val值  像html方法一样
+
+        // console.log($('input[type = "checkbox"]').val());// 只获取第一个
+
+        // $('form').serialize(); // 把表单中提交的信息合并成一个字符串
+        // $('form').serializeArray(); // 把表单中提交的信息变成一个个数组
+
+        // 赋值 不常用
+        $('input[type= "checkbox"]').val(function(index,oldValue){
+            return oldValue + index;
+        })
+
+        // js object prop 
+        // val 只针对 value
+        $('input[type = "text"]').val('我爱我的国') // 没有映射关系行间还是cst（视觉效果）原来还是cst 已经更改为我爱我的国
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            color: #fff;
+            background-color: black;
+        }
+        /* 屏幕大于500时满足 */
+        @media (min-width: 500px) {
+            div{
+                background-color: green;
+            }
+        }
+        /* 屏幕小于400时满足 */
+        @media (max-width: 400px) {
+            div{
+                background-color: blue;
+            }
+        }
+        /* 横屏 宽度大于高度 */
+        @media (orientation: landscape) {
+            div{
+                width: 400px;
+                background-color: green;
+            }
+        }
+        /* 竖屏 高度大于宽度 */
+        @media (orientation: portrait) {
+            div{
+                height: 400px;
+                background-color: green;
+            }
+        }
+
+        /* 宽高比为4 : 3时 800 600  http协议下使用不了？*/
+        @media (aspect-ratio:4/3) {
+            div{
+               border: 10px solid black;
+            }
+        }
+        /* 像素比为2的时候 ipone5时 */
+			@media (-webkit-device-pixel-ratio:2){
+				div::after{
+                    content: '程学辉';
+                    font-size: 50px;
+				}
+			}
+
+
+    </style>
+</head>
+<body>
+    <!-- 
+        媒体特性
+            width 宽度
+                min-width 最小宽度 宽度只能比这个大
+                max-width 最大宽度 宽度只能比这个小
+
+            height 高度 
+                略
+
+            orientation 方向
+                landscape 横屏(宽度大于高度)
+                portrait  竖屏(高度大于宽屏)
+            
+            aspect-ratio 宽度比
+
+            -webkit-device-pixel-ratio 像素比 （webkit内核的私有属性）
+     -->
+     <div>
+         媒体特性
+     </div>
+</body>
+</html>

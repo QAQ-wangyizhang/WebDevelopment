@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 150rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="nav">
+                    <li><a href="#" class="nav-link">入门</a></li>
+                    <li><a href="#" class="nav-link">布局</a></li>
+                    <li><a href="#" class="nav-link">组件</a></li>
+                    <li><a href="#" class="nav-link">内容</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 使用nav标签来创建结构 -->
+        <div class="row mt-5">
+            <div class="col">
+                <nav class="nav">
+                    <a href="#" class="nav-link">入门</a>
+                    <a href="#" class="nav-link">内容</a>
+                    <a href="#" class="nav-link">布局</a>
+                    <a href="#" class="nav-link">组件</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 对齐 -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="nav justify-content-between flex-sm-column">
+                    <li><a href="#" class="nav-link">对齐方式</a></li>
+                    <li><a href="#" class="nav-link">布局</a></li>
+                    <li><a href="#" class="nav-link">组件</a></li>
+                    <li><a href="#" class="nav-link">内容</a></li>
+                </div>
+            </div>
+        </div> 
+
+        <!-- tabs -->
+        <div class="row mt-5">
+            <div class="col">
+                <ul class="nav-tabs nav">
+                    <li class="nav-item"><a href="#" class="nav-link active">tab标签</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">布局</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">组件</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">内容</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- pills -->
+        <div class="row mt-5">
+            <div class="col">
+                <ul class="nav-pills nav">
+                    <li class="nav-item"><a href="#" class="nav-link active">胶囊式标签</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">布局</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">组件</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">内容</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- nav-fill 按内容分配 -->
+        <div class="row mt-5">
+            <div class="col">
+                <ul class="nav nav-pills nav-justified  flex-column flex-lg-row">
+                    <li class="nav-item"><a href="#" class="nav-link active">等宽</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">布局</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">组件</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">内容</a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <!-- nav-fill 按内容分配 -->
+        <div class="row mt-5">
+            <div class="col">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a href="#" class="nav-link active">下拉菜单</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">布局</a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">北京</a>
+                            <a href="#" class="dropdown-item">上海</a>
+                            <a href="#" class="dropdown-item">广州</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">组件</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">内容</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 选项卡 -->
+        <div class="row mt-5">
+            <div class="col-3">
+                <nav class="nav nav-pills nav-justified flex-column">
+                    <a href="#home" class="nav-item nav-link active" data-toggle="tab">Home</a>
+                    <a href="#profile" class="nav-item nav-link" data-toggle="tab">Profile</a>
+                    <a href="#content" class="nav-item nav-link" data-toggle="tab">Content</a>     
+                </nav>
+            </div>
+            <div class="col-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade show " id="home">home</div>
+                    <div class="tab-pane fade " id="profile">profile</div>
+                    <div class="tab-pane fade " id="content">content</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项卡 -->
+        <div class="row mt-5">
+            <div class="col-3">
+                <nav class="nav nav-pills nav-justified flex-column" id="myNav">
+                    <a href="#home2" class="nav-item nav-link active">Home</a>
+                    <a href="#profile2" class="nav-item nav-link">Profile</a>
+                    <a href="#content2" class="nav-item nav-link">Content</a>     
+                </nav>
+            </div>
+            <div class="col-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active " id="home2">home</div>
+                    <div class="tab-pane fade " id="profile2">profile</div>
+                    <div class="tab-pane fade " id="content2">content</div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // 修改当前激活项
+        $('#myNav a:last-child').tab('show');
+        $('#myNav a').on('click',function(){
+            $(this).tab('show');
+        })
+
+        $('#myNav a:last-child').on('show.bs.tab',function(){
+            console.log('该内容显示了');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        canvas {
+            width: 500px;
+            height: 300px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="can" width="500px" height="300px">
+
+    </canvas>
+    <script>
+        var canvas = document.getElementById("can");
+        var ctx = canvas.getContext("2d");
+        // ctx.moveTo(100,100);
+        // ctx.lineTo(200,100);
+        // // ctx.lineTo(200,200);
+        // // ctx.lineTo(100,100);
+        // ctx.lineWidth = 10;
+        // // 针对一个图形闭合
+        // // ctx.closePath();
+        // // 填充颜色
+        // // ctx.fill();
+        // ctx.stroke();
+
+        // // 重新开始一个路径
+        // ctx.beginPath();
+        // ctx.moveTo(200,100);
+        // ctx.lineTo(200,200);
+        // ctx.lineTo(50,200);
+        // ctx.closePath();
+        // ctx.fill();
+        // ctx.lineWidth = 4;
+        // ctx.stroke();
+
+        // ctx.lineWidth = 2;
+        // ctx.moveTo(100,100);
+        // ctx.lineTo(100,200);
+        // ctx.lineTo(200,200);
+        // ctx.lineTo(200,100);
+        // ctx.closePath();
+        // ctx.stroke();
+
+        //  画矩形 起点为 100,100 长是200 宽是100
+        // ctx.rect(100,100,200,100);
+        // ctx.stroke();
+
+        // ctx.strokeRect(100,100,200,100);
+
+        // ctx.fillRect(100, 100, 50, 50);
+        // var h = 0;
+        // var temp = 250;
+        // var timer = setInterval(function () {
+        //     ctx.clearRect(0, 0, 500, 300);
+        //     if (h == 250) {
+        //         ctx.fillRect(0, temp, 50, 50);
+        //         temp -= 5;
+        //         temp = temp < 0 ? 0 : temp;
+        //     } else {
+        //         ctx.fillRect(0, h, 50, 50);
+        //     }
+        //     h += 5;
+        //     h = h > 250 ? 250 : h;
+        // }, 1000 / 30);
+
+        // 圆形 圆心 x,y 半径 起始 结束弧度 方向:顺时针 逆时针
+        // ctx.arc(100, 100, 50, 0, Math.PI * 1.8, 0);
+        // ctx.lineTo(100,100);
+        // ctx.closePath();
+        // ctx.fill();
+        // ctx.stroke();
+
+        // 圆角矩形
+        // B 的坐标 C的坐标 圆角大小
+        // A |
+        //   |
+        //   |
+        //   |
+        // B |———————————————— C
+        //                   
+        // ctx.moveTo(100,110);
+        // ctx.arcTo(100,200,200,200,10);
+        // ctx.arcTo(200,200,200,100,10);
+        // ctx.arcTo(200,100,100,100,10);
+        // ctx.arcTo(100,100,100,200,10);
+        // ctx.fill();
+        // // ctx.closePath();
+        // ctx.stroke();
+
+        // 贝塞尔曲线
+        var width = 500;
+        var height = 300;
+        var offset = 0;
+        var num = 0;
+        // ctx.beginPath();
+        // ctx.moveTo(100,100);
+        // 二次贝塞尔曲线
+        // ctx.quadraticCurveTo(200,200,300,100);
+        // 三次贝塞尔曲线
+        // ctx.bezierCurveTo(200,200,300,100,400,200);
+        // setInterval(function () {
+        //     ctx.clearRect(0, 0, 500, 300);
+        //     ctx.beginPath();
+
+        //     ctx.moveTo(0 + offset - 500, height / 2);
+        //     ctx.quadraticCurveTo(width / 4 - 500 + offset, height / 2 + Math.sin(num) * 120, width / 2 - 500 +
+        //         offset,
+        //         height /
+        //         2);
+        //     ctx.quadraticCurveTo(width / 4 * 3 - 500 + offset, height / 2 - Math.sin(num) * 120, width - 500 +
+        //         offset, height /
+        //         2);
+
+        //     ctx.moveTo(0 + offset, height / 2);
+        //     ctx.quadraticCurveTo(width / 4 + offset, height / 2 + Math.sin(num) * 120, width / 2 + offset,
+        //         height /
+        //         2);
+        //     ctx.quadraticCurveTo(width / 4 * 3 + offset, height / 2 - Math.sin(num) * 120, width + offset,
+        //         height / 2);
+        //     ctx.stroke();
+        //     offset += 1;
+        //     offset %= 500;
+        //     num += 0.01;
+        //     console.log(offset)
+        // }, 1000 / 30);
+
+        // 旋转 和 缩放
+        // ctx.beginPath();
+        // // 改变坐标系的原点 为100,100
+        // ctx.translate(100, 100);
+        // // 根据画布的圆点旋转中心为 0,0
+        // ctx.rotate(Math.PI / 6);
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(100, 0);
+        // ctx.stroke();
+
+
+        // ctx.moveTo(100,100);
+        // 横向缩放 纵向缩放
+        // ctx.scale(1,2);
+        // // 使所有的x ，y乘以系数
+        // ctx.strokeRect(100,100,100,50);
+        // // ctx.scale(2,2);
+
+        // canvas save 和  restore
+        // ctx.save();
+        // // 保存 坐标系平移 缩放 旋转数据
+        // ctx.beginPath();
+        // ctx.translate(100,100);
+        // ctx.rotate(Math.PI / 4);
+        // // 改变的都是全局的坐标和原点
+        // ctx.fillRect(0,0,100,50);
+
+        // ctx.beginPath();
+        // ctx.restore();
+        // // 恢复保存的状态
+        // ctx.fillRect(200,0,100,50);
+
+
+        // 填充
+        // var img = new Image();
+        // img.src = "/CSS3实现转轴展开图片列表/img/1.jpg";
+        // img.onload = function () {
+        //     ctx.beginPath();
+        //     var bg = ctx.createPattern(img, "no-repeat");
+        //     // 以坐标系原点进行填充的图片
+        //     ctx.fillStyle = bg;
+        //     ctx.fillRect(100, 100, 100, 50);
+        // }
+
+
+        // 填充之渐变颜色
+        // 线性渐变还是原点的位置 需要用
+        // ctx.translate(100,0);
+        // ctx.beginPath();
+
+        // // var bg = ctx.createLinearGradient(0,0,200,0);
+        // // 线性渐变 渐变色范围
+        // var bg = ctx.createRadialGradient(100, 100, 30, 100, 100, 100);
+        // // 辐射渐变 最外层的○ 倒数第二层的○ 起始圆    结束圆
+
+        // bg.addColorStop(0, "white");
+        // // 关键帧
+        // bg.addColorStop(0.5, "orange");
+        // bg.addColorStop(1, "black");
+        // ctx.fillStyle = bg;
+        // ctx.fillRect(0, 0, 200, 200)
+
+
+        // ctx.beginPath();
+        // ctx.shadowColor = "blue";
+        // ctx.shadowBlur = 10;
+        // ctx.shadowOffsetX = 15;
+        // // 水平平移
+        // ctx.shadowOffsetY = 15;
+        // // 垂直平移
+        // ctx.strokeRect(50,50,200,100);
+
+        // canvas渲染文字 
+        // ctx.beginPath();
+        // ctx.strokeRect(0, 0, 200, 200);
+        // ctx.font = "30px Georgia"
+        // ctx.strokeText("panda", 100, 100);
+        // // 文字描边
+        // ctx.fillText("monkey", 200, 100)
+        // 文字填充
+
+        // 线端样式
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(100, 100);
+        ctx.lineTo(300, 100);
+        // ctx.lineCap = "square";、
+        // butt 原来值 原封不动
+        // 两边小方块
+        // ctx.lineCap = "round";
+        // 两边小半圆
+        ctx.lineTo(100, 200);
+        // ctx.lineJoin = "round";
+        // 创建圆角
+        // ctx.lineJoin = "miter";
+        // 创建尖角
+        ctx.lineJoin = "bevel";
+        // 创建斜角
+        ctx.miterLimit = 5;
+        // 防止过分尖锐
+        // 属性设置返回最大斜接长度 默认值为10
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

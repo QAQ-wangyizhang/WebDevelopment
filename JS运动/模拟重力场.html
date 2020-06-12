@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <script>
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var timer = null;
+        var div = document.getElementsByTagName('div')[0];
+        div.onclick = function () {
+            startMove(this);
+        }
+
+        // f 位置决定f大小
+        function startMove(dom) {
+            clearInterval(dom.timer);
+            var isSpeedX = 6;
+            var isSpeedY = 8;
+            var g = 3;
+            dom.timer = setInterval(() => {
+                isSpeedY += g;
+
+                var newTop = dom.offsetTop + isSpeedY;
+                var newLeft = dom.offsetLeft + isSpeedX;
+                // console.log(newTop);
+                if (newTop >= height - 100) {
+                    isSpeedY *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newTop = height - 100;
+                }
+                if (newTop <= 0) {
+                    isSpeedY *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newTop = 0;
+                }
+                if (newLeft >= width - 100) {
+                    isSpeedX *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newLeft = width - 100;
+                }
+                if (newLeft <= 0) {
+                    isSpeedX *= -1;
+                    isSpeedY *= 0.9;
+                    isSpeedX *= 0.9;
+                    newLeft = 0;
+                }
+                if (Math.abs(isSpeedX) < 1) {
+                    isSpeedX = 0;
+                    console.log('x:'+isSpeedX);
+                }
+                if (Math.abs(isSpeedY) < 1) {
+                    isSpeedY = 0;
+                }
+                if (isSpeedX == 0 && isSpeedY == 0 && newTop == height - 100) {
+                    clearInterval(dom.timer);
+                    console.log('over');
+
+                } else {
+                    dom.style.top = newTop + 'px';
+                    dom.style.left = newLeft + 'px';
+                }
+
+            }, 30);
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe</title>
+    <style>
+        body{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var b = 10;
+        console.log(window);
+        console.log(window.parent.a);
+        console.log(window.parent.b);
+        console.log(window.top.a);
+        console.log(window.self == window); // 防止冲突 true
+    </script>
+</body>
+</html>

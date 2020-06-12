@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        #canvas {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var circleList = [];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        canvas.addEventListener('mousemove', function (ev) {
+
+            circleList.push(new Circle(ev.clientX, ev.clientY));
+            // circle.draw();
+        })
+
+        function random(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        function Circle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - .5) * 3;
+            this.vy = (Math.random() - .5) * 3;
+            this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) + ')';
+            this.a = 1;
+        }
+        Circle.prototype = {
+            draw() {
+                context.beginPath();
+                context.fillStyle = this.color;
+                context.globalCompositeOperation = 'lighter';
+                context.globalAlpha = this.a;
+                context.arc(this.x, this.y, 30, 0, Math.PI * 2);
+                context.fill();
+                this.update();
+            },
+            // 相当于 draw: function(){}
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.a *= .98;
+            }
+        }
+
+        function render() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            circleList.forEach(function (ele, i) {
+                ele.draw();
+                if(ele.a<0.03){
+                    circleList.splice(i,1);
+                    // 删一个 删除对应的索引值
+                }
+                
+            });
+            console.log(circleList.length);
+            requestAnimationFrame(render);
+            // 相当于 setInterval(render,30)
+        }
+        render();
+    </script>
+</body>
+
+</html>

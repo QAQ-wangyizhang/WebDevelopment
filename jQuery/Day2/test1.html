@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <!-- <div class="demo"></div>
+    <div class="demo" id="qaq"></div>
+    <div class="demo"></div> -->
+
+
+
+    <!-- <div class="wrapper">
+        <ul>
+            <li>1</li>
+            <li class="demo">2</li>
+            <li>3</li>
+            <li>4</li>
+            <li class="demo">5</li>
+        </ul>
+    </div>
+    <ul>
+        <li>1</li>
+        <li class="demo">2</li>
+        <li>3</li>
+        <li>4</li>
+        <li class="demo">5</li>
+    </ul> -->
+
+    <!-- 
+    <ul>
+        <li>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+
+
+
+    <div class="wrapper">
+        <span class="demo">span-1</span>
+        <span class="demo">span-2</span>
+        <p class="demo">p-1</p>
+        <span class="demo">span-3</span>
+    </div> -->
+    <!-- 给后代有ul 的li 加样式 用has 方法 -->
+
+    <!-- <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul> -->
+
+
+    <div class="wrapper">
+    </div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <!-- <script src="/jQuery/jquery-3.4.1.js"></script> -->
+    <script src="/jQuery/self-jquery.js"></script>
+    <script>
+        // // get 拿出原生的方法不能再调用jQuery的方法了
+        // console.log($('.demo').get()) // <div class="demo"></div> 原生的方法
+
+
+        // // eq
+        // console.log($('.demo').eq()) // 游标  返回的是jq对象
+
+        // find
+        // $('.wrapper')
+        //     .css({
+        //         position: 'relative'
+        //     });
+        // $('.wrapper ul').css({
+        //     listStyle: 'none'
+        // });
+        // $('.wrapper ul li').css({
+        //     color: 'red'
+        // });
+        // console.log($('.wrapper').find());
+
+        // find $() css selector jquery unique selector dom $()  提高效率
+        // $('.wrapper').css({
+        //         position: 'relative'
+        //     })
+        //     .find('ul').css({
+        //         listStyle: 'none'
+        //     })
+        //     .find('li').css({
+        //         color: 'red'
+        //     })
+        // console.log($('.wrapper'));
+        // console.log($('.wrapper').find('ul').prevObject == $('.wrapper'));// false
+        // console.log($('.wrapper').find('ul').find('li').prevObject == $('.wrapper').find('ul') ); // false 内容是一样的 但是引用不一样
+
+        // filter 过滤
+        // 只能基于之前的进行不能过滤不能自己下面再找再过滤 顶替不了find 的作用
+
+        // $('.wrapper ul')
+        //     .find('li')
+        //     .filter('.demo')
+        //     .css({
+        //         color: 'red'
+        //     });
+        // console.log($('.wrapper ul').find('li').filter('.demo'));
+
+        // function 强大的功能 还是在这个function 
+        // index 类数组的索引值 ele 类数组的每个对象
+        // not 和 filter相反 
+        // $('.wrapper ul li ').not(function(index,ele){ 
+        //     // console.log(index,ele,this); // this == ele 
+        //     return index % 2 == 0;// 0 , 2 , 4 偶数
+        // }).css(
+        //     {
+        //         color : 'red'
+        //     }
+        // )
+
+        // has  筛选
+        // 表示你选的li 的后代元素必须有ul的
+        // $('li').has('ul').css({
+        //     color : 'red'
+        // })
+
+        // is 判断子有没有这个标签
+
+        // var flag = $('.wrapper .demo').is('span'); // true
+
+        // 如果点击事件里包含li就输出li 的文本值 否则输出整个ul的值
+        // $('ul').click(function(e){
+        //     $(e.target).is('li') ? console.log($(e.target).text()) : console.log($(this).text())
+        // })
+
+        // add() 集中操作
+
+        // $('.wrapper')
+        //     .css({position: 'relative'})
+        //         .find('ul')
+        //             .css({position : 'relative'})
+        // $('.wrapper')
+        //     .add('ul')
+        //     .css({
+        //         position: 'relative'
+        //     })
+
+        // end 回退机制
+        // $('.wrapper')
+        //     .css({
+        //         position: 'relative'
+        //     })
+        //     .find('ul')
+        //     .css({
+        //         position: 'relative'
+        //     })
+        //     .end() // ul回退 prevObject 回退到wrapper 给他 absolute
+        //     .css({position: 'absolute'})
+    </script>
+</body>
+
+</html>

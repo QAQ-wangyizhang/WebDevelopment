@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js运动</title>
+    <style>
+        /* div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: orange;
+            left: 0px;
+            top: 0px;
+        }
+
+        button {
+            margin-top: 150px;
+        }
+
+        span {
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            width: 1px;
+            height: 100px;
+            background: black;
+        } */
+        /* .wrapper{
+            width: 400px;
+            height: 80px;
+            background: orange;
+            position: absolute;
+            left: -400px;
+            top: 200px;
+        }
+        .wrapper span{
+            width: 50px;
+            height: 80px;
+            background: red;
+            position: absolute;
+            right: -50px;
+            top: 0;
+        } */
+
+        .wrapper {
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+            background: red;
+            border: 1px solid black;
+            position: absolute;
+            left: 0;
+            top: 200px;
+        }
+        .test {
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+            background: red;
+            border: 1px solid black;
+            position: absolute;
+            left: 0;
+            top: 400px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div></div>
+    <span></span>
+    <button id="btn">Run</button> -->
+
+    <!-- <div class="wrapper">
+        <span></span>
+    </div> -->
+
+    <!-- <div></div>
+    <div></div>
+    <div></div>
+    <div></div> -->
+
+    <div class="wrapper"></div>
+    <div class="test"></div>
+    <script>
+        // 获取某个dom元素的样式值
+        function getStyle(dom, atter) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(dom, null)[atter];
+            } else {
+                return dom.getComputedStyle[atter];
+            }
+        }
+        var timer = null;
+
+        var wrapper = document.getElementsByClassName('wrapper')[0];
+        var test = document.getElementsByClassName('test')[0];
+
+        wrapper.onclick = function () {
+            stratMove(this, {
+                width: 400,
+                height: 400,
+                left: 200,
+                top: 300,
+                opacity: 50
+            },
+            function(){
+                stratMove(test,{
+                width: 400,
+                height: 400,
+                left: 200,
+                top: 300,
+                opacity: 50
+            },function(){
+                alert('over');
+            })
+            }
+            )
+        }
+
+        // width  100 400 height 100 400 left 0 200 top 200 300 opacity 1 0.5
+        // 创建一个对象
+        function stratMove(dom, attrObj,callBack) {
+            clearInterval(dom.timer);
+            var isSpeed = null,
+                iCur = null;
+            dom.timer = setInterval(() => {
+                var bStop = true;
+                for (var attr in attrObj) {
+                    if (attr == 'opacity') {
+                        iCur = parseFloat(getStyle(dom, attr)) * 100;
+                    } else {
+                        iCur = parseInt(getStyle(dom, attr));
+                    }
+                    isSpeed = (attrObj[attr] - iCur) / 7;
+                    isSpeed = isSpeed > 0 ? Math.ceil(isSpeed) : Math.floor(isSpeed);
+                    if (attr == 'opacity') {
+                        dom.style.opacity = (iCur + isSpeed) / 100;
+                    } else {
+                        dom.style[attr] = iCur + isSpeed + 'px';
+                    }
+                    if (iCur != attrObj[attr]) {
+                        bStop = false;
+                    }
+                }
+                if (bStop) {
+                    clearInterval(dom.timer);
+                    console.log('over');
+                    typeof callBack == 'function' && callBack();
+                }
+
+            }, 30);
+
+        }
+
+
+
+
+
+        // var newArray = document.getElementsByTagName('div');
+
+        // newArray[0].onclick = function(){
+        //     stratMove(this,'width',400);
+        // }
+        // newArray[1].onclick = function(){
+        //     stratMove(this,'height',400);
+        // }
+        // newArray[2].onclick = function(){
+        //     stratMove(this,'borderWidth',20);
+        // }
+        // newArray[3].onclick = function(){
+        //     stratMove(this,'opacity',50);
+        // }
+
+        // 多物体单属性运动
+        // function stratMove(dom,attr,target){
+        //     clearInterval(dom.timer);
+        //     var isSpeed = null,
+        //         iCur = null;
+        //     dom.timer = setInterval(() => {
+        //         if(attr == 'opacity'){
+        //             iCur = parseFloat(getStyle(dom,attr)) * 100;
+        //         }else{
+        //             iCur = parseInt(getStyle(dom,attr));
+        //         }
+        //         isSpeed = (target - iCur) / 7;
+        //         isSpeed = isSpeed > 0 ? Math.ceil(isSpeed) : Math.floor(isSpeed);
+        //         if(iCur == target){
+        //             clearInterval(dom.timer);
+        //         }
+        //         if(attr == 'opacity'){
+        //             dom.style.opacity = (iCur + isSpeed) / 100;
+        //         }else{
+        //             dom.style[attr] = iCur + isSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+
+        // for (var i = 0; i < newArray.length; i++) {
+        //     newArray[i].onmouseenter = function(){
+        //         stratMove(this,400);
+        //     }
+        //     newArray[i].onmouseleave = function(){
+        //         stratMove(this,100);
+        //     }
+        // }
+
+        // var div = document.getElementsByTagName('div')[0];
+        // var oBtn = document.getElementById('btn');
+        // var span = document.getElementsByTagName('span')[0];
+        // var width = window.innerWidth;
+
+
+        // div.onmouseenter = function(){
+        //     stratMove(this,0);
+        // }
+
+        // div.onmouseleave = function(){
+        //     stratMove(this,-400);
+        // }
+
+        // div.onclick = function(){
+        //     stratMove(div,50);
+        // }
+
+
+
+        // 更改透明度
+        // function stratMove (dom , target){
+        //     clearInterval(timer);
+        //     var isSpeed = null,
+        //         iCur = null;
+        //     timer = setInterval(() => {
+        //         iCur = parseFloat(getStyle(dom,'opacity')) * 100;
+        //         isSpeed = (target - iCur) / 7;
+        //         isSpeed = isSpeed > 0 ? Math.ceil(isSpeed) : Math.floor(isSpeed);
+        //         if(target == iCur){
+        //             clearInterval(timer);
+        //         }else{
+        //             dom.style.opacity = (iCur + isSpeed) / 100;
+        //         }
+        //     }, 30);
+        // }
+
+
+
+
+        // oBtn.onclick = function () {
+        //     stratMove(div,300);
+        // }
+
+        // 匀速运动
+        // function stratMove(dom,target) {
+        //     clearInterval(timer);
+        //     var isSpeed = target - dom.offsetLeft > 0 ? 7 : -7;
+        //     timer = setInterval(() => {
+        //         if (Math.abs(target - dom.offsetLeft) < Math.abs(isSpeed)) {
+        //             clearInterval(timer);
+        //             dom.style.left = target+'px';
+        //         } else {
+        //             dom.style.left = dom.offsetLeft + isSpeed + 'px';
+        //         }
+        //     }, 50);
+        // }
+
+        // 缓存运动
+        // 物体的速度 距离目标点越近 就越小 当到达目标点时 ，速度减小到0
+
+        // function stratMove(dom, target) {
+        //     clearInterval(dom.timer);
+        //     var isSpeed = null;
+        //     iCur = null;
+        //     dom.timer = setInterval(() => {
+        //         iCur = parseFloat(getStyle(dom, 'width'));
+        //         isSpeed = (target - iCur) / 7;
+        //         isSpeed = isSpeed > 0 ? Math.ceil(isSpeed) : Math.floor(isSpeed);
+        //         // console.log(isSpeed);
+        //         if (iCur == target) {
+        //             clearInterval(dom.timer);
+        //         } else {
+        //             dom.style.width = iCur + isSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+    </script>
+</body>
+
+</html>

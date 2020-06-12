@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test3</title>
+</head>
+<body>
+    <div class="demo" cst = 'qaq'></div>
+    <input type="checkbox" >
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // $('.demo')
+        //     .css({width : '100px',height:'100px',backgroundColor : 'orange'})
+        //     .css({width:'+=100px'})
+        // console.log($('.demo').css('width')) // 200px
+
+        // attr 基于setAttribute getAttribute
+        // 取值
+        // console.log($('.demo').attr('cst'));
+        // console.log($('input').attr('checked')); // 只会返回checked已经勾选 我们想要true false所以不用他
+        // // 赋值
+        // $('.demo').attr('id','test1');
+
+
+        // prop js dom{}
+        // 特性映射 非特性不能映射
+        // 取值
+        console.log($('.demo').prop('cst')); // undefined 只能取特性
+        console.log($('input').prop('checked')); //  true / false可以关注表单的状态
+
+        // 赋值
+
+        $('.demo').prop('id','duyi');// 没有映射关系 就显示不出来 但是里面确实有
+    </script>
+</body>
+</html>

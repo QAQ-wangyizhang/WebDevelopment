@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 150rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-titel">卡片标题</h3>
+                        <h4 class="card-subtitle mb-3">卡片副标题</h4>
+                        <p class="card-text">这是卡片的文本内容 需要添加card-text</p>
+                        <a href="#" class="card-link">连接1</a>
+                        <a href="#" class="card-link">连接2</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 图片 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="/Bootstrap/图片、表格、图文/images/1140.jpg" alt="">
+                    <div class="card-body">
+                        <p class="card-text">这是图片的说明 图片不能放到card-body里</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">这是卡片的头部也是页眉</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">这是列表的文字</li>
+                        <li class="list-group-item">这是列表的文字</li>
+                        <li class="list-group-item">这是列表的文字</li>
+                    </ul>
+                    <div class="card-footer">这是卡片的底部也叫页脚</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <div class="card text-center border-danger">
+                    <div class="card-header">页眉</div>
+                    <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">标题</h5>
+                        <p class="card-text">文本内容</p>
+                        <a href="#" class="card-link btn btn-success">连接1</a>
+                        <a href="#" class="card-link btn btn-outline-success">连接2</a>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">这是列表的文字</li>
+                        <li class="list-group-item">这是列表的文字</li>
+                        <li class="list-group-item">这是列表的文字</li>
+                    </ul>
+                    <div class="card-footer bg-transparent border-danger">页脚</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="card">
+                <div class="card-haeder">
+                    <ul class="nav nav-tabs card-header-teabs">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">结合导航的内容</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <div class="card text-center">
+                    <div class="card-header">页眉</div>
+                    <div class="card-body">
+                        <h5 class="card-title">标题</h5>
+                        <p class="card-text">
+                            文本内容
+                        </p>
+                        <a href="#" class="card-link btn btn-success">连接1</a>
+                        <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                        <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                    </div>
+                    <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 card-column">
+            <div class="col-lg-4">
+                <div class="card text-center bg-dark">
+                    <img src="/Bootstrap/图片、表格、图文/images/960.jpg" class="card-img-top">
+                    <div class="card-img-overlay text-light">
+                        <h5 class="card-title">标题</h5>
+                        <p class="card-text">
+                            文本内容
+                        </p>
+                        <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="row mt-5">
+
+            <!-- 卡片组布局 group deck columns 瀑布流 -->
+            <div class="card-columns">
+
+  
+            <div class="card text-center">
+                <div class="card-header">页眉1</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/img_01.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉2</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/1140.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉3</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉4</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉5</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉6</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+            </div>
+            <div class="card text-center">
+                <div class="card-header">页眉7</div>
+                <div class="card-body">
+                    <h5 class="card-title">标题</h5>
+                    <p class="card-text">
+                        文本内容
+                    </p>
+                    <a href="#" class="card-link btn btn-success">连接1</a>
+                    <a href="#" class="card-link btn btn-outline-success">连接2</a>   
+                    <p class="card-text"><small class="text-muted">2 days ago</small></p>
+                </div>
+                <img src="/Bootstrap/图片、表格、图文/images/540.jpg" class="card-img-bottom">
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

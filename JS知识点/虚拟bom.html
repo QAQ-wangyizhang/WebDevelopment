@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* body {
+            height: 700px;
+        }
+
+        div {
+            width: 400px;
+            height: 400px;
+            border: 2px solid black;
+            position: absolute;
+            top: 500px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        } */
+    </style>
+</head>
+
+<body>
+    <p>
+        <label for="demo">username</label>
+        <input type="text" id="demo"> 
+        一体化聚焦
+    </p>
+
+    <input type="text" value="aaa" id="demo" data="duyi" cst="qaq">
+
+
+    <!-- <div id="demo"></div> -->
+
+    <!-- <ul id="wrapper">
+
+    </ul> -->
+
+    <!-- <div class="wrapper" id="ow">
+        23421
+        <p class="   demo   box   active">
+            <span class="demo  active"></span>
+            <span class="  demo  "></span>
+        </p>
+        <p class="  box  demo ">
+            <span class="  demo  "></span>
+        </p>
+
+
+    </div> -->
+    
+<!-- 
+    <ul class="wrapper">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul> -->
+    <script>
+        
+        // var oImg = new Image();
+        // oImg.onload = function () {
+        //     var oDiv = document.getElementById('demo');
+        //     oDiv.appendChild(this);
+        // }
+        // oImg.src = 'https://bkimg.cdn.bcebos.com/pic/6c224f4a20a44623313069919222720e0df3d74f?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5';
+
+        // var oLabel = document.getElementsByTagName('label')[0];
+        // var oInput = document.getElementById('demo');
+        // oInput.onclick = function () {
+        //     console.log(this);
+        // }
+        // oLabel.onclick = function () {
+        //     console.log(this);
+        // }
+        // console.log(document.compatMode); // CSS1Compat
+
+        // 属性 特性
+        // type value id class 特性
+        // data cst  属性
+
+        // var oInput = document.getElementById('demo');
+        // 特性DOM对象 === input 一一对应关系映射
+        // console.log(oInput.id); 特性
+        // oInput.id = 'qaq';
+        // console.log(oInput.id);
+
+        // oInput.value = '134';
+        // // 属性不行
+        // console.log(oInput.data); // undefined
+
+        // 伪代码
+        // 监控滑轮事件
+        // 不断判断当前div的位置
+        // 采取预加载
+        // 把图片正式添加到页面之中
+        // 懒加载加预加载
+        // var oDiv = document.getElementById('demo');
+
+        // var oF = document.createDocumentFragment();
+
+        // var strHtml = '';
+        // var oUl = document.getElementById('wrapper');
+        // for(var i = 0; i < 10; i ++){
+        //     // var newLi = document.createElement('li');
+        //     // newLi.innerText = i;
+        //     // oF.appendChild(newLi);
+        //     // oUl.appendChild(newLi);
+        //     strHtml += '<li>'+i+'</li>';
+        // }
+        // // oUl.appendChild(oF);
+        // oUl.innerHTML = strHtml;
+        // // 这样也可以提高效率
+
+        // 虚拟DOM 修改 删除 添加 避免重绘 重排
+        // Element.prototype.getElementsByClassName = Document.prototype.getElementsByClassName = function (_className,id) {
+        //         // _className
+        //         // 获取document下面的所有标签
+
+        //         var allDomArray = this.getElementsByTagName('*');
+        //         var lastDomArray = [];
+        //         function trimSpace (strClass){
+        //             var reg = /\s+/g;
+        //             var str = strClass.replace(reg,' ');
+        //             return str;
+        //         }
+        //         for(var i = 0; i < allDomArray.length; i++){
+        //             // console.log(allDomArray[i], allDomArray[i].className);
+        //         //   console.log(trimSpace(allDomArray[i].className).trim());//去除首尾空格
+        //           var classArray = trimSpace(allDomArray[i].className).trim().split(' ');
+        //         //   console.log(classArray);
+        //           for(var j = 0; j < classArray.length;j ++){
+        //             //   console.log(classArray[i]);
+        //               if(classArray[j] == _className){
+        //                   lastDomArray.push(allDomArray[i]);
+        //                   break;
+        //               }
+        //           }
+        //          }
+        //          return lastDomArray;
+        //     }
+        //     var ow = document.getElementById('ow');
+        //     console.log(ow.getElementsByClassName('demo'));
+        //    console.log(document.getElementsByClassName('demo'))
+
+        // var ow = document.getElementById('ow');
+        // debugger
+        // ow.style.color = 'red';
+
+        var oUl = document.getElementById('wrapper');
+        var oLiArray = document.getElementsByTagName("li");
+        for(var i =0 ; i < oLiArray.length; i ++){
+            oLiArray[i].innerText = parseInt(oLiArray[i].innerText) + 1;
+        }
+
+    </script>
+</body>
+
+</html>

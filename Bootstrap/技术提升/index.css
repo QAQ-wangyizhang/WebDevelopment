@@ -1,0 +1,29 @@
+.leftCon{
+    width: 20vw;
+    height: 100vh;
+    background-color: #4d5e70;
+}
+
+.logo{
+    background-color: #354457;
+    height: 10vh;
+}
+.logo img{
+    width: 3rem;
+    height: 3rem;
+}
+.rightCon{
+    background-color: #eee;
+}
+
+.list h4{
+    color: #82839a;
+}
+.list a{
+    font-size: 14px;
+    color: #ccc;
+}
+.list a.active{
+    background: #3d4e60;
+    color: #fff;
+}

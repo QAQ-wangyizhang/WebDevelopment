@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // var df = $.Deferred();
+        // df.done(function () {
+        //     console.log('done1')
+        // }).fail(function () {
+        //     console.log('fail')
+
+        // }).progress(function () {
+        //     console.log('progress')
+
+        // }).done(function () {
+        //     console.log('done2')
+
+        // })
+
+        // 简化注册方法
+        // done fail progress
+        // df.then(function(){
+        //     console.log('done')
+        // },function(){
+        //     console.log('fail')
+        // },function(){
+        //     console.log('progress')
+        // }).then(function(){
+        //     console.log('done2')
+        // });
+
+        function createScore() {
+            var df = $.Deferred();
+            setInterval(function () {
+                var score = Math.random() * 100;
+                if (score > 90) {
+                    df.resolve('加油');
+                } else if (score < 50) {
+                    df.reject('go die');
+                } else {
+                    df.notify('等着吧');
+                }
+            }, 100)
+            return df.promise(); // 返回promise对象 只有注册没有触发
+        }
+
+        var df = createScore();
+
+
+        df.then(function (ms) {
+            console.log('yes' + '  ' + ms)
+            var innerDf = $.Deferred();
+            //
+            setInterval(function () {
+                innerDf.resolve('duyi resolve');
+            }, 1500)
+            return innerDf.promise();
+        }, function (ms) {
+            console.log('no' + '  ' + ms)
+            var www = $.Deferred();
+            //
+            setInterval(function () {
+                www.reject('duyi reject');
+            }, 1500)
+            return www.promise();
+        }, function (ms) {
+            console.log('waiting' + '  ' + ms)
+            var ppp = $.Deferred();
+            //
+            setInterval(function () {
+                ppp.notify('duyi,notify');
+            }, 1500)
+            return ppp.promise();
+        }).then(function (ms) { // 第二次then 等于给新的延迟对象再次赋值
+            console.log(ms);
+        }, function (ms) {
+            console.log(ms);
+        }, function (ms) {
+            console.log(ms);
+        });
+
+
+
+        //  df.then(function(ms){
+        //     console.log('yes'+ '  ' + ms)
+        //     return 'ok';
+        // },function(ms){
+        //     console.log('no'+ '  ' + ms)
+        //     return 'byebye'
+        // },function(ms){
+        //     console.log('waiting'+ '  ' + ms)
+        //     return 'waittttttt'
+        // }).then(function(pram){ // 第二个then里的参数是第一个then里返回的值
+        //     console.log('泡妞' +' '+ pram)
+        // },function(pram){
+        //     console.log('没脸' + ' ' + pram)
+        // },function(pram){
+        //     console.log('继续' + ' ' + pram)
+        // })
+    </script>
+</body>
+
+</html>

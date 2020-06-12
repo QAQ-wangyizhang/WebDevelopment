@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: #525;
+        }
+        @media print {
+            div{
+                font-size: 100px;
+            }
+        }
+        @media screen {
+            div{
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        媒体类型
+            all         所有设备
+            print       打印设备
+            screen      彩色的电脑屏幕
+            speech      听觉设备
+     -->
+     <div>媒体类型</div>
+</body>
+</html>

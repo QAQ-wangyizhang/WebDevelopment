@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+.tql{
+    display: none;
+}
+
+.clearfix {
+    content: '';
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
+.wrapper {
+    border: 1px solid #ccc;
+    padding: 10px 5px;
+    width: 350px;
+    margin: 100px auto 0px;
+}
+
+.wrapper .headSearch {
+    margin-bottom: 10px;
+
+}
+
+.wrapper .headSearch .hot {
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+}
+
+.wrapper .headSearch .change {
+    float: right;
+    color: #0088ff;
+    cursor: pointer;
+}
+
+.wrapper .showSearch li{
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.wrapper .showSearch .number {
+    color: #fff;
+    background: #0bf;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.wrapper .showSearch .mes {
+    float: right;
+}
+
+.wrapper .showSearch .mes::after {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-size: 100% 100%;
+}
+
+
+.wrapper .showSearch .mes.up::after {
+    background-image: url(img/up.png);
+    background-position-y: 4px;
+}
+
+.wrapper .showSearch .mes.down::after {
+    background-image: url(img/down.png);
+    background-position-y: 2px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test2</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        .active{
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<div class="demo"></div>
+<div class="demo"></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // addClass removeClass hasClass
+        // $('.demo').addClass(function(index,ele){
+        //     if(index % 2 == 0){
+        //         return 'duyi' + index;
+        //     }else{
+        //         return 'active';
+        //     }
+            
+        // });
+        // $('div').removeClass(function(index,ele){
+        //     if(index % 2 == 0){
+        //         return 'demo'
+        //     }else{
+        //         return '';
+        //     }
+        // });
+
+        // $('.demo').hasClass('active'); // 只要有一个有就为 true
+
+        // $('.demo').click(function(e){
+        //     // $('.demo').removeClass('active');
+        //     // $(this).addClass('active'); // 复用性高
+
+        //     $('.demo').css({backgroundColor :'orange'});
+        //     $(this).css({backgroundColor:'red'}); // 复用性不高
+        // })
+    </script>
+</body>
+</html>

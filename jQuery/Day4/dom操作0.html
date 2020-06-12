@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style> 
+        /* .wrapper {
+            border: 1px solid black;
+            width: 200px;
+            padding: 10px;
+        }
+
+        .wrapper div {
+            width: 200px;
+            height: 100px;
+        }
+        
+        .wrapper .box1 {
+            background: red;
+        }
+        
+        .wrapper .box2 {
+            background: orange;
+        }
+
+        .content {
+            width: 200px;
+            height: 50px;
+            background: blue;
+        } */
+
+        div {
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+
+
+    </style>
+</head>
+<body>
+<!-- 
+    <div class="wrapper">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+    </div>
+    <div class="content">content</div> -->
+
+    <div></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // insertAfter(a) 插入到a的后面
+        // before (jq对象)
+        // $('.content').insertBefore('.box1');   // $('.box1').before($('.content')); 方便操作原本的元素== 链式调用
+
+        // 剪切操作
+        // 把content添加到wrapper里最后一个
+        // $('.content').appendTo('.wrapper');
+        // $('.wrapper').append($('.content'));
+
+        // prepend 把content添加到wrapper里第一个
+        // $('.content').prependTo('.wrapper');
+        // $('.wrapper').prepend($('.content'));
+
+        // remove
+        // detach
+        // $('div').click(function(){
+        //     $(this).detach().appendTo('body'); // 事件还在
+        //     // $(this).remove().appendTo('body'); // click 事件没了
+        //     console.log(1);
+        // })
+
+
+      
+    </script>
+
+</body>
+</html>

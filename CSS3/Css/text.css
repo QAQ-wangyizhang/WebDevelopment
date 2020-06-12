@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* body{
+    background:#000;
+} */
+
+/* 浮雕 */
+/* div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 700px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: #ddd;
+    
+    text-shadow: 1px 1px #000,-1px -1px #fff;
+} */
+
+/* 镂刻 */
+/* div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 700px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: #ddd;
+    
+    text-shadow:-1px -1px #000,1px 1px #fff;
+} */
+
+/* NO ACCESS */
+/* div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 700px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: #ddd;
+    
+    text-shadow:0px 0px 10px #7bed9f,
+                0px 0px 20px #7bed9f,
+                0px 0px 30px #7bed9f;
+    transition: all .3s;
+}
+
+div::before{
+    content: 'NO ';
+    opacity: 0;
+    text-shadow:0px 0px 10px #ff6b81,
+                0px 0px 20px #ff6b81,
+                0px 0px 30px #ff6b81,
+                0px 5px 20px #f10;
+    transition: all .5s;
+}
+
+div:hover::before{
+    opacity: 1;
+}
+
+div:hover{
+    text-shadow:0px 0px 10px #ff6b81,
+                0px 0px 20px #ff6b81,
+                0px 0px 30px #ff6b81;
+} */
+
+
+
+
+
+/*  为什么阴影会在文字上？
+div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 400px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: #2f3542;
+    font-weight: bold;
+    transition: all .3s;
+    background-image: url(https://img.alicdn.com/simba/img/TB15SpdCAL0gK0jSZFxSutWHVXa.jpg);
+    background-repeat: no-repeat;
+    background-position: 0px;
+    line-height: 100px;
+    -webkit-background-clip: text; 会吧文字变成背景的一部分 所以阴影跑到了文字的上面
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 10px 10px 3px rgba(116, 125, 140,.5);
+    
+}
+
+div:hover{
+    background-position: -200px;
+} */
+
+
+/* 显示文字多个分身 */
+/* div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 800px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: #2f3542;
+    font-weight: bold;
+    transition: all .3s;
+    text-shadow: 0px 0px 5px #f10,
+                 0px 0px 10px #f20,
+                 0px 0px 15px #f30;
+}
+
+div:hover{
+    text-shadow: 10px -10px 10px #f00,
+                 10PX 10PX 10PX #ff0;
+} */
+
+
+
+/* 描边 */
+/* div{
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 350px);
+    width: 800px;
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+    color: transparent;
+    font-weight: bold;
+    transition: all .3s;
+    font-family: simsun;
+    -webkit-text-stroke: 2px red;
+} */
+
+/* 换行 */
+/* keep-all 遇见标点符号换行 */
+/* break-all 遇见边框边界换行 */
+/* div {
+    width: 200px;
+    border: 1px solid black;
+    word-break: keep-all;
+} */
+
+div{
+    column-width: 200px;
+    /* column-count: 3; */
+    column-gap: 20px;
+    column-rule: 5px solid black;
+}
+
+/* p{
+    margin: 10px 0s;
+    column-span: all;
+} */

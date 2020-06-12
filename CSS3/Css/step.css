@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes colorChange {
+    0% {
+        background-color: rosybrown;
+        left: 0px;
+    }
+
+    25% {
+        background-color: #f23144;
+        left: 100px;
+    }
+
+    50% {
+        background-color: #f40;
+        left: 200px;
+    }
+
+    70% {
+        background-color: #24f901;
+        left: 300px;
+    }
+
+    85% {
+        background-color: orchid;
+        left: 400px;
+    }
+
+    100% {
+        background-color: wheat;
+        left: 500;
+    }
+}
+
+div {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    color: #fff;
+    background-color: black;
+    /* animation: colorChange 15s steps(6, start) forwards; */
+}
+.demo1{
+    animation: colorChange 10s step-start;
+}
+.demo2{
+    top: 200px;
+    animation: colorChange 10s steps(1,end) forwards;
+}
+/* 
+  steps(1,end) === step-end
+  steps(1,start) === step-start
+*/
+
+/* steps 把一个动画拆成几步实现 
+   end 保留当前帧状态，直到动画时间结束
+   start 保留下一帧状态 直到动画结束
+*/

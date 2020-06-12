@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+
+<body>
+    <!-- <script src="/jQuery/jquery-3.4.1.js"></script> -->
+    <script src="/jQuery/self-jquery.js"></script>
+    <script>
+        // js 满足条件就执行 就是回调函数 工具方法
+        // $.Callbacks() 
+        // 填参数
+        // memory 记忆功能后加的也可以执行  once 执行一次 unique 唯一去重功能
+        // var cb = $.Callbacks('once'); // 执行一次
+        // var cb = $.Callbacks('memory'); // 在后面添加也会执行
+        // var cb = $.Callbacks('unique'); // 去除回调队列里重复的函数
+        // var cb = $.Callbacks('stopOnFalse'); // 遇见false直接中断执行
+        // 回调处理函数
+
+
+        // function test(x, y) {
+        //     console.log('a', x, y)
+        // }
+
+        // function test1(x, y) {
+        //     console.log('b', x, y);
+        //     return false;
+        // }
+
+        // function test3(x, y) {
+        //     console.log('c', x, y)
+        // }
+
+        // cb.add(test, test1, test3, test1);
+        // // cb.add(test,test1);
+
+        // cb.fire('10', '20'); // 执行 a 10 20 b 10 20
+        // cb.fire('10', '20');
+
+        // function test3 (x,y){
+        //     console.log('c',x,y)
+        // }
+
+        // cb.add(test3);
+
+        // 回调机制很好用 
+        // js 是单线程->异步编程优化体验 防止阻塞页面 -> 回调函数
+        // 运动函数 amimate 当你满足某个状态 接下要做另外一件事
+
+
+        // var cb = $.myCallbacks();
+        // var cb = $.myCallbacks('once');
+        // var cb = $.myCallbacks('memory');
+        var cb = $.myCallbacks('oncememory');
+        function a (ms){
+            console.log('a'+ ' ' + ms);
+        }
+        function b (ms){
+            console.log('b' + ' ' + ms)
+        }
+
+        
+
+        // cb.add(a)
+        // cb.add(b);
+        // cb.fire('null')
+        // cb.fire('null')
+
+
+        // cb.add(a)
+        // cb.add(b);
+        // cb.fire('once')
+        // cb.fire('once')
+
+        cb.add(a)
+        cb.add(b);
+        cb.fire('memory')
+        cb.add(c)
+        cb.fire('memory')
+
+
+
+
+        function c (ms){
+            console.log('c'+' ' + ms);
+        }
+    </script>
+</body>
+
+</html>

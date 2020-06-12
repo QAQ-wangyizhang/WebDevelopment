@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        /* .wrapper {
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            background: orangered;
+            left: 100px;
+            top: 100px;
+        }
+
+        .wrapper .demo {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            background: orange;
+            left: 50px;
+            top: 50px;
+        }
+        body{
+            width: 3000px;
+            height: 3000px;
+        } */
+        .test{
+            border: 5px solid #ccc;
+            width: 200px;
+            height: 200px;
+            overflow: auto;
+        }
+
+        .test p {
+            width: 3000px;
+            height: 3000px;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="demo"></div>
+    </div>
+
+    <div class="test">
+        <p></p>
+    </div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // offset 返回对象 {left : , top : }
+        // 永远参照文档定位
+        console.log($('.demo').offset())
+
+        // position 参照有定位的父级进行定位
+        console.log($('.demo').position());
+
+        // scrollTop scrollLeft
+        // $(window).scrollTop(); // 要传数值改变滚动条位置
+
+        // $('.test').scrollTop();
+
+        // width height 获得的就是content区域 也就是css里的属性值 且获得的是数字而不是字符串
+
+        // innerHeight content + padding
+
+        // outerWidth content + padding + border
+
+        // outer@idnth(true) content + padding + border + margin
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+div {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+    position: absolute;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+    background-color: transparent;
+    /*  第一个为水平偏移量 
+        第二个为垂直偏移量  
+        第三个基于边框的原来位置向两侧模糊 高斯模糊
+        第四个为同时增加四个方向的阴影值
+        第五个为阴影的颜色   
+    */
+    /* 外阴影 */
+    /* box-shadow: 0px 0px 0px 0px #eee; */
+
+    /* 内阴影 */
+    /* box-shadow: inset 0px 0px 0px 0px #000; */
+    box-shadow:  inset 0 0 10px 10px #f40,
+                 0px 0px 10px 10px #000,
+                 0px -5px 10px 10px #059692,
+                 -5px 0px 10px 10px #052692,
+                 0px 5px 10px 10px #125692,
+                 5px 0px 10px 10px #002602
+    ;
+
+    /* border-radius: 10px 20px 30px 40px; */
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+
+
+    /* 第一个10 是水平半径 第二个20 是垂直半径 */
+    /* border-top-left-radius: 100px 100px; */
+    /* border-top-right-radius: 100px 100px; */
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 100px 100px; */
+
+    /* border-radius: 10px 20px 30px 40px / 10px 20px 30px 40px; */
+}

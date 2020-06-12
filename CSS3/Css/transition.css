@@ -1,0 +1,18 @@
+
+
+div{
+    width: 100px;
+    height: 100px;
+    background-color: #7d5fff;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    /* 默认 transition:ease */
+    transition-delay: .5s;
+}
+
+div:hover{
+    width: 200px;
+    height: 200px;
+    background-color: #3d3d3d;
+}

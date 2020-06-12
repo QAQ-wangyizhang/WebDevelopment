@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 150rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn btn-danger" data-toggle="popover" title="这里放的是提示框的标题" data-content="这里放的是提示框的内容"
+                    data-placement="right" data-trigger="focus">
+                    提示框
+                </button>
+
+                <span class="d-inline-block" data-trigger="hover" data-toggle="popover"  title="这里放的是提示框的标题" data-content="禁用的元素想要弹出提示框需要在外层添加一层吧交互的功能都添加到这一层上">
+                    <button class="btn btn-danger" style="pointer-events: none;" >
+                        <!-- pointer-events: none;取消button作为事件源头 -->
+                        提示框
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div id="box"></div>
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn btn-primary" data-toggle="popover" title="这是标题" data-content="这是内容"
+                data-animation="false"
+                data-container="body"
+                data-delay="1000"
+                data-html="true">
+                    data-属性
+                </button>
+            </div>
+        </div>
+
+        <!-- 方法与事件 -->
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn btn-secondary" title="事件与方法" id="myPopover">事件与方法</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // 促使化提示框必须要写这一步
+        $(function () {
+            $('[data-toggle = "popover"]').popover();
+        })
+
+        // $('#myPopover').popover('show');
+        // $('#myPopover').popover('toggle'); // 切换提示框show 和 hide
+        // $('#myPopover').popover('enable'); // 添加提示框功能
+        // $('#myPopover').popover('disable'); // 取消提示框功能
+        // $('#myPopover').popover('toggleEnabled'); // 切换提示框enable 和 disable
+        // $('#myPopover').popover('update'); // 更新位置
+
+
+        // 事件
+        $('#myPopover').on('show.bs.popover',function(){
+            console.log(提示框要显示了)
+        }); // 切换提示框
+
+
+    </script>
+</body>
+
+</html>

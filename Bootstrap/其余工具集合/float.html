@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body{
+            height: 100rem;
+        }
+        .fl div{
+            width: 5rem;
+            height: 5rem;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row border fl d-block bg-dark clearfix">
+            <div class="float-left">左浮动</div>
+            <div class="float-md-right">右浮动</div>
+        </div>
+
+
+
+        <!-- 关闭图标 -->
+        <div class="row mt-5">
+            <button type="button" class="close">
+                <span>&times;</span>
+            </button>
+        </div>
+
+        <!-- 图像替换 -->
+        <div class="row mt-5">
+            <h1 class="text-hide" style="background-image: url('http://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg'); width: 50px; height: 50px;">Bootstrap</h1>
+        </div>
+
+        <!-- 文本溢出 -->
+        <div class="row mt-5">
+            <div class="border overflow-auto" style="width: 100px; height: 100px; ">这是在具有设置宽度和高度尺寸的元素上使用 .overflow-auto 的示例。 此内容将垂直滚动。</div>
+            <div class="border overflow-hidden" style="width: 100px; height: 100px; ">这是在具有设置宽度和高度尺寸的元素上使用 .overflow-hidden 的示例。</div>
+        </div>
+
+        <!-- 定位 -->
+        <!-- <div class="row mt-5">
+            <div class="border bg-success" style="width:100px; height: 100px;">默认定位</div>
+            <div class="border bg-warning position-relative" style="width:100px; height: 100px;">绝对定位</div>
+            <div class="border bg-dark position-absolute" style="width:100px; height: 100px;">相对定位</div>
+            <div class="border bg-success position-fixed" style="width:100px; height: 100px; top: 50px;">固定定位</div>
+            <div class="border bg-muted fixed-top" style="width:100px; height: 100px; ">固定顶部</div>
+            <div class="border bg-danger fixed-bottom" style="width:100px; height: 100px; ">固定顶部</div>
+            <div class="border bg-info position-sticky" style="width:100px; height: 100px;">粘性定位,放到这里是没有效果的，需要放在body下的第一层级</div>
+        </div> -->
+
+        <div class="row mt-5 justify-content-around">
+            <div class="bg-light rounded p-3 shadow-none">没有阴影</div>
+            <div class="bg-white rounded p-3 shadow-sm">小阴影</div>
+            <div class="bg-white rounded p-3 shadow">正常阴影</div>
+            <div class="bg-white rounded p-3 shadow-lg">大阴影</div>
+        </div>
+
+        <div class="row bg-danger d-block my-lg-3 borde">
+            <div class="mw-50 bg-secondary text-white text-lg-center">宽度最大值</div>
+        </div>
+
+        <div class="row mt-5 border">
+            <p class="text-justify">这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！这是一段很长很长的文字！</p>
+        </div>
+
+        <div class="row mt-5 bg-danger">
+            <p class="text-monospace">等宽字体</p>
+        </div>
+    </div>
+    <div class="border bg-info sticky-top" style="width:100px; height: 100px; left: 50px;">粘性置顶</div>
+</body>
+</html>

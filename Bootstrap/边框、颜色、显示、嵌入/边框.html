@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .row span{
+            width: 5rem;
+            height: 5rem;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 添加边框 -->
+        <div class="row mt-5 justify-content-around">
+            <span class="border border-dark rounded"></span>
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <span class="border-right"></span>
+            <span class="border-left"></span>
+        </div>
+        <!-- 去除边框 -->
+        <div class="row mt-5 justify-content-around bg-info py-2">
+            <span class="border border-0"></span>
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <span class="border-right"></span>
+            <span class="border-left"></span>
+        </div>
+    </div>
+</body>
+</html>

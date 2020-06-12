@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: orange;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // $.extend this -- > $
+        // $.fn.extend this -- > fn
+
+        // 1.扩展方法
+        // 2.浅层克隆
+        // 3.深层克隆
+
+        // $.extend = $.fn.extend = function(){       
+        // }
+
+        // $.extend({
+        //     definedMandom : function(min,max){
+        //         return Math.ceil(Math.random()*(max - min) + min);
+        //     }
+        // }); // 加到工具方法里
+        // $.defindMandom(22,24);
+        
+        // $.fn.extend({
+        //     drag : function(){
+        //         var disX,
+        //             dixY,
+        //             self = this;
+        //         $(this).on('mousedown',function(e){
+        //             disX = e.pageX - $(this).offset().left;
+        //             disY = e.pageY - $(this).offset().top;
+        //             $(document).on('mousemove',function(e){
+        //                 $(self).css({
+        //                     left : e.pageX - disX,
+        //                     top : e.pageY - disY
+        //                 })
+        //             })
+        //             $(document).on('mouseup',function(e){
+        //                 $(document).off('mousemove').off('mouseup');
+        //             })
+        //         })
+        //         return this;
+        //     }
+        // }); // 加到实例方法里
+
+        // $('.demo').drag();
+
+        // 浅层克隆
+
+        var obj1 = {
+            lastname : 'deng',
+            age : 5
+        }
+
+        var obj2 = {
+            lastname : 'keng',
+            age : 15,
+            smoke : true,
+            girlFriend : {
+                name : 'xiaoliu'
+            }
+        }
+
+        var obj3 = {
+            lastname : 'peng',
+            // age : 25,
+            fortune : 10000
+        }
+
+        // $.extend(obj1,obj2,obj3) // 只改变obj1 都有的就改变为obj2的 没有的就添加上obj2的属性值 索引给的都是一个引用地址所以是浅层
+        // 后面的属性不断 添加覆盖到obj1且是层级递进
+        // 引用值是一个索引
+
+        // 深层克隆
+        $.extend(true,obj1,obj2,obj3) // 除了引用值不一样 其他都一样 引用值 各是各的 比如
+        // 引用值 不是一个索引
+
+    </script>
+</body>
+</html>

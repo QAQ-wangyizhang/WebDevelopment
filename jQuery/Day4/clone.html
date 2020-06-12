@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clone</title>
+    <style>
+        .tql {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="stb">
+        <tr>
+            <th>名字</th>
+            <th>年龄</th>
+            <th>班级</th>
+        </tr>
+        <tr class="tql">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="demo"></div>
+    <!-- <div class="demo" style="width: 100px; height: 100px; background: orange;" data-id="qaq"></div> -->
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // clone
+        // $('.demo').click(function(){
+        //     alert(0);
+        // }) // 事件不能克隆
+        // $('.demo').clone().appendTo('body');
+
+        // 场景
+        // jQuery
+        // data 给到前端 jQuery 操作data 操作dom -->  view
+
+        var studentArr = [{
+                name: 'wang',
+                age: 18,
+                class: 3
+            },
+            {
+                name: 'deng',
+                age: 28,
+                class: 4
+            },
+            {
+                name: 'cheng',
+                age: 22,
+                class: 5
+            },
+            {
+                name: 'ming',
+                age: 10,
+                class: 6
+            },
+        ]
+        // 大数据处理
+        // var oWrapper = $('.stb');
+        // studentArr.forEach(function(ele,index){
+        //     var oClone = $('.tql').clone().removeClass('tql');
+        //     oClone
+        //         .find('td')
+        //                 .text(ele.name)
+        //                     .next()
+        //                         .text(ele.age)
+        //                             .next()
+        //                                 .text(ele.class);
+        //     oWrapper.append(oClone);
+        // });
+
+        // $('.demo').prop('data-log','1111');
+        // console.log($('.demo').clone().prop('data-log')); // undefined
+
+        // data 存信息存数据
+        $('.demo').data('data-duyi', 'qaq');
+        // 
+        $('.demo').data({
+            name: 'wang',
+            age: 18,
+            class: 3
+        });
+    </script>
+</body>
+
+</html>

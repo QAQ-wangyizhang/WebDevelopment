@@ -1,0 +1,86 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    perspective: 800px;
+    transform-style: preserve-3d;
+    perspective-origin: 300px 300px;
+}
+@keyframes round{
+    0%{
+        transform: rotateX(0deg);
+    }
+    25%{
+        transform: rotateX(120deg);
+    }
+    50%{
+        transform: rotateX(0deg);
+    }
+    75%{
+        transform: rotateX(-120deg);
+    }
+    100%{
+        transform: rotateX(0deg);
+    }
+}
+@keyframes skewchange{
+    0%{
+        transform: skew(45deg,45deg);
+    }
+
+    50%{
+        transform: skew(0,0);
+    }
+
+    100%{
+        transform: skew(-45deg,-45deg);
+    }
+}
+body{
+    perspective: 800px;
+}
+.rotate{
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    width: 200px;
+    height: 200px;
+    background-color: brown;
+    /* transform: rotateX(20deg) rotateY(30deg); */
+    /* transform: rotate3d(1,1,1,0deg); */
+    /* x,y 1:1 45度 */
+    transform-origin: center center;
+    transform:skew(0deg,0deg);
+    animation: skewchange 4s cubic-bezier(0,0,1,1) infinite;
+    /* 倾斜的坐标轴 */
+    /* transform:scale(3,3) rotate(45deg) scale(2,1) ; */
+    /* 伸缩的方向会一直保留影响 */
+    /* transform:scale(2,1)  rotate(45deg)  ; */
+    /* 当旋转后按照旋转的坐标轴 伸缩 */
+    /* 坐标轴的刻度发生了伸缩变化 */
+    /* animation: round 4s ease infinite; */
+}
+/* 
+  x:
+  y:
+  z:
+  angle:
+*/
+.repaint{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 400px;
+    top: 600px;
+    background-color: black;
+}
+.repaint:hover{
+    will-change: transform;
+    /* 提前告诉要发生变化 */
+}
+
+.repaint:active{
+    transform: scale(2,3);
+    /* 点击发生变化 */
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // Deferred 有状态的回调
+        // 延迟对象 里面没有任何参数
+        var df1 = $.Deferred();
+        //done 成功 fail 失败 progress 正在进行
+        // 触发回调 resolve reject notify
+
+        var df = createScore(); // 阉割版的df1 没有触发方法
+
+        // 注册成功的回调函数
+        df.done(function (ms) {
+            console.log('成功' + ms)
+        })
+
+        // 注册失败函数
+        df.fail(function (ms) {
+            console.log('失败' + ms)
+        })
+
+        // 注册进行中函数
+        df.progress(function (ms) {
+            console.log('waiting...' + ms)
+        })
+
+
+        // 做一件异步的事情
+        function createScore() {
+            var df = $.Deferred();
+            setInterval(function () {
+                var score = Math.random() * 100;
+                if (score > 90) {
+                    df.resolve('加油');
+                } else if (score < 50) {
+                    df.reject('go die');
+                } else {
+                    df.notify('等着吧');
+                }
+            }, 100)
+            return df.promise(); // 返回promise对象 只有注册没有触发
+        }
+
+
+        // df.reject();
+
+        // fail 和 done 有一个触发其他的就不触发了
+        // fail -- reject  done -- resolve progress -- notify
+    </script>
+</body>
+
+</html>

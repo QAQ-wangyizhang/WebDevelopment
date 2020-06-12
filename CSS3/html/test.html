@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 将页面大小根据分辨率不同进行相应的调节 以展示给用户的大小感觉差不多 
+     980px 视口宽度
+    -->
+    <!-- 
+        视口大小 width = device-width : ipone 或者 ipad 上 横竖屏的宽度 = 竖屏时候的宽度
+        inital-scale : windows phone ie 浏览器 横竖屏的宽度 = 竖屏时候的宽度
+        user-scalable = no 不希望用户双击缩放
+     -->
+    <meta name="viewport" content="width=500px,initial-scale=1.0,user-scalable=no">
+    <title></title>
+    <!-- <link rel="stylesheet" media="(max-width:375px)" href="/CSS3/Css/media.css"> -->
+    <!-- 当屏幕最大宽度为375px导入media css  媒体特性-->
+    <!-- <style>
+        @import url(/CSS3/Css/media.css) screen and (max-width:375px);
+    </style> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            font-size: 14px;
+        }
+
+        .wrapper {
+            /* width: 1500px; */
+            font-size: 0;
+        }
+
+        .demo {
+            /* width: 10rem; */
+            width: 50vmax;
+            /* vw vh 相对于视口而言的 把视口分成100份 
+              vmax 取视口宽高最大的一边分成100份
+              vmin  取视口宽高最小的一边分成100份
+            */
+            /* rem 相对于根标签 变化 */
+            /* 10 * 25 = 250 */
+            height: 200px;
+            border: 1px solid #000;
+            display: inline-block;
+            /* font-size: 0; */
+            box-sizing: border-box;
+        }
+        /* 
+         css导入
+         媒体查询并不占有权重 所以后面会覆盖前面
+         屏幕设备 且屏幕宽度 为375px
+        */
+        @media only screen and (max-width: 375px) and (min-width: 300px) {
+            :root{
+                width:100%;
+                height: 100%;
+                background-color: #eee;
+            }
+            html{
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 只开发一套页面可以让用户在不同设备都可以看到完整的页面 -->
+    <div class="wrapper">
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="Css/border.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        /* div{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%,-50%);
+            border: 1px solid #fff;
+            border-radius: 50%;
+            box-shadow: inset 0px 0px 50px #fff,
+                        inset 10px 0px 80px #f0f,
+                        inset -10px 0px 80px #0ff,
+                        inset 10px 0px 300px #f0f,
+                        inset -10px 0px 300px #0ff,
+                        0px 0px 50px #fff,
+                        -10px 0px 80px #f0f,
+                        10px 0px 80px #0ff;
+        } */
+        /* div{
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0px 0px 100px 50px #fff,
+                        0px 0px 300px 120px #ff0;
+
+        } */
+
+        div {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0px 1px 2px #eee;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .5s;
+        }
+
+        div::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            box-shadow: 0px 5px 15px #eee;
+            opacity: 0;
+            transition: all .5s;
+        }
+
+        div:hover {
+            transform: scale(1.25, 1.25);
+        }
+
+        div:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

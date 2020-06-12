@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .tpl {
+            display: none;
+        }
+
+        .wrapper {
+            overflow: hidden;
+            border: 2px solid black;
+            width: 600px;
+            margin: 100px auto 0px;
+        }
+
+        .movieSection {
+            float: left;
+            width: 180px;
+            height: 180px;
+            padding: 10px;
+
+        }
+
+        .movieSection img {
+            width: 100%;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        .movieSection h3 {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tpl">
+            <img src=""></img>
+            <h3 class="movieName"></h3>
+        </div>
+    </div>
+    <div class="box">
+
+    </div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // $.ajax({
+        //         url: 'https://open.duyiedu.com/jq/movie/power',
+        //         type: 'POST',
+        //         data: {
+        //             username: 'cst',
+        //             password: '123123'
+        //         },
+        //         success: function (res) {
+        //             console.log(res);
+        //             if (res.data.power == 'root') {
+        //                 $.ajax({
+        //                     url: 'https://open.duyiedu.com/jq/movie/movieList',
+        //                     type: 'GET',
+        //                     success: function (res) {
+        //                         console.log(res);
+        //                         var data = res.data;
+        //                         var $Wrapper = $('.wrapper');
+        //                         $.each(data, function (index, ele) {
+        //                             var $MoveSection = $('.tpl').clone().removeClass('tpl')
+        //                                 .addClass('movieSection');
+        //                             $MoveSection.data({
+        //                                     id: ele.id
+        //                                 }).on('click', function () {
+        //                                     $('.box').html('');
+        //                                     $.ajax({
+        //                                         url: 'https://open.duyiedu.com/jq/movie/movieInfo',
+        //                                         type: 'GET',
+        //                                         data: {
+        //                                             movieId: $(this).data('id')
+        //                                         },
+        //                                         success: function (res) {
+        //                                             console.log(res);
+        //                                             var data = res.data;
+        //                                             var direct = data
+        //                                                 .direct;
+        //                                             var gut = data.gut;
+        //                                             var mainActor = data
+        //                                                 .mainActor;
+        //                                             var screenWriter = data
+        //                                                 .screenwritter;
+        //                                             var htmlStr = '<div class = "mask">\
+        //                                         <p>导演：' + direct + '</p> \
+        //                                         <p>剧情：' + gut + '</p> \
+        //                                         <p>主演：' + mainActor + '</p> \
+        //                                         <p>编剧：' + screenWriter + '</p> \
+        //                                         </div>'
+        //                                             $(htmlStr).css({
+        //                                                     position: 'absolute',
+        //                                                     width: 400,
+        //                                                     height: 400,
+        //                                                     left: '50%',
+        //                                                     marginLeft:
+        //                                                         -200
+        //                                                 }).appendTo('.box')
+        //                                                 .children().css({
+        //                                                     marginTop: 10
+        //                                                 });
+        //                                         }
+        //                                     })
+        //                                 }).children().eq(0).attr('src', ele.poster)
+        //                                 .next().text(ele.name);
+        //                             $Wrapper.append($MoveSection);
+        //                         })
+        //                     }
+        //                 })
+        //             }
+        //         }
+
+        //     })
+        (function () {
+            return $.ajax({
+                url: 'https://open.duyiedu.com/jq/movie/power',
+                type: 'POST',
+                data: {
+                    username: 'cst',
+                    password: '123123'
+                },
+            })
+        })().then(function (res) { // res = ajax
+            console.log(res);
+            if (res.data.power == 'root') {
+                return $.ajax({
+                    url: 'https://open.duyiedu.com/jq/movie/movieList',
+                    type: 'GET',
+                });
+            }
+        }).then(function (res) { // res = ajax
+            console.log(res);
+            var data = res.data;
+            var df = $.Deferred();
+            var $Wrapper = $('.wrapper');
+            $.each(data, function (index, ele) {
+               
+                var $MoveSection = $('.tpl').clone().removeClass('tpl')
+                    .addClass('movieSection');
+                $MoveSection.data({
+                        id: ele.id
+                    }).on('click', function () {
+                        df.resolve($(this)); // done
+                    })
+                    .children().eq(0).attr('src', ele.poster)
+                    .next().text(ele.name);
+                $Wrapper.append($MoveSection);
+            })
+            return df.promise();
+        }).then(function (dom) { // dom == $(this) == $MoveSection df.promise.done
+            console.log(dom);
+            return $.ajax({
+                url: 'https://open.duyiedu.com/jq/movie/movieInfo',
+                type: 'GET',
+                data: {
+                    movieId: dom.data('id')
+                },
+            })
+        }).then(function (res) { // ajax 
+            console.log(res);
+            var data = res.data;
+            var direct = data
+                .direct;
+            var gut = data.gut;
+            var mainActor = data
+                .mainActor;
+            var screenWriter = data
+                .screenwritter;
+            var htmlStr = '<div class = "mask">\
+                            <p>导演：' + direct + '</p> \
+                            <p>剧情：' + gut + '</p> \
+                            <p>主演：' + mainActor + '</p> \
+                            <p>编剧：' + screenWriter + '</p> \
+                            </div>'
+            $(htmlStr).css({
+                    position: 'absolute',
+                    width: 400,
+                    height: 400,
+                    left: '50%',
+                    marginLeft:
+                        -200
+                }).appendTo('.box')
+                .children().css({
+                    marginTop: 10
+                });
+        })
+    </script>
+</body>
+
+</html>

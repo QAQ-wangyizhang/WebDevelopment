@@ -1,0 +1,213 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/*  Relationship Selector 
+    关系选择器
+*/
+/* E + F */
+/* 下一个满足添加的兄弟元素节点 */
+/* div + p {
+    color: orchid;
+} */
+
+
+/* E ~ F */
+/* div ~ p{
+    color: orchid;
+}
+
+
+div > span{
+    color: orangered;
+} */
+
+
+/* Attribute Selector 
+    属性选择器
+*/
+/* div[data] {
+    background: orchid;
+} */
+/* div[data~="a"] {
+    background: orchid;
+} */
+
+
+
+/* div[class|="a"] {
+    background: red;
+} */
+
+
+/* div[class*="t"] {
+    background: orchid;
+} */
+
+/* Peseudo-Element Selector
+    伪元素选择器
+*/
+/* input::placeholder{
+    color: red;
+}
+
+
+div:nth-of-type(1)::selection{
+    background: #fcc;
+    color: #f45;
+    text-shadow:3px 5px royalblue;
+}
+
+
+div:nth-of-type(2)::selection{
+    background: #000;
+    color: #fff;
+} */
+
+/* 伪类选择器 */
+/* div:not(.test){
+    background-color: red;
+} */
+
+
+ul {
+    width: 300px;
+    border: 1px solid black;
+}
+
+li {
+    height: 50px;
+    margin: 0 5px;
+    /* border-bottom: 1px solid black; */
+}
+
+/* 最后一个线不加 */
+li:not(:last-of-type) {
+    height: 50px;
+    margin: 0 5px;
+    border-bottom: 1px solid black;
+}
+
+/* 根标签选择器 */
+/* :root {
+    background-color: #eee;
+}
+
+div:target {
+    border: 1px solid red;
+} */
+
+/* location.hash = xxx 
+返回一个 URL 的主要部分。
+*/
+
+/* .buttonWrapper{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.buttonWrapper a {
+    display: inline-block;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 40px;
+    color: cornflowerblue;
+}
+
+.buttonWrapper a:hover{
+    color: cyan;
+}
+
+:root,body{
+    width: 100%;
+    height: 100%;
+    background: #eee;
+}
+
+div{
+    width: 100%;
+    height: 100%;
+}
+
+
+#green{
+    background: green;
+}
+
+#red{
+    background: red;
+}
+
+#gray{
+    background: gray;
+}
+
+div[id]:not(:target){
+    display: none;
+} */
+
+/* div p:first-child{
+    background-color: gray;
+} */
+
+/* p:last-child{
+    background-color: red;
+} */
+
+/* p:only-child{
+    background: red;
+} */
+/* css 从1开始查数
+    n是自然数从0开始查数
+    2n 偶数 even
+    2n + 1 奇数 odd
+*/
+/* p:nth-child(odd){
+    background: red;
+} */
+
+
+/* p:nth-of-type(odd){
+    color: red;
+}
+
+div:empty{
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+input:checked + span{
+    background-color: green;
+}
+
+input:checked + span::after{
+    content: "电话10086";
+} */
+
+
+input{
+    border: 1px solid #999;
+}
+
+/* input:enabled{
+    border: #f3c;
+}
+input:disabled{
+    border: springgreen;
+} */
+
+input:read-only{
+    color: springgreen;
+}

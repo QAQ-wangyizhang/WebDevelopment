@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div class="form-group form-inline">
+                    <label for="data">日期:</label>
+                    <input type="text" class="form-control w-50 ml-2" placeholder="请选择日期" id="data">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="layui/layui.all.js"></script>
+    <script>
+        layui.use('laydate',function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                // 绑定元素
+                elem:'#data',
+                // 控件类型
+                // type: 'year',
+                // type:'month',
+                // type:'date',
+                // type:'datetime',
+                // 范围
+                // range:true,
+                // 格式
+                // format:'yyyy-MM-dd HH:mm:ss',
+                // value : new Date(2019,7,8)
+                // 范围
+                min : '2018-1-1',
+                max : '2020-12-31',
+                min : -5,
+                max : 5,
+                // 自定义控件
+                trigger : 'focus'
+            })
+        })
+    </script>
+</body>
+</html>

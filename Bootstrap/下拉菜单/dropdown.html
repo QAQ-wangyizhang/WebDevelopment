@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5" style="margin-top: 300px !important;">
+            <div class="col-2">
+                <!-- 单一按钮的下拉菜单 -->
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">button标签下拉</button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item">上海</a>
+                        <a href="#" class="dropdown-item">广州</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 使用a标签 -->
+            <div class="col-2">
+                <div class="dropdown">
+                    <a href="javascript:;" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
+                        data-offset="50">a标签下拉</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item">上海</a>
+                        <a href="#" class="dropdown-item">广州</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">深圳</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分离式下拉菜单 -->
+            <div class="col-3">
+                <div class="btn-group dropup">
+                    <!-- 向上展开 向右展开同理 -->
+                    <button class="btn btn-success">分离式下拉菜单一直show</button>
+                    <button class="btn-success btn-sm btn dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown"></button>
+                    <div class="dropdown-menu dropdown-menu-right show">
+                        <span class="dropdown-item-text">非点击项</span>
+                        <h6 class="dropdown-header">下拉菜单的标题</h6>
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item active">上海(当前状态)</a>
+                        <a href="#" class="dropdown-item disabled">广州(已禁用)</a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item">深圳</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-2">
+                <!-- 单一按钮的下拉菜单 -->
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle" id="myBtn">方法</button>
+                    <div class="dropdown-menu" id="myDropdown" data-reference="parent">
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item">上海</a>
+                        <a href="#" class="dropdown-item">广州</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-2">
+                <!-- 单一按钮的下拉菜单 -->
+                <div class="dropdown" id="myDropdown1">
+                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">方法</button>
+                    <div class="dropdown-menu" data-reference="parent">
+                        <a href="#" class="dropdown-item">北京</a>
+                        <a href="#" class="dropdown-item">上海</a>
+                        <a href="#" class="dropdown-item">广州</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $('#myBtn').click(function () {
+            // $('#myDropdown').dropdown('toggle');
+            // 解决toggle的问题
+            $('#myDropdown').toggle(function () {
+                $('#myDropdown').dropdown('show');
+            }, function () {
+                $('#myDropdown').dropdown('hide');
+            })
+        })
+        // 事件
+        $('#myDropdown1').on('show.bs.dropdown', function () {
+            console.log('调用了show方法')
+        })
+        $('#myDropdown1').on('shown.bs.dropdown', function () {
+            console.log('完全显示')
+        })
+        $('#myDropdown1').on('hide.bs.dropdown', function () {
+            console.log('调用了hide方法')
+        })
+        $('#myDropdown1').on('hidden.bs.dropdown', function () {
+            console.log('完全隐藏')
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1</title>
+</head>
+
+<body>
+    <!-- <div class="wrapper">
+        <ul>
+            <li data="Duyi">1</li>
+            <li data="cstDuyi">2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul> -->
+
+    <!-- <div class="wrapper">
+        <div class="demo">
+            241
+            <span>span1</span>
+        </div>
+        <div class="demo">
+            <p>p1</p>
+        </div>
+        <div class="demo">
+            <span>span2</span>
+        </div>
+    </div> -->
+
+    <div class="demo">1</div>
+    <div class="demo">2</div>
+    <div class="demo">3</div>
+    <!-- <script src="/jQuery/jquery-3.4.1.js"></script> -->
+    <script>
+        // $('.wrapper').css({width:'100px',height:'100px',backgroundColor:'red'});
+        // css selector
+        // console.log($('.wrapper ul li'));
+        // jquery selector
+        // odd 偶数  even 奇数  eq(num)  第几个 first 第一个
+        // $('.wrapper ul li:eq(-3)').css('backgroundColor','red');
+        // console.log($('.wrapper ul li:first'))
+        // 属性选择 li必须有data 这个属性且这个属性必须以Duyi结尾
+        // $('li[data $= "Duyi"]').css('border', '1px solid black');
+
+        // null undefined 容错机制 因为js是单线程的 所以要防止报错
+        var selector = null;
+        // dom jquery 包装成jQuery方法
+        // console.log($(undefined)); // jquery 对象 什么都没有
+        // console.log($(selector)); // jquery 对象 什么都没有
+        var colorsArr = ['red', 'blue', 'orange'];
+        // $('.wrapper .demo').each(function (index, ele) {
+        //     console.log(ele, $(ele));
+        //     $(ele)
+        //         .find('span')
+        //         .css({
+        //             color: colorsArr[index]
+        //         });
+        // })
+
+        // dom
+        // $('.demo').css({color : colorsArr[1]});
+
+        // function
+        // DOMContentLoaded 先触发
+        // window.onload = function(){} 再触发
+        // window.onload = function(){
+        //     console.log('window.onload')
+        // }
+
+
+        // $(function(){
+        //     console.log('DOMContentLoaded')
+        // }) // 还是在window.onload时间线之后
+        // $(document).ready(function(){
+        //     console.log('DOMContentLoaded')
+        // })
+
+        // 两个
+        // console.log($('.wrapper ul'))
+        // console.log($('ul','.wrapper'));
+
+        // $() 对象
+        // jQuery 库 封闭了作用域 闭包
+        (function () {
+            function jQuery(selector) {
+                return new jQuery.prototype.init(selector); // init的原型链上有css的方法
+            }
+            jQuery.prototype.init = function (selector) {
+                // var this = {}
+                // 选出 dom 标签 并且包装成jQuery对象 返回
+                // id class
+                this.length = 0;
+                if (selector.indexOf('.') != -1) {
+                    var dom = document.getElementsByClassName(selector.slice(1));
+                } else if (selector.indexOf('#') != -1) {
+                    var dom = document.getElementById(selector.slice(1));
+                }
+
+                if (dom.length == undefined) { // 只有一个dom
+                    this[0] = dom;
+                    this.length++;
+                } else { // 你有很多个dom Elements
+                    // 循环dom
+                    for (var i = 0; i < dom.length; i++) {
+                        this[i] = dom[i];
+                        this.length++;
+                    }
+                }
+                // return this;
+            }
+            jQuery.prototype.css = function (config) {
+                // 循环操作每一个dom
+                for (var i = 0; i < this.length; i++) {
+                    for (var attr in config) {
+                        this[i].style[attr] = config[attr]; // 这里如果加了px那么就只能修改像素值了 对于颜色透明度就会使其失效
+                    }
+                }
+                return this; // 链式操作的精髓 又返回了一个函数本身
+            }
+            jQuery.prototype.get = function (num) {
+                return num == null ? [].slice.call(this, 0) : num >= 0 ? this[num] : this[num + this.length];
+            }
+            jQuery.prototype.init.prototype = jQuery.prototype; // init的原型链上有css的方法
+            window.$ = window.jQuery = jQuery; // 内部jQuery的函数被保存到了window上所有没有被释放 就是闭包
+        })();
+
+
+
+        $('.demo')
+            .css({
+                width: '100px',
+                height: '100px',
+                backgroundColor: 'orange'
+            })
+            .css({
+                color: 'red'
+            })
+        console.log($('.demo'))
+    </script>
+</body>
+
+</html>

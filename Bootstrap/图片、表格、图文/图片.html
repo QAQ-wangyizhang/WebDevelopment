@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 9999px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="row">
+            <img src="images/img_01.jpg" class="img-fluid" alt="">
+        </div> -->
+        <div class="row justify-content-between">
+            <!-- 缩略图 -->
+            <div class="col-md-4 ">
+                <img src="images/img_01.jpg" class="img-thumbnail" alt="">
+            </div>
+
+            <!-- 圆角边框图片 -->
+            <div class="col-md-4">
+                <img src="images/img_01.jpg" class="img-fluid rounded " alt="">
+            </div>
+
+        </div>
+
+
+        <!-- 图片对齐方式 自己对齐通过浮动-->
+        <div class="row mt-5">
+            <div class="col">
+                <img src="images/img_01.jpg" style="height: 200px;" class="float-left" alt="">
+                <img src="images/img_01.jpg" style="height: 200px;" class="float-right" alt="">
+
+            </div>
+        </div>
+        <!-- 通过父级调整对齐 使用文本对齐方式对齐-->
+        <div class="row mt-5 text-center">
+            <div class="col">
+                <img src="images/img_01.jpg" style="height: 200px;" alt="">
+                <img src="images/img_01.jpg" style="height: 200px;" alt="">
+            </div>
+        </div>
+        <!-- 居中 -->
+        <div class="row mt-5">
+            <div class="col">
+                <img src="images/img_01.jpg" style="height: 200px;" class="d-block mx-auto" alt="">
+            </div>
+        </div>
+
+        <!-- 自适应加载不同的图片 -->
+        <div class="row mt-5">
+            <picture>
+                <source media="(min-width:1200px)" srcset="images/1140.jpg">
+                <source media="(min-width:992px)" srcset="images/960.jpg">
+                <source media="(min-width:768px)" srcset="images/720.jpg">
+                <source media="(min-width:576px)" srcset="images/540.jpg">
+                <img src="images/img_01.jpg" alt="">
+            </picture>
+            <!-- .webp 图片的格式 专门针对网页 -->
+        </div>
+    </div>
+</body>
+
+</html>

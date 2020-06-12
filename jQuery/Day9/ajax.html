@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div class="demo"></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // $.ajax() 基本使用
+        // 数组扩展: https://open.duyiedu.com/jq/person
+
+        // baidu搜索: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su
+
+        // 不管返回值
+        // 参数 obj 
+        // 属性 url: 资源定位器  
+        // type: 请求方式 
+        // data {}数据 字段 信息 
+        // suuccess: 成功请求后的处理函数
+        // error: 错误信息
+        // complete: 请求完成的处理函数 最后执行
+        // context : 改变ajax里的this指向 函数上下文
+        // timeout : 设置请求时间
+        // async true false 是否异步 默认异步 true  如果是false就必须先ajax先执行
+        // dataType : 'jsonp' 跨域 目的是期望服务器返回的数据类型 不填更好的识别
+        function fun(res){
+            console.log('可以用了')
+            console.log(res)
+        }
+        $.ajax({
+            // url : 'https://open.duyiedu.com/jq/person',
+            url : 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+            type : 'GET',
+            data : {
+                wd : 'nba',
+                cb : 'fun'
+            },
+            // async : true,
+            dataType : 'jsonp',
+            // success : function(res){
+            //     $.each(res.data,function(index,ele){
+            //         console.log(ele);
+            //     })
+            //     console.log(this); 
+            // },
+            // error : function(e){
+            //     console.log(e.status,e.statusText);
+            // },
+            // complete :function(){
+            //     // 完成或者失败都会运行这个方法
+            //     // 可以伪代码 增加容错性
+            //     console.log('伪代码');
+            // },
+            // context : $('.demo'),
+            // timeout : 2000,
+
+        })
+        console.log('over');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+             200-400 显示1个
+
+             400-600 显示2个
+
+             600-800 显示3个
+
+             800-1000 显示4个
+
+             1000以上 显示5个
+        
+        */
+        body{
+            margin: 0;
+        }
+
+        div{
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+            float: left;
+        }
+
+        @media all and (min-width:200px) {
+            div{
+                width: 100%;
+            }
+        }
+        @media all and (min-width:400px) {
+            div{
+                width: 50%;
+            }
+        }
+
+        @media all and (min-width:600px) {
+            div{
+                width: calc(100%/3);
+            }
+        }
+
+        @media all and (min-width:800px) {
+            div{
+                width: 25%;
+            }
+        }
+
+        @media all and (min-width:900px) {
+            div{
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天机器人</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="header">小渡机器人</div>
+        <div class="contain">
+            <div class="mine">
+                <div class="avator"></div>
+                <div class="text">我</div>
+            </div>
+            <div class="robot">
+                <div class="avator"></div>
+                <div class="text">机器人</div>
+            </div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="send-text">
+            <button id="send-btn">发送</button>
+        </div>
+    </div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script src="main.js"></script>
+    <!-- <script>
+        /* 三次握手(建立连接的过程)
+         1. 确定客户端有发送信息的能力
+         2. 确定服务器端有接受和发送的能力
+         3. 客户端和服务器端都能接受信息 发送信息
+           四次挥手(断开连接)
+         1. 客户端向服务器端发出信息:服务器客户端的消息已经发送完毕 客户端准备断开
+         2. 服务器端向客户端发出信息:服务器知道客户端到底消息已经发送完了，但是服务器端还没接受完 也没有发完消息
+         3. 服务器端向客户端发出消息:服务器发送的信息已经发送完了 ，可以断开了
+         4. 客户端向服务器端发出信息:客户端知道服务器端信息已经发送完了 客户端断开了
+        */
+        function aa(res){
+            console.log(res);
+        }
+        $.ajax({
+            type: 'get',
+            url: "http://open.duyiedu.com/api/student/findAll",
+            data: {
+                appkey: "QAQwangyizhang_1585626591787"
+            },
+
+            // 数据在传递过程中的编码格式是怎样的， application/x-www-form-urlencoded:key = value&key1=value1
+            // contentType: 'application/x-www-form-urlencoded'默认
+
+            //application/json 在数据的传递过程中数据的编码格式为json字符串格式
+            // dataType: 'jsonp',
+            // jsonp : 'callback',
+            // jsonpCallback :'aa',
+
+            // 数据发出之前的拦截 拦截器
+            // beforeSend:function(xhr, data){
+            //     console.log(xhr,data);
+            //     // return false; //终止网络请求 
+            // },
+            success: function (res) {
+                console.log('success', res);
+            },
+
+            // 当前请求失败触发的回调函数
+            error: function (res) {
+                console.log('error', res);
+            },
+
+            // 完成请求触发的回调函数 无论失败或是成功
+            complete: function (res) {
+                console.log('complete', res);
+            }
+
+
+
+        })
+    </script> -->
+</body>
+
+</html>

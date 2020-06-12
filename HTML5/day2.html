@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .drag{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- 无兼容性问题 可以修改表格 这个属性可以继承呢-->
+    <div contenteditable="true">
+        Pandad
+        <p contenteditable="false">Monkey</p>
+        <!-- 尽量不要嵌套使用 可能会删掉标签 -->
+    </div>
+    <hr>
+    <div class="drag" draggable="true"></div>
+    <a href="https:www.baidu.com">baidu</a>
+    <hr>
+    <img src="/CSS3实现转轴展开图片列表/img/1.jpg" alt="">
+</body>
+</html>

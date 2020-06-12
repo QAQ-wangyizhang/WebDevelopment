@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind</title>
+</head>
+
+<body>
+    <button id="btn">click</button>
+    <script>
+        // bind 的基本使用
+        // var x = 10;
+        // function show(){
+        //     console.log(this.x); // window
+        // }
+        // show(); // 10
+        // var Duyi = {
+        //     x : 20
+        // }
+        // // function
+        // var newShow = show.bind(Duyi);
+        // newShow(); // 20
+
+        // 单对象编程
+        // var list = {
+        //     init: function () {
+        //         this.ms = 'duyi';
+        //         this.dom = document.getElementById('btn');
+        //         this.bindEvent();
+        //     },
+        //     bindEvent: function(){
+
+        //         this.dom.onclick = this.show.bind(this,5,5); // this --> dom --> list
+        //         // bind 构成一个新的函数 onclick就会往里面传入一个新的事件对象 而这个对象就会加入到实参列表的前面
+
+        //     },
+        //     show: function (x,y,e) { // 这里多写一个参数e 就会返回出这个隐式的onclick事件对象
+        //         // alert(this.ms);
+        //         console.log(this.ms,x,y,e); // duyi 5 5 MouseEvent
+        //     }
+        // }
+        // list.init();
+
+        // 在单对象编程里遇见绑定事件 改变this的指向到对象且不直接执行
+
+
+
+        // var x = 10;
+
+        // function show(a,b) {
+        //     console.log(this.x,a,b); // window
+        // }
+        // show(5,3); // 10 5 3
+        // var Duyi = {
+        //     x: 20
+        // }
+        // // function
+        // var newShow = show.bind(Duyi,3); // 改变this 顺便还可以传参数 这里3相当于newShow(3,5) 会加到实参列表之前
+        // newShow(5); // 20 3 5
+        // console.log(new newShow().constructor) // show
+
+
+        // 总结
+        // 1. 函数A调用bind方法时，需要传递的参数o ,x ,y,z.....
+        // 2. 返回新的函数B
+        // 3. 函数B在执行的时候 具体的功能还是使用的是A 不过this的指向变为了 o|| window
+        // 4. 函数B在执行的时候 传递的参数 会拼接到 x,y,z 后面，一并内部传递到A执行
+        // 5. new B() 构造函数依旧是A, 而且o不会起到任何作用 
+
+        Function.prototype.newBind = function (target) {
+            var self = this;
+            var args = [].slice.call(arguments, 1); // 实参数组将最前一位切割掉 
+            var temp = function () {};
+            var f = function () {
+                // var this  = {};
+                var _args = [].slice.call(arguments)
+                return self.apply(this instanceof temp ? this : target || window, args.concat(
+                    _args)); // 1. 啥都没有传那么this指向还是window
+                             // 2. 如果new了就说明 不用传了你的原型链一定能找到temp 也就是self
+            }
+            temp.prototype = self.prototype;
+            f.prototype = new temp(); // new newShow().constructor == show
+            return f;
+        }
+
+        var x = 10;
+
+        function show(a, b) {
+            console.log(this.x, a, b); // window
+        }
+        show(); // 10 
+        var Duyi = {
+            x: 20
+        }
+        // function
+        var newShow = show.newBind(Duyi, 1, 2); // 改变this 顺便还可以传参数 这里3相当于newShow(3,5) 会加到实参列表之前
+        newShow(); // 20 
+        console.log(new newShow().constructor) // show
+    </script>
+</body>
+
+</html>

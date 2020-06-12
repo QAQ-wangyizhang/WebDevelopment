@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script src="/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        // html 
+        var arrName = ['马云','休斯顿','吴彦祖','吴亦凡'];
+        // console.log($('ul').html()) // 返回的是ul下面的内容 是原始值不可以再链式调用
+        // $('ul li').html('<span style ="color : orange">'+arrName[1]+'</span>') 
+        // // 取值 : 1 只能拿出第一个 例外 在jQuery是例外的情况 其他都该是li全被选择
+        // // 赋值 全部赋值
+        // // innerHTML
+        // // $('ul').html('abc')
+
+       
+        // $('ul li').html(function(index,ele){
+        //     return '<span style ="color : orange">'+arrName[index]+'</span>';
+        // });
+
+        // text innerText
+        // // 取值 都取
+        // console.log($('ul li').text());
+
+        // // 赋值
+        // $('ul li').text(function(idnex , ele){
+        //     return arrName[idnex];
+        // })
+
+        // size == length
+        // $('ul li').size();// 从1.8版本这个 方法已经被废弃了不用了 现在用.length代替
+        console.log($('ul li').length);// 4 
+    </script>
+</body>
+</html>

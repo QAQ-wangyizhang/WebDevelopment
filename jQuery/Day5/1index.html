@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .demo {
+            width: 100px;
+            border: 1px solid black;
+        }
+
+        ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <p>Rose</p>
+        <ul>
+            <li>小牛</li>
+            <li>篮网</li>
+            <li>热火</li>
+        </ul>
+    </div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // show 你设置了就是还原你设置的 否则还原默认状态
+        // $('p').hover(function(){
+        //     $('ul').css({display : 'block'})
+        // },function(){
+        //     $('ul').css({display : 'none'})
+        // })
+        // hide () 参数 动画延迟 透明度 宽高都变 padding margin 全部还原
+        // $('p').on('mouseenter',function(){
+        //     $(this).next().show(2000,'swing');
+        // })
+        // $('.demo').on('mouseleave',function(){// 变化的线性函数
+        //     $('p').next().hide(2000,'linear');
+        // })
+
+
+        // toggle 相对于show和hide 
+        // $('p').on('click',function(){
+        //     // if($(this).next().css('display') == 'none'){
+        //     //     $(this).next().show(2000,'swing');
+        //     // }else{
+        //     //     $('p').next().hide(2000,'linear');
+        //     // }
+        //     $('p').next().toggle(); //
+        // })
+
+        // fadeIn fadeOut 淡入淡出 只变透明度 延时参数
+        // fadeTo 到哪里 延时参数 透明度系数 运动方式 回调函数
+        // $('p').on('click', function () {
+        //     if($(this).next().css('display') == 'none'){
+        //         $(this).next().fadeTo(1500,0.6,'swing',function(){console.log(1)});
+        //     }else{
+        //         $(this).next().fadeTo(1500,0.1,'swing',function(){console.log(2)});
+        //     }
+        //     // $(this).next().fadeToggle();
+        // })
+        
+
+        // slideDown  只变高度
+        // slideUp 卷入卷出 
+        $('p').on('click', function () {
+            // if ($(this).next().css('display') == 'none') {
+            //     $(this).next().slideDown(1500,'swing', function () {
+            //         console.log(1)
+            //     });
+            // } else {
+            //     $(this).next().slideUp(1500, 'swing', function () {
+            //         console.log(2)
+            //     });
+            // }
+            $(this).next().slideToggle(3000,'swing',function(){
+                console.log('over');
+            });
+        })
+    </script>
+</body>
+
+</html>

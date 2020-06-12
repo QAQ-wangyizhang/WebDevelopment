@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旋转加载</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="spinner-border text-success"></div>
+            </div>
+            <div class="col text-center">
+                <div class="spinner-grow text-primary"></div>
+            </div>
+            <div class="col text-center">
+                <div class="spinner-grow text-primary spinner-grow-sm"></div>
+                <div class="spinner-border text-success spinner-border-sm"></div>
+            </div>
+
+            <div class="col text-center">
+                <div class="spinner-grow text-info" style="width: 3rem; height: 3rem;"></div>
+                <div class="spinner-border text-danger " style="width: 3rem; height: 3rem;"></div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <div class="btn btn-outline-success" disabled>
+                    <div class="spinner-border spinner-border-sm"></div>
+                    Loadding....
+                </div>
+            </div>
+            <div class="col">
+                <div class="btn btn-outline-success" disabled>
+                    <div class="spinner-grow spinner-grow-sm"></div>
+                    Loadding....
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

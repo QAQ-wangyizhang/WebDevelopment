@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="stopBtn">stop</button>
+    <button id='finishBtn'>finish</button>
+    <button id="startBtn">start</button>
+    <div class="demo"></div>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js
+    '></script>
+    <script>
+        // target duration时间 easing 运动方式 callback 回调函数
+        // 默认100毫秒
+        // $('.demo').animate(
+        //     {width :'+=50',
+        //     height: '+=50',
+        //     top : '+=100',
+        //     left: '+=100'
+        // },2000,'swing',function(){
+        //     console.log('over')
+        // })
+
+        // $('.demo').click(function () {
+        //     $(this).animate({
+        //         width: '+=50',
+        //         height: '+=50',
+        //         top: '+=100',
+        //         left: '+=100'
+        //     }, 2000, 'swing', function () {
+        //         $(this).animate({
+        //             width: '+=50',
+        //             height: '+=50',
+        //             top: '+=100',
+        //             left: '+=100'
+        //         }, 2000, 'swing')
+        //     })
+        // })
+
+
+        $('#startBtn').click(function () {
+            $('.demo')
+                .animate({
+                    width: '+=50',
+                    height: '+=50',
+                    top: '+=100',
+                    left: '+=100'
+                }, 2000, 'easeInOutBounce')
+                .delay(1000)// 延迟1000毫秒执行他
+                // 内置队列 执行第一个animate再执行第二个
+                .animate({
+                    width: '+=50',
+                    height: '+=50',
+                    top: '-=100',
+                    left: '+=100'
+                }, 2000, 'swing')
+        })
+
+        // animate 内置队列的操作
+
+        // stop 不传参数终止第一个运动 奔向下一个参数
+        $('#stopBtn').click(function(){
+            // $('.demo').stop(true);// 在当期位置停了后面运动都不执行了
+            $('.demo').stop(true,true);// 停止当期运动并且移动到当前目标点最终的位置
+        })
+
+        $('#finishBtn').click(function(){
+            $('.demo').finish();// 到达最后的目标点没参数          
+        })
+
+        // jQuery.fx.off = true; // 关闭过度动画
+    </script>
+</body>
+
+</html>

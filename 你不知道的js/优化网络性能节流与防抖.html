@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流和防抖</title>
+</head>
+
+<body>
+    <div id="show">
+        0
+    </div>
+    <button class="btn">抢东西</button>
+    <input type="text" id="inp">
+    <script>
+        var oDiv = document.getElementById('show');
+        var oButton = document.getElementsByClassName('btn')[0];
+        // 节流 1 1000 2 1000 3
+        function throttle(handler, wait) {
+            var lastTime = 0;
+
+            return function(e){
+                var nowTime = new Date().getTime();
+                if(nowTime - lastTime > wait){
+                    // this oBtn
+                    // event
+                    handler.apply(this,arguments);
+                    lastTime = nowTime;
+                }
+            }
+        }
+
+        function buy(e) {
+            console.log(this,e);
+            oDiv.innerText = parseInt(oDiv.innerText) + 1;
+        }
+
+        oButton.onclick = throttle(buy,1000);
+
+
+
+
+        // 实时搜索
+        var oInp = document.getElementById('inp');
+        var timer = null;
+        function debonunce(handler , delay){
+            
+            var timer = null;
+            return function(e){     
+                var self = this; 
+                var arg = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    handler.apply(self,arg);
+                },delay)
+            }
+        }
+        function ajax(e){
+            
+            console.log(e,this.value);
+        }
+        oInp.oninput = debonunce(ajax , 1000);
+        // oInp.oninput = function(e){
+        //     var _self = this;
+        //     var _arg = arguments;
+        //     clearInterval(timer);
+        //     timer = setTimeout(function(){
+        //         ajax.apply(_self,_arg);
+        //     },1000)
+        // }
+
+    </script>
+</body>
+
+</html>

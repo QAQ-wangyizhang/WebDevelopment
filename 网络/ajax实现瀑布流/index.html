@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        .wrapper {
+            width: 980px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            /* overflow: hidden; */
+        }
+
+        .wrapper::after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        .wrapper .col {
+            width: 25%;
+            float: left;
+        }
+
+        .item {
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="wrapper">
+        <li class="col">
+            <div class="item">
+                <img src="./image/0.png" alt="">
+                <p>第一张图片</p>
+            </div>
+        </li>
+        <li class="col">
+            <div class="item">
+                <img src="./image/1.png" alt="">
+                <p>第二张图片</p>
+            </div>
+        </li>
+        <li class="col">
+            <div class="item">
+                <img src="./image/2.png" alt="">
+                <p>第三张图片</p>
+            </div>
+        </li>
+        <li class="col">
+            <div class="item">
+                <img src="./image/3.png" alt="">
+                <p>第四张图片</p>
+            </div>
+        </li>
+    </ul>
+    <script src="/ajax.js"></script>
+    <script>
+        var oLi = document.getElementsByClassName('col');
+        var key = true;
+
+        // ajax('GET','./data.json','',function(res){
+        //     console.log(res);
+        // },true)
+        function getData() {
+            if(!key){
+                return false;
+            }
+            key = false;
+            ajax('GET', './data.json', '', renderDom, true);
+        }
+
+        // 将获取到的数据渲染到页面当中
+        function renderDom(data) {
+            key = true;
+            var imgWidth = oLi[0].offsetWidth - 20 - 20;
+            // console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                var itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+                var oImg = new Image();
+                oImg.src = data[i].img;
+                oImg.height = imgWidth * data[i].height / data[i].width;
+                itemDiv.appendChild(oImg);
+                var oP = document.createElement('p');
+                oP.innerText = data[i].desc;
+                itemDiv.appendChild(oP);
+                var minIndex = getMinli().minIndex;
+                oLi[minIndex].appendChild(itemDiv);
+                // oLi[i % 4].appendChild(itemDiv);
+            }
+        }
+
+        function getMinli() {
+            var minIndex = 0;
+            var minHeight = oLi[0].offsetHeight;
+            for (var i = 1; i < oLi.length; i++) {
+                if (oLi[i].offsetHeight < minHeight) {
+                    minHeight = oLi[i].offsetHeight;
+                    minIndex = i
+                }
+            }
+
+            return {
+                minHeight: minHeight,
+                minIndex: minIndex
+            }
+        }
+        getData();
+        var timer = null;
+        window.onscroll = function () {
+            clearTimeout(timer);
+            var scrollTop = document.documentElement.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            // console.log(document.documentElement.scrollTop,document.documentElement.clientHeight)
+            if (scrollTop + clientHeight > getMinli().minHeight) {
+               timer = setTimeout(function(){
+                   getData()
+               },200)
+                // console.log(1);
+            }
+        }
+
+       
+    </script>
+</body>
+
+</html>

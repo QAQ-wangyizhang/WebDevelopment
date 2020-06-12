@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background-size: cover;
+        }
+    </style>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <img src="" alt="">
+    <div class="box"></div>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        var img = new Image();
+        img.src = '/轮播图/images/a1.jpg';
+        img.onload = function () {
+            // 1.在canvas里绘画图
+            //  图片 起始位置 长 宽
+            // context.drawImage(img,50,50,200,200);
+            //  第二部分 在canvas里某个区域（0,0）开始
+            // 截出的图片的长宽
+            // context.drawImage(img, 50, 50, 200, 200, 0, 0, 400, 400);
+
+            // 2.导出图片
+            //    var  imgSrc =  canvas.toDataURL();
+            //    console.log(imgSrc);
+            //    var newImg = document.querySelector('img');
+            //    newImg.src = imgSrc;
+
+            //  3.操作像素 a 0 - 255
+            // 500 * 500 * 4(rgba) * 255
+            var pxInfo = context.getImageData(0, 0, 500, 500);
+            console.log(pxInfo);
+            context.putImageData(pxInfo, 50, 50);
+        }
+    </script>
+
+    <script>
+        var box = document.getElementsByClassName('box')[0];
+        var img = new Image();
+        img.src = "/轮播图/images/a1.jpg";
+        img.onload = function () {
+            window.player.blurImg(img, box);
+        }
+    </script>
+</body>
+
+</html>

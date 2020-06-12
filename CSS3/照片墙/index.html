@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="wrapper">
+        <img src="/CSS3实现转轴展开图片列表/img/1.jpg" alt="">
+        <img src="/CSS3实现转轴展开图片列表/img/2.jpg" alt="">
+        <img src="/CSS3实现转轴展开图片列表/img/3.jpg" alt="">
+        <img src="/CSS3实现转轴展开图片列表/img/4.jpg" alt="">
+        <img src="/CSS3实现转轴展开图片列表/img/5.jpg" alt="">
+        <img src="/CSS3实现转轴展开图片列表/img/6.jpg" alt="">
+        <img src="/轮播图/images/a2.jpg" alt="">
+        <img src="/轮播图/images/a1.jpg" alt="">
+
+
+    </div>
+
+    <script>
+        document.body.onmousemove = function(e){
+            this.style.perspectiveOrigin = e.pageX + "px " + e.pageY + "px";
+            console.log(this.style.perspectiveOrigin);
+        }
+    </script>
+</body>
+</html>

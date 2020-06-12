@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+div{
+    width: 200px;
+    height: 200px;
+    background-image: url(/CSS3实现转轴展开图片列表/img/1.jpg);
+    background-size: cover;
+    transform: matrix(-1,0,0,1,0,0);
+}
+/* 
+
+要改变的距离e,f  原来矩阵的位置(x,y,z)
+| 1 0 e |   *  | x |        | x + e |
+| 0 1 f |      | y |   =    | y + f |
+| 0 0 1 |      | 1 |        |   1   | 
+
+| a 0 0 |   *  | x |        | ax |
+| 0 b 0 |      | y |   =    | by |
+| 0 0 1 |      | 1 |        | 1  | 
+
+
+| cos(u) -sin(u) 0 |   *  | x |        | cos(u)x - sin(u)y |
+| sin(u) cos(u)  0 |      | y |   =    | sin(u)x + cos(u)y |
+| 0       0      1 |      | 1 |        | 1  | 
+
+               
+matrix(1,0,0,1,e,f) == translate(x,y);
+matrix(a,0,0,b,0,0) == scale(x,y);
+matrix(cos(u),sin(u),-sin(u),cos(u),0,0)     == rotate(u)           
+*/

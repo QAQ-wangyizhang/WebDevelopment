@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案列</title>
+    <style>
+        ul {
+            position: relative;
+            width: 808px;
+            height: 202px;
+            margin: 100px auto 0px;
+            padding: 0;
+            list-style: none;
+            border: 1px solid black;
+        }
+
+        ul .ele {
+            float: left;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 34px;
+            text-align: center;
+            background: orange;
+            border: 1px solid black;
+        }
+
+        ul .bg {
+            position: absolute;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 34px;
+            text-align: center;
+            background: pink;
+            left: 0px;
+            top: 0px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="ele">cst</li>
+        <li class="ele">cg</li>
+        <li class="ele">dg</li>
+        <li class="ele">dcg</li>
+        <li class="bg"></li>
+    </ul>
+    <script>
+        var timer = null;
+        var oLiArray = document.getElementsByClassName('ele');
+        var oLiBg = document.getElementsByClassName('bg')[0];
+
+        for (var i = 0; i < oLiArray.length; i++) {
+            oLiArray[i].onmouseenter = function(){
+                startMove(oLiBg,this.offsetLeft);
+            }
+        }
+
+        // f 位置决定f大小
+        function startMove(dom, target) {
+            clearInterval(timer);
+            // 正 -> 负 <-
+            var a = 3;
+            var isSpeed = 0;
+            var u = 0.8;
+            timer = setInterval(() => {
+                a = (target - dom.offsetLeft )/ 5;
+                isSpeed += a;
+                isSpeed *= 0.9;
+                // 近似把小于1 当成速度为0
+                if (Math.abs(isSpeed) < 1 && Math.abs(target - dom.offsetLeft) < 1) {
+                    clearInterval(timer);
+                    dom.style.left = target + 'px';
+                } else {
+                    dom.style.left = dom.offsetLeft + isSpeed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</body>
+
+</html>
