@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const numbers = ["a", "b", "c", "d", [1, 2, 3, 4]];
+        // const {
+        //     0 : n1,
+        //     1 : n2,
+        // } = numbers;
+
+        let [n1, , , , [n11, n22, n33]] = numbers;
+
+        console.log(n1, n11, n22, n33)
+    </script>
+</body>
+
+</html>

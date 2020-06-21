@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            constructor(type, name, age, sex) {
+                this.type = type;
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            }
+            print() {
+                console.log(`[类型] : ${this.type}`);
+                console.log(`[姓名] : ${this.name}`);
+                console.log(`[年龄] : ${this.age}`);
+                console.log(`[性别] : ${this.sex}`);
+            }
+        }
+        // 新的关键字 extends 表示继承 super 直接当做函数调用表示父类构造函数
+        // 必须要用super调用父级函数才能完成继承
+        // 如果子类不写构造函数 则会有默认的构造函数 会自动调用父类的构造器
+        // 继承是单根的
+        // 当对象使用使用super调用父类的方法
+        class Dog extends Animal {
+            constructor(name, age, sex) {
+                super("犬类",name,age,sex);
+            }
+            print(){
+                super.print();
+                // 用super调用父类的方法
+                console.log('吃骨头')
+            }
+        }
+        const dog = new Dog("旺财","22","母");
+        console.log(dog);
+        dog.print();
+        // 狗是动物 A 是 B
+        // [冷知识]
+        // 用js制作抽象类 不能通过该类创建构造方法
+    </script>
+</body>
+
+</html>

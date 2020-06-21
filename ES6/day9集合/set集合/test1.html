@@ -1,0 +1,60 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 20:34:00
+ * @LastEditTime: 2020-06-29 20:49:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\test1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 参数传入可迭代的对象
+        // set 使用Object.is()判断两个数据是否相等 但是+0和-0是同一个数据
+        const s = new Set();
+        console.log(s);
+        const s1 = new Set([1, 2, 3, 4, 5, 6, 4, 3]);
+        const s2 = new Set("aasfasfasfjigjsdgfjdsj");
+        console.log(s2);
+        // 对set集合添加一个数据到末尾 如果数据已存在 则不进行任何操作
+        s1.add(3);
+        s1.add(11);
+        s1.add(+0);
+        s1.add(-0);
+        // 设计问题
+        console.log(s1);
+        // 判断是否存在数据
+        console.log(s1.has(1));
+        console.log(s1.has(55));
+        // 删除匹配的数据
+        s1.delete(5);
+        // s1.clear();
+        console.log(s1);
+        // 如何和数组相互转换
+        const s4 = new Set([1,24,5,6,7]);
+        // set 本身也是一个可迭代对象
+        const arr = [...s4];
+        // 字符串去重
+        const str = "dsafkssajfjafiegjasg";
+        const newStr = [...new Set(str)].join("");
+        console.log(newStr)
+
+        // for(const item of s1){
+        //     console.log(item);
+        // }
+        s1.forEach((item,index,s) => {
+            console.log(item,index,s)
+            // set 集合里无下标 保持通用性 第一个参数和第二个参数是一致的
+        })
+    </script>
+</body>
+
+</html>

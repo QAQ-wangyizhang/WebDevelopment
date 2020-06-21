@@ -1,0 +1,29 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 22:10:05
+ * @LastEditTime: 2020-06-29 22:16:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\弱set和弱map\test.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        let obj = {
+            
+        }
+
+        const s = new WeakSet();
+        // 不影响垃圾回收 obj 直接消失 记录一些关键对象 节约空间
+        s.add(obj);
+        obj = null;
+        console.log(s);
+    </script>
+</body>
+</html>

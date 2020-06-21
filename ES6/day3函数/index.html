@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        function sum(a, b = 1, c = 1) {
+            return a + b + c;
+        }
+        console.log(sum(1, 2, 3));
+        console.log(sum(5, 6, 7));
+        console.log(sum(1));
+        // const container = document.getElementById('container');
+        // 参数默认值
+        function createElement(name = "div", container = document.getElementById('container'), content = "") {
+            const ele = document.createElement(name);
+            if (content) {
+                ele.innerHTML = content;
+            }
+            container.appendChild(ele);
+
+        }
+        createElement(undefined, undefined, "qaq")
+
+
+        // 剩余参数
+        function add(...args) {
+            let sum = 0;
+            for (let i = 0; i < args.length; i++) {
+                sum += args[i];
+            }
+            console.log(args);
+            return sum;
+        }
+        // 如果arguments 和 形参 容易混乱
+        // 使用arguments 获取参数 由于形参缺失 使函数语义缺失
+        // ES6的剩余参数专门用于收集所有参数 形成的一个数组
+
+        // 1个函数只能出现一个剩余参数
+        // 一个函数如果有剩余参数，剩余参数一定是最后一个参数
+        console.log(add(1, 2, 3, 4));
+        add(1, 2)
+
+        // 展开运算符
+
+        function getRandomNumbers(length) {
+            let arr = [];
+            for (let i = 0; i < length; i++) {
+                arr.push(parseInt(Math.random() * 10));
+            }
+            return arr;
+        }
+
+        const numbers = getRandomNumbers(10);
+        console.log(numbers);
+        // 将数组的每一项展开 依次传递 而不是传入一个数组
+
+        // 对数组展开 es6
+        // 对对象展开 es7
+        console.log(add(1, 1, ...numbers, 3, 5)); // 相当于吧数组展开
+
+        const arr1 = [3, 525, 2341, 55];
+        const arr2 = [0, ...arr1];
+        console.log(arr2, arr1 === arr2)
+
+
+        // 浅层克隆
+        const obj1 = {
+            name: 'qaq',
+            age: '134',
+            love: 'ewr',
+            address: {
+                city: "大佬",
+                time: "3424"
+            }
+        }
+
+        const obj2 = {
+            ...obj1,
+            name: 'qwq',
+            address : {
+                ...obj1.address
+            }
+        };
+        console.log(obj2, obj1 === obj2);
+        console.log(obj1.address === obj2.address);
+
+
+        // 明确函数的双重用途
+        function Person(firstName,lastName){
+            // 判断是否使用了new来调用函数
+            // new.target 如果使用new调用函数 输出本身
+            //  如果没有使用new 调用函数 只输出undefined
+            console.log(new.target);
+            if(new.target === undefined ){
+                return false;
+            }
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.fullNmae = `${firstName}${lastName}`;
+        }
+
+        const p1 = new Person('q','aq');
+        // console.log(p1);
+        const p2 = Person('1','2');
+
+        const p3 = Person.call(p1,'1','2')
+
+    </script>
+</body>
+
+</html>

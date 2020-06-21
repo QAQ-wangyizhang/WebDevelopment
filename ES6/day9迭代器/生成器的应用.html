@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 18:28:05
+ * @LastEditTime: 2020-06-29 18:37:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9迭代器\生成器的应用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        function* task() {
+            const resp = yield fetch("http://101.132.72.36:5100/api/local");
+            const result = yield resp.json();
+            console.log(result);
+        }
+
+        function run(generatorFun) {
+            const it = generatorFun();
+            let result = it.next(); // 开始迭代 得到迭代数据
+            handleResult();
+            function handleResult() {
+                // 对 result 进行处理
+                if (result.done) {
+                    return; // 迭代完成 不处理
+                }
+                // 迭代没有完成  迭代的数据是promise ， 迭代的是其他数据
+                if (typeof result.value.then === "function") {
+                    // 等待promise 完成后 进行下一次迭代
+                    result.value.then(data => {
+                        result = it.next(data);
+                        handleResult();
+                    })
+                } else {
+                    result = it.next(result.value);
+                    handleResult();
+                }
+            }
+        }
+        run(task);
+    </script>
+</body>
+
+</html>

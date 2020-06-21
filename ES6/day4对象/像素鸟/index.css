@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.game{
+    width: 800px;
+    height: 600px;
+    border: 2px solid black;
+    margin: 10px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.sky{
+    height: 100%;
+    width: 200%;
+    background-image: url(../像素鸟/img/sky.png);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.land{
+    height: 114px;
+    width: 200%;
+    background-image: url(../像素鸟/img/land.png);
+    position: absolute;
+    top: 490px;
+    left: 0;
+}
+
+.bird{
+    width: 33px;
+    height: 26px;
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    background-image: url(../像素鸟/img/bird.png);
+} 
+
+.bird.swing1{
+    background-position: -8px -10px;
+}
+
+.bird.swing2{
+    background-position: -60px -10px;
+}
+
+.bird.swing3{
+    background-position: -113px -10px;
+}
+
+.pipe{
+    position: absolute;
+    left: 500px;
+    height: 100px;
+    width: 52px;
+}
+
+.pipe.up{
+    background-image: url(../像素鸟/img/pipeDown.png);
+    top: 0;
+    background-position: bottom;
+}
+
+.pipe.down{
+    background-image: url(../像素鸟/img/pipeUp.png);
+    bottom: 110px;
+}
+
+.gameover{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: #000;
+    opacity: 0.3;
+    text-align: center;
+    padding: 275px 0;
+    display: none;
+    z-index: 9999;
+}
+
+.over{
+    font-style: italic;
+    font-size: 50px;
+    color: white;
+    display: inline-block;
+}
+
+.text{
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    color: red;
+    font-style: italic;
+    font-size: 20px;
+    position: absolute;
+    z-index: 5;
+}
+
+.score{
+    
+}
+
+

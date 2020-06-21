@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div id="container">
+        <p>
+            <textarea id="txt"></textarea>
+            <button id="btn">设置div的内容</button>
+        </p>
+    </div>
+    <script>
+        let love1 = "qaq";
+        let love2 = "min";
+        const str = myTag`我叫${love1},我不是最${love2}的！`;
+        // 相对于 text = myTag(["我叫" , ",我不是最" , "的！"],love1,love2)
+
+        function myTag(parts,arg1,arg2){
+            console.log(parts);
+            console.log(arg1);
+            console.log(arg2);
+            console.log(arguments);
+            const rest = Array.prototype.slice.apply(arguments).slice(1);
+            // parts.length = rest.length + 1
+            console.log(rest);
+            let str = "";
+            for(let i = 0 ; i < rest.length; i++){
+                str += parts[i] + rest[i];
+                if(i === rest.length-1){
+                    str += parts[i + 1];
+                }
+            }
+            console.log(str);
+        }
+
+        const text = String.raw`abc\nbcd`;
+        console.log(text);
+
+        const container = document.getElementById("container");
+        const btn = document.getElementById("btn");
+        const txt = document.getElementById("txt");
+
+        btn.onclick = function(){
+            container.innerHTML = safe`<p>${txt.value}</p>`
+            console.log(txt.value);
+
+        }
+
+        function safe(parts){
+            const value = Array.prototype.slice.apply(arguments).slice(1);
+            let str = "";
+            for(let i = 0 ; i <value.length; i++){
+                const reg1 = /</g;
+                const reg2 = />/g;
+                const v = value[i].replace(reg1,"&lt;").replace(reg2, "&gt;")
+                str += parts[i] + v;
+                if(i === value.length-1){
+                    str += parts[i + 1];
+                }
+            }
+            return str;
+
+        }
+        // console.log()
+
+
+    </script>
+</body>
+</html>

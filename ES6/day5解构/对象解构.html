@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            name: 'qaq',
+            age: 12,
+            sex: 'male',
+            address: {
+                province: '北京',
+                city: '北京'
+            }
+        }
+
+
+        function print({ name, age, sex, address: { province, city } }) {
+            console.log(name, age, sex, province, city);
+        }
+        print(user);
+
+
+        // function ajax(options){
+        //     const defaultOptions = {
+        //         method :'get',
+        //         url :'/'
+        //     }
+        //     const opt ={
+        //         ...defaultOptions,
+        //         ...options
+        //     }
+        //     console.log(opt);
+        // }
+
+        function ajax({
+            method = "get",
+            url = "/"
+        } = {}){
+            console.log(method,url);
+        }
+        // 因为解构不能解构undefined 和 null 所以 ajax()不行 但是可以用参数默认值 = {}默认为一个空对象
+
+        ajax({
+            // method:'get',
+            // url :"/abc"
+        })
+        // 解构不会影响原始对象
+
+        // let name, age, sex, address;
+        // ({ name, age, sex, address } = user);
+        // let { name, age, sex, address, abc = 123 } = user;
+
+
+        // console.log(name, age, sex, address, abc);
+        // // 其中gender读取了sex的属性
+        // let { name, age, sex: gender = 123, address } = user;
+        // console.log(name, age, gender, address);
+
+        // 先解构user里address 再定义三个变量 name、province 、 city
+        // let { name, address: { province, city } } = user;
+        // console.log(name, province, city);
+
+        // 解构出name 然后剩余的所有属性放到一个新对象
+
+        // const { name, ...obj } = user;
+        // console.log(obj);
+
+        // const numbers = [234, 234, 343, 43];
+        // const [a, b, ...nums] = numbers;
+        // console.log(nums);
+
+        // let a = 1, b = 2;
+        // [b, a] = [a, b];
+        // console.log(a, b);
+
+        // const article = {
+        //     title: '文章标题',
+        //     content: '文章内容',
+        //     comments: [
+        //         {
+        //             content: '评论1',
+        //             user: {
+        //                 id: 1,
+        //                 name: '用户名1'
+        //             }
+        //         },
+        //         {
+        //             content: '评论2',
+        //             user: {
+        //                 id: 2,
+        //                 name: "用户名2"
+        //             }
+        //         }
+        //     ]
+        // }
+
+        // let {
+        //   comments : [
+        //       , {
+        //           content,
+        //           user : {
+        //               name
+        //           }
+        //       }
+        //   ]
+        // } = article;
+
+        // console.log(content, name);
+
+    </script>
+</body>
+
+</html>

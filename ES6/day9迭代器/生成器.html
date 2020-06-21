@@ -1,0 +1,89 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 17:42:28
+ * @LastEditTime: 2020-06-29 18:24:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9迭代器\生成器.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // function* test(){
+        //     console.log("第一次运行");
+        //     yield 1;
+        //     console.log("第二次运行");
+        //     yield 2;
+        //     console.log("第三次运行");
+        //     yield 3;
+        //     return "第一次迭代结束输出 迭代结束了";
+
+        //     yield "qaq";
+        //     // 生成器内部就是为了给生成器每次迭代提供数据的
+        // }
+
+        // const generator = test();
+        // console.log(generator);
+        // const arr = [1, 2, 3, 4, 5];
+        // const arr1 = [2, 5, 6, 7, 8];
+
+        // function* creatIterator(arr) {
+        //     for (const item of arr) {
+        //         yield item;
+        //     }
+        // }
+        // const it1 = creatIterator(arr);
+
+        // function* cretatFeiboIterator() {
+        //     let prev1 = 1,
+        //         prev2 = 1,
+        //         n = 1;
+        //     while(true){
+        //         if(n < 2){
+        //             yield 1;
+        //         }else{
+        //             const newValue = prev1 + prev2;
+        //             yield newValue;
+        //             prev2 = prev1;
+        //             prev1 = newValue;
+        //         }
+        //         n ++;
+        //     }
+        // }
+        // const it3 = cretatFeiboIterator();
+        
+
+        function* t1(){
+            yield "a",
+            yield "b"
+        }
+        function* test() {
+            // let info = yield 1;
+            // console.log(info);
+            // info = yield 2 + info;
+            // console.log(info);
+            yield* t1();
+            // 相当于copy t1
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+
+        // 第一次调用next()传参没有任何意义 
+        const it = test();
+        // it.next();// 1
+        // it.next(2);//2 + 2 4
+        // it.return() 调用这个方法提前让整个过程结束 直接让done 为true 传参就是value值
+        // it.throw() 在生成器中产生一个错误
+    </script>
+</body>
+
+</html>

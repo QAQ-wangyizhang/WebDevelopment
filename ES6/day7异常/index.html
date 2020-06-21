@@ -1,0 +1,124 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-24 18:43:35
+ * @LastEditTime: 2020-06-26 17:54:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day7异常\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <!-- <script src="Promise.js"></script> -->
+    <!-- <script src="api.js"></script> -->
+    <script src="myPromise.js"></script>
+    <script>
+        const pro1 = new MyPromise(resolve => {
+            setTimeout(() => {
+                resolve(1)
+            }, 1000);
+        })
+        const pro2 = pro1.catch(err => {
+            console.log(err);
+        })
+        // function getRandom(min, max) {
+        //     return Math.floor(Math.random() * (max - min) + min);
+        // }
+
+        // function biaobai(god) {
+        //     return new MyPromise((resolve, reject) => {
+        //         console.log(`邓哥向女神${god}发出了表白短信`);
+        //         // resolve(1);
+        //         setTimeout(() => {
+        //             if (Math.random() < 0.1) {
+        //                 console.log(god, "同意");
+        //                 resolve(true);
+        //             } else {
+        //                 console.log(god, "拒绝");
+        //                 resolve(false);
+        //             }
+        //         }, getRandom(1000, 5000))
+        //     })
+        // }
+        // let hasAgree = false;
+        // const proms = [];
+        // for (let i = 1; i < 21; i++) {
+        //     proms.push(biaobai(i).then(data => {
+        //         if (data) {
+        //             if (hasAgree) {
+        //                 console.log("发错短信了");
+        //             } else {
+        //                 hasAgree = true;
+        //                 console.log("成功了")
+        //             }
+        //         }
+        //         return data;
+        //     }))
+        // }
+        // const p = MyPromise.race(proms);
+        // // p.then(data => {
+        // //     console.log(data);
+        // // })
+
+        // p.then(data => {
+        //     console.log(data,"有一个失败")
+        // })
+
+        // p.then(data => {
+        //     console.log(data);
+        // })
+
+
+        // const pro = MyPromise.reject(1);
+        // const pro = new MyPromise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve(1);
+        //     }, 3000);
+        //     // throw new Error("134")
+        // })
+
+        // pro.then(data => {
+        //     console.log(1,data)
+        //     return 123;
+        // }).then(data => {
+        //     console.log(2,data);
+        //     return 456;
+        // }).then(data => {
+        //     console.log(3,data);
+        //     return 0;
+        // }).then(data => {
+        //     console.log(4,data)
+        // })
+
+        // pro.then(data => {
+        //     console.log(1,data);
+        // })
+        // pro.then(data => {
+        //     console.log(2,data);
+        // })
+        // pro.then(data => {
+        //     console.log(3,data);
+        // })
+
+        // pro.catch(err => {
+        //     console.log(1,err)
+        // })
+        // pro.catch(err => {
+        //     console.log(2,err)
+        // })
+        // pro.catch(err => {
+        //     console.log(3,err)
+        // })
+
+        // console.log(pro);
+    </script>
+</body>
+
+</html>

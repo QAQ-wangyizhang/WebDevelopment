@@ -1,0 +1,124 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 21:43:09
+ * @LastEditTime: 2020-06-29 22:09:20
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\map集合\test2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const MyMap = (() => {
+            const datas = Symbol("保存数据的数组");
+            return class {
+                constructor(iterable = []) {
+                    if (typeof iterable[Symbol.iterator] != "function") {
+                        throw new TypeError(`你提供的${iterable}不是一个可迭代的对象`);
+                    }
+
+                    this[datas] = [];
+                    for (const item of iterable) {
+                        if (typeof item[Symbol.iterator] != "function") {
+                            throw new TypeError(`你提供的${item}不是一个可迭代的对象`);
+                        }
+                        const iterator = item[Symbol.iterator]();
+                        const key = iterator.next().value;
+                        const value = iterator.next().value;
+                        this.set(key, value);
+                    }
+                }
+
+                set(key, value) {
+                    if (this.has(key)) {
+                        // 修改
+                        const obj = this._getObj(key);
+                        if (obj) {
+                            obj.value = value;
+                        }
+                    } else {
+                        this[datas].push({
+                            key,
+                            value
+                        })
+                    }
+                }
+
+                _getObj(key) {
+                    for (const item of this[datas]) {
+                        if (this.isEqual(item.key, key)) {
+                            return item;
+                        }
+                    }
+                }
+
+                has(key) {
+                    return this._getObj(key) !== undefined;
+                }
+                get(key) {
+                    const obj = this._getObj(key);
+                    if (obj) {
+                        return obj.value;
+                    }
+                }
+                isEqual(data1, data2) {
+                    if (data1 == 0 && data2 == 0) {
+                        return true;
+                    }
+                    return Object.is(data1, data2);
+                }
+                get size() {
+                    return this[datas].length;
+                }
+                delete(key) {
+                    for (let i = 0; i < this[datas].length; i++) {
+                        const element = this[datas][i];
+                        if (this.isEqual(element, key)) {
+                            this[datas].splice(i, 1);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                clear() {
+                        this[datas].length = 0;
+                        return this;
+                    }
+                    *[Symbol.iterator]() {
+                        for (const item of this[datas]) {
+                            yield [item.key, item.value];
+                        }
+                    }
+                forEach(callback) {
+                    for (const item of this[datas]) {
+                        callback(item.value, item.key, this);
+                    }
+                }
+
+            }
+        })();
+
+        const myMap = new MyMap([
+            [1, 2],
+            [3, 3],
+            [4, 5]
+        ]);
+        for (const item of myMap) {
+            console.log(item);
+        }
+        myMap.forEach((value, key, mp) => {
+            console.log(value, key, mp)
+        })
+        console.log(myMap);
+    </script>
+</body>
+
+</html>

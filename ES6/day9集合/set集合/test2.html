@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 20:50:03
+ * @LastEditTime: 2020-06-29 21:02:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\test2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const arr1 = [1, 2, 3, 45, 22];
+        const arr2 = [33, 55, 22, 234, 2, 11];
+        // 求两个数组的并集交集和差集
+        const and = [...new Set(arr1.concat(arr2))];
+        console.log("并集", and);
+        const jiao = [...new Set(arr1)].filter(item => {
+            return new Set(arr2).has(item);
+        })
+        console.log("交集",jiao);
+        // 差集等同于 并集-交集
+        const cha = and.filter(item => {
+            return !new Set(jiao).has(item);
+        })
+        console.log("差集",cha);
+    </script>
+</body>
+
+</html>

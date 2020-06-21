@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 21:29:40
+ * @LastEditTime: 2020-06-29 21:47:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\map集合\test1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // map 集合键值对 保存数据 键不可重复
+        // 对象里 1.键名只能是字符串 2.获取数据的数量不方便object.keys();
+        // 3.键名跟原型上的名称冲突 描述完整一个个体用对象存 不能随意删除添加 
+        // 字典可以使用键值对 各种请求 
+
+        const map = new Map([
+            [1, 2],
+            [2, 3]
+        ]);
+        // 如果键已经存在则修改键的值
+        map.set({
+            qaq: 22
+        }, 4);
+        map.has(5);
+        map.delete(1);
+        // 比较键的方式和set 相同 Object.is 对象做键比较地址肯定不一样
+        // get(key) 根据一个键得到一个值
+        // map.clear();
+        console.log(map);
+        const arr = [
+            [...map]
+        ];
+        console.log(arr);
+        for (const itme of map) {
+            for (const index of itme) {
+                console.log(index);
+            }
+        }
+
+        map.forEach((value, key, mp) => {
+            console.log(value, key, mp);
+        })
+    </script>
+</body>
+
+</html>

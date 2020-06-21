@@ -1,0 +1,91 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 21:03:21
+ * @LastEditTime: 2020-06-29 21:28:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\test3.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 手写set
+
+        const MySet = (() => {
+            const datas = Symbol("datasArray");
+            return class {
+                constructor(iterator = []) {
+                    if (typeof iterator[Symbol.iterator] != "function") {
+                        throw new TypeError(`你提供的参数不是一个可迭代的对象`);
+                    }
+                    this[datas] = [];
+                    for (const item of iterator) {
+                        this.add(item);
+                    }
+                    // this.size = this[datas].length;
+                }
+                add(data) {
+                    if (!this.has(data)) {
+                        this[datas].push(data);
+                    }
+                }
+                has(data) {
+                    for (const item of this[datas]) {
+                        if (this.isEqual(data, item)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                delete(data) {
+                    for (let i = 0; i < this[datas].length; i++) {
+                        const element = this[datas][i];
+                        if (this.isEqual(element, data)) {
+                            this[datas].splice(i, 1);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                clear() {
+                    this[datas].length = 0;
+                }
+                isEqual(data1, data2) {
+                        if (data1 === 0 && data2 == 0) {
+                            return true;
+                        }
+                        return Object.is(data1, data2);
+                    }
+                *[Symbol.iterator]() {
+                    for (const item of this[datas]) {
+                        yield item;
+                    }
+                }
+                forEach(callback) {
+                    for (const item of this[datas]) {
+                        callback(item, item, this);
+                    }
+                }
+                get size(){
+                    return this[datas].length;
+                }
+            }
+        })()
+
+
+        const s = new MySet([1, 23, 1, 23, 555, 343, 12]);
+        s.forEach((index,item,s) => {
+            console.log(index,item,s);
+        })
+    </script>
+</body>
+
+</html>

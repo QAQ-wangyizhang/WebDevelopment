@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  
+    <script>
+        // 箭头函数 解决this指向问题
+        // 箭头函数是一个函数表达式 任何函数表达式都可以使用箭头函数(参数1,参数2)=>
+        // 箭头函数中的this 取决于箭头函数定义的位置的this指向，而与如何调用无关
+        // 如果参数只有一个可以省略()小括号 =>
+        // 如果箭头函数只有一条返回语句可以省略大括号 和return 关键字
+
+        const obj = {
+            count : 0,
+            start : function(){
+                setInterval(() => {
+                    this.count++;
+                    console.log(this.count);
+                },1000)
+            },
+            regEvent : function(){
+                window.onclick =() => {
+                    this.count++;
+                    console.log(this.count);
+                }
+            },
+            test : function(){
+                console.log(this.count);
+            }
+        }
+        // obj.start();
+        // obj.regEvent();
+    //    const print =  obj.test;
+    //    print(); // undefined 开发很少出现这样问题
+
+
+    const print = num => {
+        console.log("给我的数字是",num);
+    }
+
+    const isOdd = num => num % 2 !== 0;
+    console.log(isOdd(3));
+    console.log(isOdd(4));
+    print(2);
+    const sum = (a,b) => ({
+        a : a,
+        b : b,
+        sum : a + b
+    })
+    console.log(1,2);
+
+    // 箭头函数不存在this、arguments、 new.target 箭头函数this是外面的this 放在全局输出this就是全局对象
+    </script>
+</body>
+</html>

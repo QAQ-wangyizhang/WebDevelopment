@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <script>
+        const text = "aa𠮷aa";
+        const text1 = "𠮷"
+
+        console.log('字符串长度', text.length);
+        // 加个u匹配码点
+        console.log(/^.$/u.test(text1));
+        console.log('第一个码元', text.charCodeAt(0).toString(16));
+        console.log('第二个码元', text.charCodeAt(1).toString(16));
+        // const 
+        console.log('第一个码点', text.codePointAt(0));
+        console.log('第二个码点', text.codePointAt(1));
+
+        // 16位二进制为一个码元
+        // 32位二进制位一个码点
+
+        function is32bit(char, i) {
+            // 如果码点大于16位 二进制最大值 则其是32位的
+            return char.codePointAt(i) > 0xffff;
+        }
+
+        function getLengthOfCodePoint(str) {
+            let len = 0;
+            // 得到每一个码元
+            for (let i = 0; i < str.length; i++) {
+                if (is32bit(str, i)) {
+                    i++;
+                    // 如果遇见占一个码点的直接跳过一个循环
+                    // 返回真正的长度
+                }
+                len++;
+            }
+            return len;
+        }
+        console.log(getLengthOfCodePoint(text))
+        // console.log(is32bit(text))
+
+        // 更多的字符串api
+        const text3 = "陈哥很帅";
+        console.log(text3.includes("很",2));
+        console.log(text3.endsWith("很帅"));
+        console.log(text3.startsWith("陈"));
+        console.log("重复四次",text3.repeat(4));
+        // 正则中的粘连标记
+        // 标记名为 y
+        // 匹配时必须从lastIndex开始
+        const text4 = "hello World";
+        const reg = /W\w+/y;
+        reg.lastIndex = 6;
+        console.log(reg.lastIndex);
+        console.log(reg.test(text4));
+        let love1 = "qaq";
+        let love2 = "min";
+        const str = `我叫${love1},我不是最${love2}的！`;
+        console.log(str);
+        
+    </script>
+</body>
+
+</html>

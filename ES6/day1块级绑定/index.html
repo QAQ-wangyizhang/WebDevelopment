@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div class="div"></div>
+    
+    <script>
+        // 1.原js 允许重复的变量问题 导致数据被覆盖
+        // let 声明的变量不会挂载到全局变量
+        // 2.变量提升 怪异的数据访问 、 闭包问题
+        // let不允许当前作用域{}重复声明
+        // 3.全局变量挂载到全局对象 ： 全局对象成员污染问题
+        // var i;
+
+        // 在循环中 用let声明的循环变量 会特殊处理 、每次进入循环体，都会开启一个新作用域，
+        // 开启11个作用域 并且将循环变量绑定到该作用域（每次循环 使用的是一个全新的循环变量）
+        // 在循环中使用let 声明的循环变量 在循环结束后会销毁
+        const div = document.getElementsByClassName('div')[0];
+        for(let i = 0; i <= 10 ; i++){
+           let btn = document.createElement('button');
+           btn.innerText = i + '按钮';
+           div.appendChild(btn);
+           btn.onclick = function(){
+               console.log(i);
+           }
+
+        }
+        // 块级作用域：代码执行时遇见花括号 会创建一个块级作用域 花括号结束 销毁作用域
+        // 在块级作用域里定义的 外部不能使用 不会变量提升 因此不能在let定义之前使用它 可以用外面的
+        // console.log(a);
+        // 底层实现上，let声明的变量实际上也会提升，但是 提升后会放入到“暂时性死区”，如果访问的变量位于
+        // 暂时性死区 则会报错 Cannot access 'a' before initialization 当代码运行到该变量的声明语句时，从暂时性死区移除
+        let a = 123; // 全局作用域a
+        // let a = 2;
+        // function test(){
+        //     let a = 345;
+        //     console.log(a);
+        //     return a;
+        // }
+        {
+            let a = 234; // 块级作用域
+            console.log(a); // 就近原则
+        }
+        console.log(a);
+
+        // const b = 222;
+        // b = 3
+        // 1.常量不可变 值声明的常量的内存空间不可变 并不保证内存空间中的地址指向其他空间不可变
+        // 2.常量的命名 
+        //      1.特殊的常量 从字面意义上一定不可以变 圆周率 重力加速度 此常量名称全部大写 多个单词之间用下划线分割
+        //      2.普通的常量还是遵循小驼峰式命名规则即可
+        const PI = 3.14;
+        const MOON_LIGHT = '6:00';
+
+        const b = {
+            name : "qaq",
+            age : 19
+        }
+        // 此原理和let 一样 都是每次循环重新产生一个新的循环变量
+        for(const prop in b){
+            console.log(prop);
+        }
+        // 只可以在for in 循环里
+        // 地址空间可以改变
+        b.name = 'wyz';
+        console.log(b);
+        // b = 22;
+        // const和let 完全相同 仅在于用const声明的变量，必须在声明的时候赋值 而且不可以重新赋值 常量
+
+
+        
+    </script>
+</body>
+</html>

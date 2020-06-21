@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const func = () => {
+            console.log(this);
+        }
+        func();
+        console.log(func, func.prototype);
+        // 箭头函数没有原型 但是箭头函数不能当成构造函数去使用
+        // 应用 事件处理函数
+        //      异步处理函数
+        //      其他临时性函数
+        //  为了绑定外层this 的函数 onclick
+        // 保持代码简洁使用箭头函数 使用回调函数
+        const numbers = [3, 5, 46, 4, 454];
+        const result = numbers.map(num => num * 2)
+        console.log(result);
+    </script>
+</body>
+
+</html>

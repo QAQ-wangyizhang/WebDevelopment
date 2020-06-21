@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 知名符合通过Symbol的静态属性得到
+        // 1.Symbol.hasInstance
+        // 参与js内部实现
+        // function A() {
+
+        // }
+        // Object.defineProperty(A, Symbol.hasInstance, {
+        //     value: function (obj) {
+        //         return false;
+        //     }
+        // })
+
+        // const obj = new A();
+        // console.log(obj instanceof A);
+
+        // console.log(A[Symbol.hasInstance](obj));
+
+        // 
+
+        // const arr = [3];
+        // const arr2 = [5, 6, 7, 8];
+
+        // arr2[Symbol.isConcatSpreadable] = false;
+        // // 2.Symbol.isConcatSpreadable concat数组合并时是否分割数组
+        // const result = arr.concat(56, arr2);
+        // console.log(result);
+
+        const obj = {
+            a : 1,
+            b : 2
+        }
+
+        obj[Symbol.toPrimitive] = function(){
+            return 2;
+        }
+        // 3.Symbol.toPrimitive 影响对象的隐式转换方式
+        console.log(obj * 123)
+
+        // 4.Symbol.toStringTag 改变toString方法的返回值
+        class Person{
+            [Symbol.toStringTag] = "Person"
+        }
+
+        const p = new Person();
+        console.log(Object.prototype.toString.apply(p));
+            
+
+
+    </script>
+</body>
+
+</html>
