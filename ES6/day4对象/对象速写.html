@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        function createUser(loginId, loginPwd, nickName) {
+
+            const sayHello = function () {
+                console.log("loginId", this.loginId, "nickname", this.nickName)
+            }
+            return {
+                loginId,
+                loginPwd,
+                nickName,
+                sayHello,
+                id: parseInt(Math.random() * 10)
+            }
+        }
+        // 成员速写
+        console.log(createUser('qaq', "123", "nick"))
+        createUser('qaq', "123", "nick").sayHello();
+
+        const user = {
+            name: '记成',
+            age: 19,
+            // 方法速写
+            sayHell() {
+                console.log(this.name, this.age);
+            }
+        }
+        user.sayHell();
+
+        // 计算属性名
+        const prop1 = "name";
+        const prop2 = "age";
+        const prop3 = "sayHello";
+        const user1 = {
+            [prop1]: "qaq",
+            [prop2]: 19,
+            [prop3]() {
+                console.log(this[prop1], this[prop2]);
+            }
+        }
+        user1.sayHello();
+    </script>
+</body>
+
+</html>

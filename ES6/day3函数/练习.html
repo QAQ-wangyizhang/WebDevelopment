@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <div id="content">
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+        <p><input type="number" name="" id="" value="0"></p>
+    </div>
+
+    <p>
+        <button id="btn">计算</button>
+    </p>
+    <p>
+        <h2>最大值: <span class="spanmax"></span> </h2>
+        <h2>最小值: <span class="spanmin"></span> </h2>
+    </p>
+    <script>
+        let input = document.getElementsByTagName('input');
+        const btn = document.getElementById('btn');
+        const max = document.getElementsByClassName('spanmax')[0];
+        const min = document.getElementsByClassName('spanmin')[0];
+
+        function getInputValue(...args) {
+            let arr = [];
+            for (let i = 0; i < args.length; i++) {
+                arr.push(args[i].value);
+            }
+            return arr;
+        }
+
+        function getValue(args) {
+            // let arr = args.sort(
+            //     function (a, b) {
+            //       return a - b;
+            //     }
+            // );
+            // console.log(arr);
+            return {
+                max: Math.max(...args),
+                min: Math.min(...args)
+            }
+        }
+        btn.onclick = function () {
+            console.log(getInputValue(...input));
+            let obj = getValue(getInputValue(...input));
+            console.log(obj)
+            max.innerHTML = obj.max;
+            min.innerHTML = obj.min;
+        }
+
+        // 柯里化函数
+        function cal(a, b, c, d) {
+            return a + b * c - d;
+        }
+
+        function curry(func, ...args) {
+            return function(...subArgs){
+                const allArgs = [...args,...subArgs];
+                if(allArgs.length >= func.length){
+                  return  func(...allArgs);
+                }else{
+                    return curry(func,...allArgs);
+                }
+            }
+        }
+
+        const newCal = curry(cal, 1, 2);
+        console.log(newCal(3, 4)) //1 + 2 * 3 - 4
+        console.log(newCal(4, 6))
+        console.log(newCal(2, 1))
+        console.log(newCal(4, 6))
+
+        const newCal2 = newCal(8);
+        console.log(newCal2(9)); // 1 + 2 * 8 - 9;
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const printName = "print";
+        class Animal {
+            constructor(type, name, age, sex) {
+                this.type = type;
+                this.name = name;
+                // this.setAge(age);
+                this.age = age;
+                this.sex = sex;
+            }
+            // 创建一个age 属性给他加上getter
+            get age() {
+                return this._age + '岁';
+            }
+            // 创建一个age 给他加上setter
+            set age(age) {
+                if (age < 0) {
+                    age = 0;
+                } else if (age > 1000) {
+                    age = 1000;
+                }
+                this._age = age;
+            }
+            [printName]() {
+                console.log(this.type);
+                console.log(this.name);
+                console.log(this._age);
+                console.log(this.sex);
+            }
+        }
+        // 静态成员 构造函数本身的成员
+        Animal.abc = 123;
+
+        var a = new Animal("狗", "旺财", 14, "male");
+        a.age = -100;
+        console.log(a);
+        // 不能当普通函数调用 缺少 new 的调用
+        // 类声明 不会变量提升 也会出现暂时性死区 先定义再使用
+        // 所有代码严格模式下执行
+        // 所有方法不能被枚举
+        // 所有方法不能当构造函数使用
+        // a.print();
+        a[printName]();
+        // console.log(a);
+        // for(const prop in a){
+        //     console.log(prop)
+        //     // 遍历不到print
+        // }
+
+        class Chess {
+            constructor(name) {
+                this.name = name;
+            }
+            // 静态初始化器 可以直接赋值 ES7 字段初始化器
+            static width = 50;
+            static height = 50;
+        }
+        const ch1 = new Chess('马');
+        const ch2 = new Chess('车');
+        const ch3 = new Chess('将');
+
+        class Test {
+            a = 1;
+            b = 2;
+            c = 3;
+            // es7 字段初始化器
+            // 注意使用static 的字段初始化器 添加的静态成员
+            // 没有使用static 的成员是位于对象上
+            // 箭头函数 在字段初始化对象上指向当前对象
+            // constructor(){
+            //     this.a = 1;
+            //     this.b = 1;
+            //     this.c = 1;
+            // }
+        }
+
+        const t = new Test();
+        console.log(t);
+        class Test2 {
+            constructor() {
+                this.a = 123;
+            }
+            // 现在的print在对象里面了不在原型里面了
+            // 浪费内存空间但是好处是绑定了this
+
+
+
+            print = () => {
+                console.log(this.a);
+            }
+        }
+        const t2 = new Test2();
+        const p = t2.print;
+        p();
+
+        // 类表达式
+        const A = class { // 匿名类 类表达式
+            a = 1;
+            b = 2;
+        }
+
+        const a2 = new A();
+        console.log(a2);
+
+        // 装饰器
+
+        // class Test3{
+        //     @Obsolete
+        //      标记已过期的方法
+        //      横切关注点
+        //     print(){
+        //         console.log('print方法')
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

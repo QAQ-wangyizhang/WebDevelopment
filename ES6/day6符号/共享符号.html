@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 通过某个符号名称得到同一个符号
+        Symbol.for("符合名/符合描述")
+        const syb = Symbol.for('abc');
+        const syb1 = Symbol.for('abc');
+        console.log(syb === syb1); // true
+        const obj1 = {
+            a: 1,
+            b: 2,
+            [Symbol.for('abc')]: 3
+        }
+
+        const obj2 = {
+            a: 'a',
+            b: 'b',
+            [Symbol.for('abc')]: 'c'
+        }
+
+        console.log(obj1, obj2);
+
+        const SymbolFor = (() => {
+            const global = {};
+            return function (name) {
+                if (!global[name]) {
+                    global[name] = Symbol(name);
+                }
+                console.log(global);
+                return global[name];
+            }
+        })();
+
+        const syb3 = SymbolFor('for');
+        const syb2 = SymbolFor('for');
+        console.log(syb2 === syb3);
+    </script>
+</body>
+
+</html>

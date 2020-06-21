@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 符合是es6新增的数据类型
+        // 他通过函数调用```Symbol(符号描述)```使用
+        // 1.没有字面量 只能通过Symbol 创建 符号不能直接写出来
+        // 2.使用typeof 得到的都是symbol
+        // 3.每一个符号都是不一样的
+        // 'abc'只是描述信息而已
+        // 4.所有的属性名都是字符串 但是在es6里还有符号属性
+        // 5.符号属性不能枚举 for in 取不出来 Objece.keys 也是枚举
+        // 6.尽量忽略掉符号属性
+        // 7.es6 新增 Object.getOwnPropertyNames 得到符号属性的数组
+        // 8.无法隐式类型转换
+        // 9.可以显示转换为字符串 console.log
+        const syb1 = Symbol('这是用于对象的一个属性');
+        const syb2 = Symbol('abc');
+        console.log(syb1, syb2);
+        console.log(typeof syb1, typeof syb2 === 'symbol')
+        console.log(syb2 === syb1);//false
+
+        // const obj = {
+        //     a : 1,
+        //     b : 2,
+        //     [syb1] : 3 // 符号属性
+        // }
+
+        // console.log(obj);
+        // const hero = (function () {
+
+        //     const getRandom = Symbol('用于产生随机数的符号');
+        //     return {
+        //         attack: 30,
+        //         hp: 300,
+        //         defence: 10,
+        //         gongji() {
+        //             const dmg = this.attack * this[getRandom](0.8, 1.1);
+        //             console.log(dmg);
+        //         },
+        //         // 只能在内部使用 外部无法使用 变量私有化 符合唯一性
+        //         [getRandom](min, max) {
+        //             return Math.random() * (max - min) + min;
+        //         }
+        //     }
+        // })()
+
+        // console.log(hero);
+
+        
+        const Hero = (() => {
+
+            const getRandom = Symbol();
+
+
+            return class {
+                constructor(attack, hp, defence) {
+                    this.attack = attack,
+                        this.hp = hp,
+                        this.defence = defence
+                }
+
+                ack() {
+                    const dmg = this.attack * this[getRandom]();
+                    console.log(dmg);
+                }
+
+                // 私有属性
+                [getRandom](min,max) {
+                    return Math.random() * (max - min) + min;
+                }
+            }
+        })();
+
+        const hero = new Hero(3,300,22);
+        const sybs = Object.getOwnPropertySymbols(hero.__proto__);
+        console.log(sybs[0]);
+        const prop = sybs[0];
+        console.log(hero[prop](3,5));
+        console.log(hero);
+
+
+    </script>
+</body>
+
+</html>
