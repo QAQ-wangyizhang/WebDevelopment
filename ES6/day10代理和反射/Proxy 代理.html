@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 16:51:27
+ * @LastEditTime: 2020-06-30 17:03:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day10代理和反射\Proxy 代理.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 代理 提供了修改底层实现的方式
+        const obj = {
+            a: 1,
+            b: 2
+        }
+        const proxy = new Proxy(obj, {
+            set(target, proertKey, value) {
+                // console.log(target, proertKey, value);
+                Reflect.set(target, proertKey, value);
+                target[proertKey] = value;
+                // 设置目标属性值为 10
+            },
+            get(target, proertKey) {
+                if(Reflect.has(target,proertKey)){
+                    return Reflect.get(target,proertKey);
+                }
+                return false;
+            }
+        })
+        proxy.a = 10;
+        console.log(proxy);
+        console.log(proxy.a);
+        console.log(obj.a);
+        console.log(proxy.b);
+    </script>
+</body>
+
+</html>

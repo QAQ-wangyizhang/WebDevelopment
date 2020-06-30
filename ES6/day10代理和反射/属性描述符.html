@@ -1,0 +1,109 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 16:01:45
+ * @LastEditTime: 2020-06-30 16:32:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day10代理和反射\属性描述符.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <p>
+        <span>姓名:</span>
+        <span id="name"></span>
+    </p>  
+        <span>年龄:</span>
+        <span id="age"></span>
+  
+    <script>
+
+        const spanName = document.getElementById("name");
+        const spanAge = document.getElementById("age");
+        const user = {};
+
+        Object.defineProperties(user,{
+            name : {
+                get(){
+                    return spanName.innerText;
+                },
+                set(val){
+                    spanName.innerText = val;
+                }
+            },
+            age : {
+                get(){
+                    return spanAge.innerText;
+                },
+                set(val){
+                    spanAge.innerText = val;
+                }
+            }
+        })
+        console.dir(spanName);
+
+
+        
+        const obj = {
+            a: 1,
+            b: 2
+        }
+        Object.defineProperty(obj, "a", {
+            value: 3,
+
+        })
+        console.log(Object.getOwnPropertyDescriptor(obj, "a"));
+        //    value 属性值
+        // configurable 描述符本身是否可以被修改
+        // enumerable 该属性是否可以被枚举 for in 循环 obj。keys() object.values()
+        // writable 该属性的值是否可以被重新赋值
+        // 配置了 get 和 set 则该属性变成了存取器的属性 读取该属性 会运行get方法的返回值作为属性
+
+        const obj1 = {
+            b: 2
+        }
+
+        Object.defineProperty(obj, "a", {
+            get() {
+                console.log("get a")
+                // return 2;
+                return obj._a;
+            },
+            set(val) {
+                console.log("set a", val);
+                obj._a = val;
+            }
+        })
+        obj.a = 1;
+        console.log(obj.a);
+
+        obj3 = {
+            name: "wang"
+        }
+
+        Object.defineProperty(obj3, "age", {
+            get() {
+                return obj3._age;
+            },
+            set(val) {
+                if (val < 0 || val > 100) {
+                    val = 0;
+                }
+                obj3._age = val;
+            }
+        })
+
+        obj3.age = 18;
+        console.log(obj3.age);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 17:47:09
+ * @LastEditTime: 2020-06-30 18:07:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day11数组扩展方法\数组api.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=5, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        // const divs = document.querySelectorAll("div");
+        // console.log(divs);
+        // const arr1 = Array.from(divs);
+        // console.log(arr1);
+        // const arr = Array.of(1,3,3,45,6,6);
+        // console.log(arr);
+
+        const arr = [{
+                name: "a",
+                id: 1
+            },
+            {
+                name: "a",
+                id: 2
+            },
+            {
+                name: "a",
+                id: 3
+            },
+            {
+                name: "a",
+                id: 4
+            },
+            {
+                name: "a",
+                id: 5
+            },
+            {
+                name: "a",
+                id: 6
+            },
+        ]
+        // 找到id 为5的 元素
+        const result = arr.find(item => {
+            return item.id === 5;
+        })
+        // 找id 为5 的下标
+        const resultIndex = arr.findIndex(item => {
+            return item.id === 5;
+        })
+        console.log(result,"  ",resultIndex);
+
+
+        // 创建一个数组长度为100的数组 数组的每一项为"abc"
+        const arr3 = new Array(100);
+        arr3.fill("abc");
+        console.log(arr3);
+
+        const arr4 = [1,2,3,4,5,6];
+        // 从下标2开始 改变数组的数据 数据来自于下标0位置开始
+        // arr4.copyWithin(2); // [1,2,1,2,3,4]
+        // arr4.copyWithin(2,1); // [1,2,2,3,4,5]
+        arr4.copyWithin(2,1,3); // [1,2,2,3,5,6]
+        console.log(arr4);
+        console.log(arr4.includes(2));
+    </script>
+</body>
+
+</html>

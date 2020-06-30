@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-29 22:10:05
- * @LastEditTime: 2020-06-29 22:16:33
+ * @LastEditTime: 2020-06-29 22:21:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \每日的学习\ES6\day9集合\弱set和弱map\test.html
@@ -21,9 +21,14 @@
 
         const s = new WeakSet();
         // 不影响垃圾回收 obj 直接消失 记录一些关键对象 节约空间
+        // 只能添加对象 只对对象垃圾回收进行处理
+        // 不能遍历 不是可迭代的对象
+        const m = new WeakMap();
+        m.set(obj,123);
         s.add(obj);
         obj = null;
         console.log(s);
+        console.log(m);
     </script>
 </body>
 </html>

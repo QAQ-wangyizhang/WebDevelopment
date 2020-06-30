@@ -1,0 +1,75 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 17:05:53
+ * @LastEditTime: 2020-06-30 17:23:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day10代理和反射\观察者模式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        function observer(target) {
+            const div = document.getElementById("container");
+
+            const proxy = new Proxy(target, {
+                set(target, prop, value) {
+                    Reflect.set(target, prop, value);
+                    render();
+                },
+                get(target, prop) {
+                    return Reflect.get(target, prop);
+                }
+            })
+
+            // 以前的实现没有修改底层实现 需要两个对象 浪费内存空间
+            // const ob = {};
+            // const props = Object.keys(target);
+            // for (const prop of props) {
+            //     Object.defineProperty(ob, prop, {
+            //         get() {
+            //             return target[prop];
+            //         },
+            //         set(val) {
+            //             target[prop] = val;
+            //             render();
+            //         },
+            //         enumerable: true
+            //     })
+            // }
+
+            render();
+
+            function render() {
+                let html = "";
+                for (const prop of Object.keys(target)) {
+                    html += `<p>
+                                <span>${[prop]}</span>
+                                <span>${target[prop]}</span>
+                            </p>`
+                }
+                div.innerHTML = html;
+            }
+
+            return proxy;
+        }
+        const obj = observer({
+            a: 1,
+            b: 2
+        })
+        // console.log(Object.keys(obj));
+    </script>
+</body>
+
+</html>

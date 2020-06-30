@@ -1,0 +1,32 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-29 22:26:50
+ * @LastEditTime: 2020-06-29 22:32:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day9集合\WeakSet和WeakMap\test2.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <li>王</li>
+    <li>刘</li>
+    <li>李</li>
+    <script>
+        // 这里会影响垃圾回收
+        let lis = document.querySelectorAll("li");
+        const map = new WeakMap();
+        for(const item of lis){
+            map.set(item,`姓名是${item.innerText}`)
+        }
+        lis[0].remove();
+        lis = null;
+        console.log(map);
+    </script>
+</body>
+</html>

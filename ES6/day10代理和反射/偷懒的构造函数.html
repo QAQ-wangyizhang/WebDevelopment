@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-30 17:25:09
+ * @LastEditTime: 2020-06-30 17:33:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\day10代理和反射\偷懒的构造函数.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class User {
+            // constructor(firsetName, lastName, age) {
+            //     this.firsetName = firsetName;
+            //     this.lastName = lastName;
+            //     this.age = age;
+            // }
+        }
+
+        function ConstructorProxy(Class, ...propNames) {
+            return new Proxy(Class, {
+                construct(target, argumentsList) {
+                  
+                    console.log("构造函数被调用了");
+                    const proxy = Reflect.construct(target, argumentsList);
+                    propNames.forEach((name, index) => {
+                        proxy[name] = argumentsList[index];
+                    })
+                    return proxy;
+                }
+            })
+        }
+
+        const UserProxy = ConstructorProxy(User, "firstName", "lastName", "age");
+        const classProxy = new UserProxy("wang", "zhang", 18);
+        console.log(classProxy);
+    </script>
+</body>
+
+</html>
