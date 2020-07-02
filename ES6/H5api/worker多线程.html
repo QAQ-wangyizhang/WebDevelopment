@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 16:15:29
+ * @LastEditTime: 2020-07-01 16:25:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\H5api\worker多线程.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        // worker 是多线程 是真的多线程 不是伪的多线程 多线程可控
+        // worker 不能操作dom 没有window 对象 不能读取文件 可以发ajax 可以计算
+        console.log(Date.now());
+        console.log("234");
+        console.log("234");
+        let a = 1000;
+        // 在另外一边进行计算 不阻塞进程
+        let worker = new Worker("./worker.js");
+        worker.postMessage({
+            num : a
+        })
+        worker.onmessage = function(e){
+            console.log(e.data);
+        }
+        console.log("234");
+        console.log("234");
+        console.log(Date.now());
+    </script>
+</body>
+</html>

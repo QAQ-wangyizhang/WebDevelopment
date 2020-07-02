@@ -1,0 +1,87 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 15:34:27
+ * @LastEditTime: 2020-07-01 16:14:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\H5api\history.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const data = [{
+                name: "css"
+            },
+            {
+                name: "html"
+            },
+            {
+                name: "js"
+            },
+            {
+                name: "dengge"
+            },
+            {
+                name: "jicheng"
+            },
+            {
+                name: "wang"
+            },
+            {
+                name: "miao"
+            },
+        ]
+
+        function search() {
+            // console.log(1);
+            const search = document.getElementById("search");
+            // const btn = document.getElementById("btn");
+            let value = search.value;
+            let arr = data.filter(item => {
+                return item.name === value;
+            })
+            render(arr);
+            history.pushState({
+                inpValue: value
+            }, null, `#${value}`);
+            // return arr;
+        }
+
+
+        function render(data) {
+            let content = "";
+            for (let i = 0; i < data.length; i++) {
+                content += `<p>${data[i].name}</p>`;
+            }
+            const main = document.getElementById("main");
+            main.innerHTML = content;
+        }
+
+        // 监听回退事件
+        // 只要url变了就会触发
+        window.addEventListener("popstate", e => {
+            document.getElementById("search").value = e.state.inpValue;
+            search();
+        })
+        // 监听回退事件 锚点变了 也就是哈希值变了就会触发
+        window.addEventListener("hashchange",e=>{
+            console.log(e);
+        })
+    </script>
+
+    <input type="search" id="search"> <button type="" onclick="search()">搜索</button>
+    <div id="main"></div>
+    <script>
+        render(data)
+    </script>
+</body>
+
+</html>

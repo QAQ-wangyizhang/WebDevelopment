@@ -1,0 +1,35 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 10:53:02
+ * @LastEditTime: 2020-07-01 11:05:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit  
+ * @FilePath: \每日的学习\ES6\H5api\localStorage.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main"></div>
+
+    <script>
+        // 长期存储到浏览器的 不传到后端的 写入 localStorage
+        localStorage.name = "panda";
+        // 对象转换为字符串
+        localStorage.arr = JSON.stringify([1,2,3]);
+        // 字符串转换为对象
+        console.log(JSON.parse(localStorage.arr));
+        // 这次会话临时存储的变量 每次窗口关闭自动清空
+        // sessionStorage.name = "panda";
+
+        // 1.localStorage 在发送请求时不会吧数据发出去 cookie 会吧所有数据带出去
+        // 2.cookie存储的内容一般小于4k localStorage一般为5m
+        // 相同协议 相同域名 相同端口 称为一个域
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-01 10:09:12
+ * @LastEditTime: 2020-07-01 10:21:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \每日的学习\ES6\H5api\page\重力感应.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="main">
+
+    </div>
+    <script>
+        // 陀螺仪
+        // alpha : 指北 0-360 当为0时指北
+        // beta :  平放的时候 beta值为0 手机立起 为90 倒立 为-90
+        // gamma : 平放 的时候为0 如果将手机长边立起来 为90； 左侧翻为-90 右侧为90
+        window.addEventListener("deviceorientation", function (e) {
+            document.getElementById("main").innerHTML = `<p>
+            <span>alpha: ${e.alpha}</span>
+        </p>
+        <p>
+            <span>beta: ${e.beta}</span>
+        </p>
+        <p>
+            <span>gamma: ${e.gamma}</span>
+        </p>`;
+            console.log(e);
+        })
+    </script>
+</body>
+
+</html>
