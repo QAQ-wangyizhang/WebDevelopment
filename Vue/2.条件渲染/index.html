@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 条件渲染  判断一个条件 是否显示一个元素-->
+    <!-- 1.v-if 判断条件如果是真值则显示 1 假值则不显示 false null undefined 元素就是不存在界面当中 完全移除-->
+    <!-- 2.v-else-if 当v-if不成立时再判断v-else-if 的值 要求前面的元素必须有v-if v-else-if 否则就会失效 -->
+    <!-- 3.v-else 表示其他都不成立 使用v-else 使用要求和v-else-if一样 -->
+    <!-- 4.v-show 和v-if 用法一样区别是v-show是css的display为none 实现的且不支持template  -->
+    <!-- 频繁切换 使用 v-show 一次使用或少使用 使用v-if 
+        v-if 是惰性的 如果不为真就什么都不做 而 v-show 不管是否为真 都会渲染
+    -->
+    <div class="app" >
+        {{msg}}
+        <div v-if = "type === 'A'">
+            A
+        </div>
+        <div v-else-if = "type === 'B'">
+            B
+        </div>
+        <!-- <span>2412</span> -->
+        <div v-else-if = "type === 'C'">
+            C
+        </div>
+        <div v-else>
+            default
+        </div>
+        <!-- template为一个假标签并不会放到实际页面当中 -->
+        <template v-if="show">
+            <div>QAQ</div>
+            <div>QAQ</div>
+            <div>QAQ</div>
+            <div>QAQ</div>
+            <div>QAQ</div>
+        </template>
+    </div>
+    <script>
+        const vm = new Vue({
+            el : ".app",
+            data : {
+                msg : "hello Vue",
+                show : true,
+                type : "D"
+
+            }
+        })
+    </script>
+</body>
+</html>

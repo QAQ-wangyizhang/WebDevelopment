@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- v-on 指令主要用来监听dom事件 -->
+    <!-- 当传参时可以使用 $event 来传入事件对象 -->
+    <!-- 可以绑定动态事件 -->
+    <!-- 逻辑更加简单 事件全部到methods 轻松定位 不用手动绑定事件了 js里是纯粹的逻辑
+        vm 是 vueModule 区域 会自动删除事件监听 事件处理
+        修饰符 
+    -->
+    <div class="app">
+        <button v-on:[event]="addCounter(5,$event)">点击</button>
+        <!-- 传入对象方式不能传入参数 -->
+        <button v-on="{click : addCounter}">对象点击</button>
+        <!-- 可以简写 @input -->
+        <button @click="addCounter(5,$event)">简写点击</button>
+        <p>按钮被点击了{{counter}}次</p>
+        <!-- 事件修饰符 .stop 阻止事件冒泡 -->
+        <div @click="alert('div')" :style="{backgroundColor: 'red'}">
+            <button @click.stop="alert('button')">事件冒泡点击</button>
+        </div>
+        <!-- 阻止默认事件 例如表单提交刷新页面.prevent  -->
+        <form action="">
+            <button @click.prevent="sumbit">提交</button>
+        </form>
+        <!-- 开启事件捕获 自上向下 .capture -->
+        <div @click.capture="alert('div')" :style="{backgroundColor: 'red'}">
+            <button @click="alert('button')">事件捕获点击</button>
+        </div>
+        <!-- .self 只执行当前点击的事件 .once 只执行一次 -->
+        <!-- .passive 提升移动端的性能 不用阻止默认事件 滑动页面更加顺畅 -->
+        <!-- 先处理左边的事件 阻止所有点击默认事件 -->
+        <div @click.prevent.self></div>
+        <!--  阻止元素本身的默认事件 -->
+        <div @click.self.prevent></div>
+        <!-- .prevent .passive 不能同时使用 -->
+        <!-- 按键修饰符 -->
+        <input @keyup.up="sumbit">按键修饰符
+    </div>
+    <script>
+        const vm = new Vue({
+            el : ".app",
+            data : {
+                // 这里this 是window
+                counter: 0,
+                event: 'click'
+            },
+            methods:{
+                addCounter(num,e){
+                    // this Vue的实例对象 类似于vm。counter
+                    this.counter += 1;
+                    console.log(num,e);//拿到事件对象
+                },
+                alert(str){
+                    alert(str);
+                },
+                sumbit(){
+                    console.log('a');
+                }
+            }
+        })
+        // 可以通过 vm.addCounter
+        console.log(
+            (function f(n){
+                return n>1 ? n * f(n-1) : n;
+            })(10)
+        )
+    </script>
+</body>
+</html>

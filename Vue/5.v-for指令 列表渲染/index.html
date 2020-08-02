@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- v-for 列表渲染 -->
+    <div id="app">
+        <!-- 遍历数组 -->
+        <!-- <ul>
+            <li v-for="(item,index) of persons">{{index}}--{{item}}</li>
+        </ul> -->
+        <!-- 遍历对象 -->
+        <!-- <ul>
+            <li v-for="(value,key,index) in wang">{{key}} : {{value}}--{{index}}</li>
+        </ul> -->
+        <!-- 遍历数字 -->
+        <!-- <ul>
+            <li v-for="item of 10">{{item}}</li>
+        </ul> -->
+        <!-- 遍历字符串 -->
+        <!-- <ul>
+            <li v-for="item of 'wang'">{{item}}</li>
+        </ul> -->
+
+        <ul>
+            <!-- key 值唯一 不建议使用index使用key值建议对象里使用直接互换标签而不是只换文本
+             -->
+            <li v-for="(value,index) in persons" :key="value.name">
+                <span>{{value.name}}</span>
+                <button @click="dropDown(value,index)">下拉</button>
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                persons: [{
+                    name: "成"
+                }, {
+                    name: "喵帕斯"
+                }, {
+                    name: "杉杉"
+                }, {
+                    name: "登哥"
+                }],
+                wang: {
+                    name: "wang",
+                    age: 22,
+                    sex: "男"
+                }
+            },
+            methods: {
+                dropDown(value, index) {
+                    // 删除点击的当前的元素
+                    let deleteItme = this.persons.splice(index, 1);
+                    // 在index+1里添加删去的元素
+                    this.persons.splice(index + 1, 0, deleteItme[0]);
+                    console.log(this.persons)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

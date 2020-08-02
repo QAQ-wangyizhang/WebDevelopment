@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+    <!-- v-bind 动态绑定一个多个特性 v-bind 缩写: -->
+    <div class="app">
+        {{msg}}
+        <div :[attr]="msg"></div>
+        <!-- 多个 -->
+        <div v-bind="{name:'wangyi',age : 18,sex : '男'}"></div>
+        <!-- 绑定class 对象-->
+        <div :class="{red:isRed}"></div>
+        <!-- 数组 -->
+        <!-- 数组和对象的书写不可以用于class 和 style -->
+        <!-- 可以在数组中使用对象 -->
+        <div :class="[isRed?red : green,green]" class="red"></div>
+        <!-- 绑定style -->
+        <div :style="{color:'red',width:'100px',height:'100px',backgroundColor:'green'}"></div>
+        <!-- v-bind 指令修饰符 modifier v-bind.xx camel prop -->
+        <!-- camel阻止大写字符转换为小写字母 -->
+        <svg :view-Box.camel="viewBox"></svg>
+        <!-- prop用来绑定属性的 -->
+        <div :text-content.prop="'QAQ喵帕斯'"></div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el : ".app",
+            data : {
+                viewBox : "0 0 100 100",
+                msg : "qaq",
+                attr : "at",
+                isRed : !true,
+                red : 'redClass',
+                green : 'greenClass'
+            }
+        })
+    </script>
+</body>
+</html>

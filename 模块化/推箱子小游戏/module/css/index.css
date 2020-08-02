@@ -1,0 +1,32 @@
+*{
+    padding:  0;
+    margin: 0;
+}
+
+#game{
+    margin: 0 auto;
+    position: relative;
+}
+
+.item{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-size: 100% 100%;
+}
+#game .box{
+    background-image: url("../img/box.png");
+}
+#game .player{
+    background-image: url("../img/player.png");
+}
+#game .overBox{
+    background-image: url("../img/over_box.png");
+}
+#game .wall{
+    background-image: url("../img/wall.jpg");
+}
+#game .correct{
+    border: 2px solid greenyellow;
+    box-sizing: border-box;
+}

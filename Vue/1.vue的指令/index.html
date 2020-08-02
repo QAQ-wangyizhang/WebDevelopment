@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        span{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1.指令v-pre  跳过元素和他的子元素的编译过程 跳过没有指令的节点 加快编译 不常使用-->
+    <!-- 2.v-cloak 解决闪烁的问题 -->
+    <!-- 3.v-once 只去渲染元素一次 渲染 -->
+    <!-- 4.v-text 更新元素的textContent 可以直接使用data的数据 v-text会替换元素中的所有文本
+            而 mustache 插值表达式{{}} 只替换自己，不清空元素的内容 v-text优先级高于{{}}
+        textContent 和 innerText 的区别 都可以替换文本
+        textContent会获得 所有元素文本的内容
+        innerText 会获得当前元素的文本 会受到css 影响 不获取 隐藏元素的文本 会触发重排 
+        重排重绘对性能有影响 所以最好用textContent
+        textContent 是标准方法 innerText IE 引入的
+    -->
+    <!-- 5.v-html 更新元素的innerHtml 在可信内容上使用v-html XSS攻击 用户可能输入标签-->
+    <div id="app" v-cloak>
+        <div v-once>{{msg}}</div>
+        <div v-text = "text">{{msg}}</div>
+        <div v-html = "html"></div>
+    </div>
+    <div id="demo">
+        214214
+        <span>demo</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        const demo = document.querySelector("#demo");
+        console.log("textContent:"+ demo.textContent);
+        console.log("innerText:" +  demo.innerText)
+        const vm = new Vue({
+            el : "#app",
+            data : {
+                msg :  "hello , world",
+                text : "text ",
+                html : `<div><p>QAQ喵帕斯</p></div>`
+            }
+        });
+    </script>
+</body>
+</html>
