@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#app {
+    width: 50vw;
+    height: 80vh;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    /* border:  1px solid black; */
+}
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+}
+.search span{
+    cursor: pointer;
+    font-size: larger;
+}
+.search input{
+    width: 50%;
+    font-size: larger;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.search span.active{
+    background-color: #5352ed;
+    /* width: 30px; */
+    color: #fff;
+    text-align: right;
+    border-radius: 4px;
+}
+
+.students{
+    display: flex;
+    flex-direction: column;
+}
+.students li {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    margin-right: 30px;
+}
+.info{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info .name{
+    font-size: 1.5em;
+}
+.info .remake{
+    color: #d1d2d3;
+}
+
+

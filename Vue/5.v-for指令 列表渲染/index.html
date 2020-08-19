@@ -42,6 +42,9 @@
             <!-- key 值唯一 不建议使用index使用key值建议对象里使用直接互换标签而不是只换文本
                 index 值会因为改变而变 而name 值则不会变 对象和对象是不一样的 不要用索引当定位
              -->
+             <!-- v-for 的优先级比 v-if 要高
+                v-for 一定要有key值
+             -->
             <li v-for="(value,index) in persons" :key="value.name">
                 <span>{{value.name}}</span>
                 <button @click="dropDown(value,index)">下拉</button>

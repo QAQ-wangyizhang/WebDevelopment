@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div :style = "{fontSize : postFontSize + 'em'}">
+        <blog-post :post="post" 
+                    v-for="post in posts" 
+                    :key="post.title"
+                    @enlarge-text = "onLargeFont"
+                    @click.native = "postFontSize += 0.1"
+                    ></blog-post>
+        </div> -->
+
+        <!-- <base-input @focus="onFocus" @blur="onBlur" ></base-input> -->
+        <base-input1 :value.sync = "name"></base-input1>
+        <!-- <base-checkbox v-model = "checked"></base-checkbox> -->
+    </div>
+    <script>
+        // 在子组件内触发事件 在父组件内监听子组件的事件
+        // 自定义事件 enlarge-text
+        // $emit(name)绑定事件
+        // 事件名是什么就是什么不可以小驼峰变 - 并且在v-on里慎用大写
+        // 尽量使用短横线分割的事件名
+        // .native 修饰符 只要点击就会触发点击事件 相当于:prop @update : value
+        // v-bind .sync 
+        // Vue.component('base-checkbox',{
+        //     model : {
+        //         prop : "checked",
+        //         event : "change"
+        //     },
+        //     props : {
+        //         checked : Boolean,
+        //     },
+        //     template: `
+        //         <input 
+        //         type = "checkbox"
+        //         :checked = "checked"
+        //         @change = "$emit('change',$event.target.checked)"
+        //         />
+        //     `
+        // })
+        // Vue.component("blog-post", {
+        //     props: {
+        //         post: {
+        //             type: Object,
+        //         }
+        //     },
+        //     template: `
+        // <div class = "blog-post">
+        //     <h3>{{post.title}}</h3>
+        //     <button @click = "$emit('enlarge-text',0.2)">放大字号</button>
+        //     <div>{{post.content}}</div>
+        // </div>
+        //     `
+        // })
+
+
+        Vue.component("base-input1", {
+            props: {
+                value: {
+                    type: String,
+                }
+            },
+            template: `
+                        <label>
+                            姓名：
+                            <input type = "text" :value = "value" @input = "$emit('update:value',$event.target.value)"/>
+                        </label>
+                    `
+        })
+
+        // Vue.component("base-input", {
+
+        //     props: {
+        //         value: {
+        //             type: String,
+        //         }
+        //     },
+        //     // 这样就触发不了native了
+        //     mounted() {
+        //         // 在不加native修饰符的情况下打印出所有事件
+        //         console.log(this.$listeners)
+        //     },
+        //     template: `
+        //     <label>
+        //         姓名：
+        //         <input type = "text"  v-on="$listeners" :value = "value" @input = "$emit('input',$event.target.value)"/>
+        //     </label>
+               
+        //     `
+        // })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                postFontSize: 1, // em
+                posts: [{
+                    title: "标题",
+                    content: "这是我的博客"
+                }, {
+                    title: "html",
+                    content: "html"
+                }, {
+                    title: "js",
+                    content: "js",
+                }, {
+                    title: "css",
+                    content: "css"
+                }],
+                name: "shanshan",
+                checked : true
+            },
+
+            methods: {
+                onLargeFont(e) {
+                    this.postFontSize += e;
+                    console.log(e)
+                },
+                onFocus() {
+                    console.log("focus")
+                },
+                onBlur() {
+                    console.log("blur")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- 组件里的是父实例的数据 -->
+        <my-cmp>
+            <!-- 有参数v-slot就可以缩写 #-->
+            <template #header>
+                <div>头部</div>
+            </template>
+            <!-- 具名插槽 将标签中的内容传入响应的插槽之中 -->
+            <template #center>
+                <p>中间</p>
+            </template>
+
+        </my-cmp>
+
+
+        <my-cmp-1>
+            <!-- 解构插槽简写 -->
+            <template v-slot:default = "{user}">
+                {{user.name}}
+            </template>
+        </my-cmp-1>
+        <!--具名插槽不可以和这个简写混用  -->
+        <my-cmp-1 v-slot:default = "slotProps">
+                {{slotProps.user}}    
+        </my-cmp-1>
+    </div>
+    <!-- <my-cmp>43242{{msg}}</my-cmp> -->
+    <script>
+        // 插槽 slot 可以将文字插入到组件里
+        // 知识点
+        // 默认插槽 你有用你的 没有用我的
+        Vue.component('my-cmp', {
+            template: `<div> xxx<slot name="header">11</slot>
+                <p><slot name="center">222</slot> </p>
+                </div>`
+        })
+        // 使用自带的组件数据
+        Vue.component("my-cmp-1", {
+            data() {
+                return {
+                    user: {
+                        name: "wangyi",
+                        age: 18,
+                    }
+                }
+            },
+            template: `
+                        <div>
+                            <slot :user="user"></slot>
+                        </div>
+            `
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world"
+            }
+        })
+    </script>
+</body>
+
+</html>

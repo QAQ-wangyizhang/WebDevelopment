@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="./axios.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <my-cmp :list = "list"></my-cmp>
+        <!-- <video-list :video-list = "videoList"></video-list> -->
+        <!-- <video-item v-for="video in videoList" :key="video.id" :poster="video.poster" :play="video.play"
+            :rank="video.rank" :title="video.title">
+        </video-item> -->
+
+
+    </div>
+
+
+
+
+    <script>
+        Vue.component('video-list', {
+            props: ['videoList'],
+            template: `
+                <div class="video-list">
+                    <video-item 
+                        v-for="video in videoList" 
+                        :key="video.id" 
+                        v-bind = "video">
+                    </video-item>
+                </div>
+            `
+        })
+        // 全局组件
+        Vue.component('video-item', {
+            props: ['poster', 'play', 'rank', 'title'],
+            template: `
+            <div class="video-item">
+                <div class="poster">
+                    <img :src="poster" alt="">
+                    <div class="info">
+                        <div class="paly">{{play}}</div>
+                        <div class="rank">{{rank}}</div>
+                    </div>
+                </div>
+                <div class="title">{{title}}</div>
+            </div>
+            `
+        })
+
+        Vue.component('my-cmp', {
+            props: {
+                list: {
+                    type: Array,
+                    // 未传参数的默认值
+                    default () {
+                        return [{
+                                name: "haha"
+                            },
+                            {
+                                name: 'vue'
+                            }
+                        ]
+                    },
+                    // 确保一定要传值
+                    required : true,
+                    // 自定义验证函数
+                    validator(list){
+                        return list.length === 3;
+                    }
+                }
+            },
+            template: `    
+                        <ul>
+                            <li v-for = "li of list"
+                                :key = li.name
+                            >{{li.name}}</li>
+                        </ul>
+            `
+        })
+        // 局部组件
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                videoList: [],
+                list: [{
+                        name: "wangyi"
+                    },
+                    {
+                        name: "duyi"
+                    },
+                    {
+                        name: "shanshan"
+                    }
+                ]
+            },
+            created() {
+                axios.get('https://developer.duyiedu.com/vue/bz/video', {
+                        params: {
+                            start: 0,
+                            offset: 12
+                        }
+                    })
+                    .then(res => {
+                        this.videoList = res.data.data
+                    })
+            }
+        })
+    </script>
+</body>
+
+</html>

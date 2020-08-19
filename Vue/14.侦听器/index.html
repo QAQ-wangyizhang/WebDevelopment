@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        {{wangyi}}
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world",
+                wangyi: {
+                    name: "wangyi",
+                    age: 18,
+                    sex: "male"
+                }
+            },
+            methods: {
+                msgChange() {
+                    console.log("msg值改变了")
+                }
+            },
+            // 数据改变了 立即执行这个函数
+            watch: {
+                // msg : function(newValue,oldValue){
+                //     console.log("msg变化了")
+                //     console.log(newValue,oldValue)
+                // },
+                // msg : "msgChange",
+                // wangyi : {
+                //     handler(){
+                //         console.log("对象改变了")
+                //     },
+                //     // 监听对象每一个内部属性的变化
+                //     deep : true,
+                //     // 是否立刻调用回调函数 不等数据改变
+                //     immediate : false
+                // }
+                "wangyi.name"() {
+                    console.log("name 改变了")
+                }
+            }
+        })
+        // watch 擅长一个数据影响多个数据的变动 而计算属性computed 擅长多个数据影响一个数据的改变 
+        // 且watch 支持异步 而计算属性不支持
+        vm.$watch('msg',function(){
+            console.log("msg改变了")
+        },{
+            deep :true,
+            immediate : true
+        })
+    </script>
+</body>
+
+</html>

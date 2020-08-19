@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <wangyi-input :value.sync = "name"></wangyi-input>
+        <wangyi-checkbox  v-model = "bool"></wangyi-checkbox>
+    </div>
+    <script>
+        // .sync
+    Vue.component("wangyi-input",{
+        props : {
+            value : {
+                type : String
+            }
+        },
+        template : `
+        <input type = "text" :value = "value" @input ="$emit('update:value',$event.target.value)"/>
+
+        `
+    })
+    // v-model
+    Vue.component("wangyi-checkbox",{
+        model : {
+            prop : "checked",
+            event : "change"
+        },
+        props : {
+            checked : Boolean
+        },
+        template : 
+        `<input type="checkbox" :checked="checked" 
+        @change="$emit('change',$event.target.checked)" />` 
+    })
+
+        const vm = new Vue({
+            el : "#app",
+            data : {
+                name : "11",
+                bool : true,
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <h2 class="title">toDoList</h2>
+            <div class="input-text">
+                <input class="" type="text" @input="handleInput($event)">
+                <button class="add" @click="addTask()">添加</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="task">
+                <div class="task-header">
+                    <h2 class="task-title">正在进行</h2>
+                    <span class="circle">{{taskList.length}}</span>
+                </div>
+                <ul class="tasks">
+                    <li v-for="(task,index) in taskList" :key="task">
+                        <!-- 添加key 值取消 就地复用策略 -->
+                        <div class="left">
+                            <input class="radio-button" type="checkbox"  @click = "performTask(task,index)">
+                            <span>{{task}}</span>
+                        </div>
+                        <button class="delete" @click = "deleteTask(index)">删除</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="task">
+                <div class="task-header">
+                    <h2 class="task-title">已经完成</h2>
+                    <span class="circle">{{performList.length}}</span>
+                </div>
+                <ul class="tasks">
+                    <li class="finish" v-for="(perform,index) of performList">
+                        <div class="left">
+                            <input class="radio-button" type="checkbox" disabled>
+                            <span>{{perform}}</span>
+                        </div>
+                        <button class="delete"  @click = "deletePerform(index)" >删除</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                curMark: "",
+                taskList: [],
+                performList : [],
+            },
+            methods: {
+                addTask() {
+                    for(let i = 0; i < this.taskList.length;i++){
+                        if(this.taskList[i] === this.curMark){
+                            return;
+                        }
+                    }
+                    this.taskList.push(this.curMark);
+                    console.log("添加任务")
+                    console.log(this.taskList)
+                },
+                handleInput(e) {
+                    this.curMark = e.target.value;
+                },
+                performTask(task,index){
+                    this.performList.push(this.taskList.splice(index,1)[0])
+                    // this.taskList.splice(index,1)
+                    console.log(this.performList);
+                },
+                deleteTask(index){
+                    this.taskList.splice(index,1);
+                },
+                deletePerform(index){
+                    this.performList.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

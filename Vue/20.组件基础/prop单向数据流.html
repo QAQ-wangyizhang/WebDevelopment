@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        father:{{count}}
+        <button @click="count ++">father点击</button>
+        <!-- a为非prop特性 非prop特性会替换原有特性 只用class 和style 会合并特性-->
+        <my-count :count="count" a="10" class="count"></my-count>
+    </div>
+    <script>
+        // 父组件可以传递数据影响到子组件
+        // 但是子组件改变数据不会影响到父组件 这就是单向数据流
+        // 对象和数组都是引用都是指的同一个数据 会影响到父组件所以尽量不要在子组件更改prop
+        Vue.component("my-count", {
+            // 是否去继承 替换 但是class和style是特殊的
+            inheritAttrs: false,
+            // 打印继承来的特性
+            mounted(){
+                console.log(this.$attrs)
+            },
+            props: {
+                count: {
+                    type: Number,
+                }
+            },
+            data() {
+                // 重新复制一次 再传入
+                return {
+                    // 想要引用值 数组 对象 的话就深度克隆
+                    myCount: this.count
+                }
+            },
+            // 计算属性
+            computed: {
+                countAdd() {
+                    return this.myCount + 2
+                }
+            },
+            template: `
+                     <div a="33" class= "active"> 
+                        son :{{countAdd}}
+                        <button v-bind = "$attrs" @click = "myCount ++">son点击</button>
+                     </div>   
+            `
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                count: 5,
+            }
+        })
+    </script>
+</body>
+
+</html>

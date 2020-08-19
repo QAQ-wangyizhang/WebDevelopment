@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <link rel="stylesheet" href="iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #app {
+            width: 638px;
+            margin: 100px auto;
+        }
+
+        .logo {
+            width: 270px;
+            height: 129px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .search {
+            display: flex;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 480px;
+            height: 20px;
+            padding: 9px 48px 9px 7px;
+            font-size: 16px;
+            border: 1px solid #b8b8b8;
+            border-bottom: 1px solid #ccc;
+            vertical-align: top;
+            border-right: none;
+            outline: none;
+            /* border-bottom: none; */
+        }
+
+        .search-btn {
+            width: 102px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #38f;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        ul {
+            display: none;
+        }
+
+        .list {
+            width: 536px;
+            box-sizing: border-box;
+            border: 1px solid #b8b8b8;
+            font-size: 14px;
+            border-top: none;
+            display: block;
+        }
+
+        li {
+            padding: 4px 5px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: burlywood;
+        }
+
+        .search span {
+            font-size: 30px;
+            position: absolute;
+            right: 110px;
+            top: 5px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="logo"><img src="https://www.baidu.com/img/bd_logo1.png?where=super" alt="百度一下你就知道" title="点击了解更多">
+        </div>
+        <div class="search">
+            <input type="text" class="search-input" 
+            @blur = "()=>{this.key = false}"
+            @focus = "()=>{this.resList.length > 0 ? this.key = true : this.key = false}"
+            v-model="inputValue"
+            >
+            <span class="iconfont icon-paizhao"></span>
+            <button class="search-btn">百度一下</button>
+        </div>
+        <ul :class="{list : key}">
+            <li v-for="res in resList" :key = "res"
+            @mousedown = "choose(res)"
+            >{{res}}</li>
+        </ul>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                inputValue: "",
+                resList: [],
+                key: false,
+            },
+            methods: {
+                getValue(res) {
+                    this.resList = res.s;
+                },
+                choose(res){
+                    this.inputValue = res
+                }
+            },
+            computed: {
+
+            },
+            watch: {
+                inputValue() {
+                    if (this.inputValue === "") {
+                        this.resList = [];
+                        this.key = false;
+                    } else {
+                        this.key = true;
+                        $.ajax({
+                            dataType: "jsonp",
+                            url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+                            data: {
+                                wd: this.inputValue,
+                                cb: "vm.getValue",
+                            }
+                        })
+                    }
+
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

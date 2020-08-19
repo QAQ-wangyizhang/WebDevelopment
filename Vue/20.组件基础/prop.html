@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <wangyi-cmp-1></wangyi-cmp-1>
+        <!-- 自闭合组件 -->
+        <wangyi-cmp-1 />
+    </div>
+
+    <div id="app1">
+        <wangyi-cmp></wangyi-cmp>
+        <button-counter></button-counter>
+    </div>
+    <script>
+
+        // 全局组件
+        Vue.component('wangyi-cmp',{
+            template : `<div>我是一个自定义组件</div>`
+        })
+        Vue.component('button-counter',{
+            data (){
+                return {
+                    count : 0
+                }
+            },
+            template: `<button @click = "count++">点击了{{count}}次</button>`
+        })
+        // 局部组件
+        const vm = new Vue({
+            el : "#app",
+            components : {
+                'wangyi-cmp-1' : {
+                    template : `<p>我是局部组件wangyi-cmp-1</p>`
+                }
+            }
+        })
+        const vm1 = new Vue({
+            el : "#app1"
+        })
+    </script>
+</body>
+</html>

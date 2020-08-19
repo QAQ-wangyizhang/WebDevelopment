@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    background-color: #f40;
+    font-size: 12px;
+}
+
+#app {
+    box-sizing: border-box;
+    width: 500px;
+    margin: 2px auto 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.header {
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.header input,
+.footer input
+{
+    margin-right: 20px;
+}
+.final{
+    box-sizing: border-box;
+    padding: 10px 5px;
+}
+.buy{
+    width: 70px;
+    height: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #f40;
+    border: none;
+    border-radius: 15px;
+    font-size: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.allPrice {
+    color: #f40;
+    font-weight: bold;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 15px 0;
+}
+
+.info {
+    width: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info .price {
+    color: #f40;
+    font-weight: bold;
+}
+
+.left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    margin: 0 20px;
+}
+
+.number {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+}
+
+.number button {
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    outline: none;
+    width: 20px;
+    cursor: pointer;
+}
+
+.number input {
+    width: 30%;
+    text-align: center;
+    outline: none;
+}
+
+.number span {
+    line-height: 20px;
+    text-align: center;
+}

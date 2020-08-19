@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝筛选</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="(item,goodIndex) in goodsList" class="goods" :key="item.id">
+            <div class="type-title">
+                {{item.title}} :
+            </div>
+            <ul class="types">
+                <li v-for="(good,typeIndex) of item.typeList" class="type" :class="{active : typeIndex === item.index }"
+                    @click="active(typeIndex,item,good,goodIndex)" :key="good">{{good}}</li>
+            </ul>
+        </div>
+        <div class="choose-type">
+            <div class="choose-title">已选条件:</div>
+            <span class="no-choose" v-if="!key">暂时没有选择过滤条件</span>
+            <ul class="filter-type">
+                <li v-for="(good,index) of filterList" class="type">{{good}}<span class="delete-good"
+                        @click="close(index)"> x </span></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+
+            data: {
+                filterList: {},
+                key: false,
+                goodsList: [{
+                        title: '上装',
+                        typeList: ['全部', '针织衫', '毛呢外套', 'T恤', '羽绒服', '棉衣', '卫衣', '风衣'],
+                        id: 1,
+                    },
+                    {
+                        title: '裤装',
+                        typeList: ['全部', '牛仔裤', '小脚/铅笔裤', '休闲裤', '打底裤', '哈伦裤'],
+                        id: 2,
+                    },
+                    {
+                        title: '裙装',
+                        typeList: ['全部', '连衣裙', '半身裙', '长袖连衣裙', '中长款连衣裙'],
+                        id: 3,
+                    }
+                ]
+            },
+            methods: {
+                active(typeIndex, item, good, goodIndex) {
+                    // 更改已经存在的属性index 页面重新渲染
+                    this.key = true;
+                    item.index = typeIndex;
+                    if (good === "全部") {
+                        if (Object.keys(this.filterList).length === 0) {
+                            this.key = false;
+                        }
+                        return;
+                    }
+                    vm.$set(this.filterList, goodIndex, good);
+                    // this.filterList.splice(goodIndex, 1, good);
+                    console.log(this.filterList);
+                    // console.log(typeIndex,index,good)
+                },
+                close(index) {
+                    vm.$delete(this.filterList, `${index}`)
+                    this.goodsList[index].index = 0;
+                    if (Object.keys(this.filterList).length === 0) {
+                         
+                        this.key = false;
+                    }
+                    console.log(index, "关闭")
+                }
+            }
+        })
+        vm.goodsList.forEach(ele => {
+            vm.$set(ele, "index", 0);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#app {
+    width: 600px;
+    border: 1px solid #ddd;
+    margin: 80px auto;
+    padding: 5px 15px;
+    font-size: 12px;
+    color: #666;
+    border-radius: 4px;
+}
+
+.goods {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+}
+
+.goods .type-title,
+.choose-title {
+    margin: 15px 7px;
+    padding: 5px 6px;
+    text-indent: 2em;
+}
+
+.types {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.type {
+    margin: 15px 7px;
+    padding: 5px 6px;
+    cursor: pointer;
+    color: #003399;
+}
+
+.type:hover {
+    color: #f60;
+    background-color: #f3edc2;
+}
+
+.choose-type {
+    display: flex;
+}
+
+.active {
+    border-radius: 2px;
+    color: #fff;
+    background-color: #ff6600;
+}
+
+.choose-title {
+    color: #000;
+    font-weight: bold;
+}
+
+.no-choose {
+    margin: 15px -10px;
+    padding: 5px 6px;
+    /* display: none; */
+}
+.filter-type{
+    display: flex;
+}
+
+.filter-type .type{
+    border-radius: 2px;
+    color: #fff;
+    background-color: #ff6600;
+}
+
+.delete-good{
+    color: #ddd;
+}
+.delete-good:hover{
+    color: #fff;
+}

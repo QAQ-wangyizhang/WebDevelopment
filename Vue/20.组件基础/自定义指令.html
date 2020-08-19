@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- active可以动态绑定指令 -->
+        <input type="text" v-focus:src.sss.rrr="name" v-if="bool" v-myshow:[active]="show" v-mymodel="msg">
+    </div>
+    <script>
+        // 自定义指令 全局
+        // virtual node虚拟节点
+        Vue.directive('focus', {
+            // 绑定就执行
+            bind(el, binding, vnode) {
+                console.log("bind", el, binding, vnode.context)
+            },
+            // 插入到父元素就执行 自动聚焦
+            inserted(el) {
+                el.focus();
+            },
+            // 更新了执行
+            update() {
+                console.log("name变了")
+            },
+            componentUpdated() {
+                console.log("子节点全部更新完毕执行")
+            },
+            unbind() {
+                console.log("取消绑定")
+            }
+        })
+        // 简写模式 只在 bind 和 updata 里修改数据 可以使用这样的简写方式 且bind 和update里的逻辑一样
+        Vue.directive("myshow", (el,binding) => {
+            const {
+                value,
+                arg
+            } = binding;
+            const display = value ? '' : 'none';
+            el.style.display = display
+            console.log(arg)
+        })
+        Vue.directive("mymodel", {
+            bind(el, binding, vnode) {
+                // 父的vue实例
+                const vm = vnode.context;
+                const {
+                    value,
+                    expression
+                } = binding;
+                el.value = value;
+                el.oninput = function () {
+                    const inputVal = el.value;
+                    vm[expression] = inputVal;
+                }
+            },
+            update(el, binding) {
+                const {
+                    value
+                } = binding;
+                el.value = value;
+            }
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                name: "11",
+                bool: true,
+                show: true,
+                msg: "wuwu",
+                active: "4324"
+            },
+            // 局部指令
+            // directives: {
+            //     focus : {
+
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>

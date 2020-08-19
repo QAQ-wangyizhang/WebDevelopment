@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #app {
+            width: 80vw;
+            margin: 100px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .upload,
+        .showInfo {
+            width: 50%;
+            height: 40px;
+            line-height: 40px;
+            background-color: #38f;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            margin: 2px 0;
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            padding: 9px 48px 9px 7px;
+            font-size: 16px;
+            border: 1px solid #b8b8b8;
+            vertical-align: top;
+            outline: none;
+            box-sizing: border-box;
+            border-radius: 6px;
+        }
+
+        .user,
+        .email {
+            width: 50%;
+            margin: 3px 0;
+        }
+        ul{
+            width: 50%;
+        }
+        li{
+            padding: 2px;
+            border: 1px solid  #b8b8b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="user">
+            <input type="text" v-model="userName" placeholder="用户名">
+        </div>
+        <div class="email">
+            <input type="email" name="" id="" v-model="email" placeholder="邮箱">
+        </div>
+        <div class="upload" @click="handleUpload">上传</div>
+        <div class="showInfo" @click= "handleShow">显示人物信息</div>
+        <div class="showInfo" @click= "handleJsonp">测试jsonp</div>
+        <ul>
+            <li v-for="person in personList" :key = "person">
+            <span>用户名 : {{person.name}}</span>
+            <span>邮箱 : {{person.mail}}</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                userName: "",
+                email: "",
+                personList : []
+            },
+            methods: {
+                handleUpload() {
+                    this.$http.post('https://developer.duyiedu.com/vue/setUserInfo', {
+                        name: this.userName,
+                        mail: this.email
+                    }).then(res => {
+                        alert(res.data.msg)
+                    }).catch(err => {
+                        alert(err.data.msg)
+                    })
+                },
+                handleShow(){
+                    this.$http.get('https://developer.duyiedu.com/vue/getUserInfo')
+                        .then(res => {
+                            this.personList = res.data.data.splice(0,50)
+                            console.log(this.personList)
+                        })
+                },
+                handleJsonp(){
+                    this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                        params :{
+                            wd : "百度",
+                        },
+                        jsonp : 'cb'
+                    }).then(res => {
+                        return res.json();
+                    }).then(res => {
+                        console.log(res)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

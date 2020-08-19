@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg | filter | filterB('a')}}
+        {{money | toMoney}}
+    </div>
+    <script>
+        // 过滤器 用于常见的文本格式 可以用于两个地方双花括号插值和v-bind表达式
+
+        // 全局过滤器
+        Vue.filter('filter',(val)=>{
+            return "hahhfsdf"
+        })
+        Vue.filter('filterB',(val,a)=>{
+            if(!val){return}
+            return val.charAt(0).toUpperCase() + val.slice(1) + a
+        })
+        Vue.filter("toMoney",(val)=>{
+            if(!val){return}
+            return val.toLocaleString()
+        })
+        // 可以串联使用
+        const vm = new Vue({
+            el : "#app",
+            data : {
+                msg : "hhhhhha",
+                money : 143421424
+            },
+            // 局部过滤器
+            // filters:{
+            //     filter(){
+            //        return "aaa" 
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

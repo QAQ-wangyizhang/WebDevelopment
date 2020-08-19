@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- v-model 只在表单里有用 双向数据绑定 input textarea select-->
+    <div id="app">
+        <!-- input @input :value -->
+        <!-- <input type="text" v-model= "msg">
+        <input type="checkbox" v-model = "flag"> -->
+        <!-- 会拿到value值push到数组里去 @change :checked -->
+        <input type="checkbox" id="js" value="js" v-model="checkList">
+        <label for="js">js</label>
+        <input type="checkbox" id="html" value="html" v-model="checkList">
+        <label for="html">html</label>
+        <input type="checkbox" id="css" value="css" v-model="checkList">
+        <label for="css">css</label>
+        <!-- 单选框 绑定字符串 @change  --> 
+        <hr>
+        <input type="radio" id="js" value="js" v-model="pick">
+        <label for="js">js</label>
+        <input type="radio" id="html" value="html" v-model="pick">
+        <label for="html">html</label>
+        <input type="radio" id="css" value="css" v-model="pick">
+        <label for="css">css</label>
+        <hr>
+        <!-- 文本框 @input : value-->
+        <textarea name="" id="" cols="30" rows="10" v-model = "text"></textarea>
+        <!-- select  -->
+        <hr>
+        <!-- multiple 变成多选 -->
+        <select v-model = "opt" multiple>
+            <option value="css" >css</option>
+            <option value="js" >js</option>
+            <option value="html" >html</option>
+        </select>
+
+        <!-- 懒加载 没必要一直拿input 里的value 值 只在change里去拿到-->
+        <!-- 把拿到的数据转换为 number 类型 .number -->
+        <!-- 自动消除前后的空格 修饰符 .trim -->
+        <input type="text" v-model.lazy = "msg">
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "s",
+                flag: true,
+                checkList: [],
+                pick: "",
+                text : "",
+                opt : []
+            }
+        })
+        setTimeout(() =>{
+            console.log(vm.msg)
+        },3000)
+    </script>
+</body>
+
+</html>

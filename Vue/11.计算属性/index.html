@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 计算属性 是一个值 不能运行 不是函数 -->
+        {{someComputed}}
+        <hr>
+        {{desc}}
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world!",
+                name : "wangyi",
+                age : 19,
+            },
+            // 只要页面一渲染方法就会执行
+            methods: {
+
+            },
+            // 计算属性 只有依赖的值的改变才会执行
+            // 计算属性是基于响应式依赖进行缓存的
+            // 节省性能开销
+            // 计算属性不仅仅有function  还可以为对象
+            computed: {
+                someComputed() {
+                    return this.msg.split("")
+                },
+                desc: {
+                    get(){
+                        console.log("计算属性被读取了")
+                        return `姓名:${this.name}，年龄:${this.age}`
+                    },
+                    set(newValue){
+                        // 赋值不会渲染 因为依赖的值没有改变所以不会渲染
+                        console.log("设置新的值了",newValue)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- <component is="cmp-b"></component> -->
+        <button
+                v-for = "page in pages"
+                :key = "page.id"
+                @click = "pageCheck(page.cmp)"
+        >
+        {{page.name}}
+        </button>
+        <!-- keep-alive 保持失活转态的组件状态 且动态组件必须要有名字 -->
+        <keep-alive>
+            <component :is = "comp"></component>
+        </keep-alive>
+      
+    </div>
+
+    <script>
+        Vue.component('cmp-post',{
+            data(){
+                return {
+                    postCmp : "",
+                    posts : [
+                        {title : "标题1",content: {template:`<div>内容1</div>`},id : 11},
+                        {title : "标题2",content: {template:`<div>内容2</div>`},id : 12},
+                        {title : "标题3",content: {template:`<div>内容3</div>`},id : 13},
+                        {title : "标题4",content: {template:`<div>内容4</div>`},id : 14},
+                        {title : "标题5",content: {template:`<div>内容5</div>`},id : 15},
+                    ]
+                }
+            },
+            template: `<div>
+            <button v-for = "post in posts" :key = post.id
+                    @click = "postCmp = post.content"
+            >{{post.title}}
+            </button>
+            <keep-alive><component :is = "postCmp"></component></keep-alive>
+            
+            </div>`,
+            created(){
+                this.postCmp = this.posts[0].content;
+            },
+            // 组件激活时调用
+            activated(){
+                console.log("activated")
+            },
+            // 组件停用时调用
+            deactivated(){
+                console.log("deactivated")
+            }
+        })
+        Vue.component('cmp-more',{
+            template: `<div>b</div>`
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world",
+                pages : [
+                    {name: "博客",cmp : "cmp-post",id : 1},
+                    {name: "更多",cmp : "cmp-more",id : 2},
+                ],
+                comp : ""
+            },
+            methods : {
+                pageCheck(e){
+                    this.comp = e;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

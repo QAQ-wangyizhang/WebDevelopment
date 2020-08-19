@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="number" v-model.number.lazy="first">
+        <select v-model="opera">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" v-model.number.lazy="second">
+        <button @click="calcule()">=</button>
+        <span>{{result}}</span>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                first: 0,
+                second: 0,
+                opera: "+",
+                result: 0,
+            },
+            methods: {
+                calcule() {
+                    switch (this.opera) {
+                        case "+":
+                            this.result = this.first + this.second
+                            break;
+                        case "-":
+                            this.result = this.first - this.second
+                            break;
+                        case "*":
+                            this.result = this.first * this.second
+                            break;
+                        case "/":
+                            this.result = this.first / this.second
+                            break;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

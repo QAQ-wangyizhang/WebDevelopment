@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调查问卷</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #app {
+            width: 80vw;
+            height: 60vh;
+            border: 1px solid black;
+            margin: 10px auto;
+            display: flex;
+            /* align-items: center; */
+            border-radius: 5px;
+        }
+
+        .left,
+        .right {
+            width: 40vw;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 10px 10px;
+            justify-content: space-evenly;
+        }
+        .left{
+            border-right: 1px dashed black;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="left">
+            <h2 class="title">提问区</h2>
+            <label for="name">1.请问你的姓名是？</label>
+            <input type="text" id="name" v-model="name">
+            <label for="">2.请问您的性别是？</label>
+            <div>
+                <input type="radio" name="sex" v-model="sex" value="男"> 男
+                <input type="radio" name="sex" v-model="sex" value="女"> 女
+                <input type="radio" name="sex" v-model="sex" value="保密"> 保密
+            </div>
+
+            <label for="">3.请选择您的兴趣爱好</label>
+            <div>
+                <input type="checkbox" v-model="hobbies" value="看书">看书
+                <input type="checkbox" v-model="hobbies" value="游泳">游泳
+                <input type="checkbox" v-model="hobbies" value="跑步">跑步
+                <input type="checkbox" v-model="hobbies" value="看电影">看电影
+                <input type="checkbox" v-model="hobbies" value="听音乐">听音乐
+            </div>
+            <label for="myself">4.请介绍一下自己:</label>
+            <textarea id="myself" v-model="myInfo"></textarea>
+        </div>
+        <div class="right">
+            <h2 class="title">回答展示区</h2>
+            <label for="name">1.请问你的姓名是？</label>
+            <span>{{name}}</span>
+            <label for="">2.请问您的性别是？</label>
+            <span>{{sex}}</span>
+            <label for="">3.请选择您的兴趣爱好</label>
+            <span>{{hobToString}}</span>
+            <label for="myself">4.请介绍一下自己:</label>
+            <span>{{myInfo}}</span>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                name : "",
+                sex : "",
+                hobbies : [],
+                myInfo: ""
+            },
+         
+            computed:{
+                hobToString(){
+                    return this.hobbies.join();
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

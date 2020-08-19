@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+      <my-cmp>
+          <cmp-a ref= "cmpA">
+              <cmp-b ref= "cmpB">
+                  <cmp-c></cmp-c>
+              </cmp-b>
+          </cmp-a>
+      </my-cmp>
+    </div>
+
+    <script>
+        Vue.component("my-cmp",{
+            template : `<div><slot></slot></div>`
+        });
+        Vue.component("cmp-a",{
+            // 提供共享的数据
+            provide(){
+                return {
+                    share : this.share,
+                }
+            },
+            data(){
+                return {
+                    share : "share"
+                }
+            },
+            template : `<div><slot></slot></div>`
+        });
+        Vue.component("cmp-b",{
+            data(){
+                return {
+                    bname : "b组件"
+                }
+            },
+            template : `<div><slot></slot></div>`
+        });
+        Vue.component("cmp-c",{
+            // 注入
+            inject: ['share'],
+            // 访问到根实例上的数据 尽量不要去使用
+            mounted(){
+                console.log(this.share)
+                console.log(this.$parent.bname)
+                console.log(this.$root.msg)
+            },
+            template : `<div>c</div>`
+        });
+
+        Vue.prototype.$bus = new Vue();
+      
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world"
+            },
+            mounted(){
+                console.log(this.$refs)
+            }
+        })
+    </script>
+</body>
+
+</html>

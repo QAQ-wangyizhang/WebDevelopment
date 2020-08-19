@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cmp-1></cmp-1>
+        <cmp-2></cmp-2>
+    </div>
+    <script>
+        let mixin = {
+            data (){
+                return {
+                    a : "a"
+                }
+            },
+        }
+        // 不要全局混入
+        // 混入就是两个组件有共同的数据可以提取出来 减少冗余
+        // 但是可以全局混入 加 局部混入
+        Vue.mixin({
+            created(){
+                const tem = this.$options.tem;
+                // 只有你有这个自定义选项 才会混入 
+                if(tem){
+                    console.log("tem有效")
+                }
+                console.log("全局混入created")
+            }
+        })
+        Vue.component("cmp-1",{
+            // 局部混入 
+            tem : "tem",
+            mixins : [mixin],
+            data (){
+                // 数据冲突时 以组件里的数据为准
+                return {
+                    a : "b"
+                }
+            },
+            mounted(){
+                console.log(this.a);
+            },
+            template : `<div>cmp-1</div>`
+        })
+        Vue.component("cmp-2",{
+            data (){
+                return {
+                    a : "a"
+                }
+            },
+            template : `<div>cmp-2</div>`
+        })
+        const vm = new Vue({
+            el : "#app",
+            data : {
+
+            }
+        })
+    </script>
+</body>
+</html>
