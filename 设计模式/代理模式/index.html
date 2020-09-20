@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #app {
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        #app img {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        11124
+    </div>
+    <button id="btn1" type="font-weight">add weight</button>
+    <button id="btn2" type="color">change color</button>
+    <button id="btn3" type="font-size">add size</button>
+    <script>
+        let typeObj = {
+            "font-weight": "bold",
+            "color": "red",
+            "font-size": "22px",
+        }
+        let ProxyRequest = function (func) {
+            let cach = [];
+            let timer = null;
+            return function () {
+                cach.push([this.getAttribute("type"), typeObj[this.getAttribute("type")]])
+                console.log(cach)
+                clearTimeout(timer)
+                setTimeout(() => {
+                    func(cach);
+                }, 2000)
+            }
+        }
+        const app = document.getElementById("app");
+        var resultResponse = ProxyRequest(changStyle);
+        const btnArray = document.getElementsByTagName("button");
+        for (let i = 0; i < btnArray.length; i++) {
+            btnArray[i].onclick = resultResponse;
+        }
+
+        let typeArr = [
+            ["font-weight", "bold"],
+            ["color", "red"],
+            ["font-size", "22px"]
+        ]
+
+
+        function changStyle(arr) {
+            arr.forEach(item => {
+                app.style[item[0]] = item[1];
+            })
+        }
+
+
+        // btn1.onclick = function(){
+        //     ProxyBind();
+        // }
+        // const ProxyBind = (function () {
+        //     let button = new ButtonDom();
+        //     return function (index) {
+        //         if (index >= 3) {
+        //             button.bind(btn1, "font-weight", "bold")
+        //             button.bind(btn2, "color", "red")
+        //             button.bind(btn3, "font-size", "22px")
+        //         }
+        //         index ++;
+        //         console.log(index)
+        //     }
+        // })()
+        // ProxyBind();
+
+
+
+
+        // 为一个对象提供一个代理以控制这个对象的访问
+
+        // 代理模式
+        // const mrDeng = {
+        //     sendFlower(target){
+        //         let flower = "sunflower";
+        //         target.receiveFlower(flower)
+        //     }
+        // }
+
+        // const goddess = {
+        //     mood : null,
+        //     receiveFlower(flower){
+        //         this.mood ? console.log("ok") : console.log("go out")
+        //     },
+        //     changeMood(){
+        //         this.mood = Math.random() > 0.5
+        //         // console.log(this.mood)
+        //     },
+        //     createMood(){
+        //         this.changeMood();
+        //         setInterval(() => {
+        //             this.changeMood();
+        //             // this.receiveFlower();
+        //         }, 400);
+        //     }
+        // }
+        // // 代理
+        // let chengProxy = {
+        //     proxyFlower(target){
+        //         this.listenMoode(target,function(){
+        //             mrDeng.sendFlower(target)
+        //         }) 
+        //     },
+        //     listenMoode(target,cb){
+        //         let timer = setInterval(() => {
+        //             if(target.mood){
+        //                 cb();
+        //                 clearInterval(timer);
+        //             }
+        //         }, 300);
+        //     }
+        // }
+        // goddess.createMood();
+        // // mrDeng.sendFlower(goddess);
+        // chengProxy.proxyFlower(goddess);
+
+
+        // 图片懒加载
+        // const OMyImage = function (id) {
+        //     let img = new Image();
+        //     this.setSrc = function (src) {
+        //         img.src = src;
+        //     }
+        //     document.getElementById(id).appendChild(img);
+        // }
+        // // let myImage = new OMyImage("app");
+        // // myImage.setSrc("./a2.jpg")
+
+        // let lineSrc = "https://i0.hdslb.com/bfs/sycp/creative_img/202009/bdc6eb53bdb584d1846bf0d9b3fd5912.jpg"
+        // const ProxyImg = (function () {
+        //     // 生成一个 图片空位置
+        //     let myImage = new OMyImage("app");
+        //     // 生成一个 要请求的图片对象
+        //     let newImage = new Image();
+        //     // 请求的图片加载完成 触发的函数
+        //     newImage.onload = function(){
+        //         // 改变 占位图片的src 为请求的src 图片
+        //         myImage.setSrc(newImage.src);
+        //         console.log(newImage.src)
+        //     }
+        //     // 返回一个接口  来更换 占位图片的src 为请求到的src
+        //     return function(src){
+        //         myImage.setSrc("./a2.jpg");
+        //         newImage.src = src;
+        //     }
+        // })()
+
+        // ProxyImg(lineSrc);
+
+        // 
+    </script>
+
+</body>
+
+</html>

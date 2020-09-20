@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #demo img {
+            width: 400px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="demo"></div> -->
+
+    <div>
+        用户名： <input id="userDom" type="text" name="" id="">
+        <span id="showUser"></span>
+        <hr>
+        密码： <input id="psDom" type="password" name="" id="">
+        <span id="showCode"></span>
+        <hr>
+        邮箱: <input id="emDom" type="text" name="" id="">
+        <span id="showEmail"></span>
+        <hr>
+        <button id="submit">提交</button>
+    </div>
+    <script src="./validator.js"></script>
+    <script>
+        function ajax() {
+            console.log("提交")
+        }
+        // add
+        // start 
+        // extend 
+        // function Validator() {
+        //     this.cache = [];
+        //     this.warDom = [];
+        // }
+        // Validator.prototype.strategies = {
+        //     isNonEmpty(val, errorMsg) {
+        //         if (!val) {
+        //             return errorMsg;
+        //         }
+        //         return true;
+        //     },
+        //     maxLength(val, len, errorMsg) {
+        //         if (val && val.length > len) {
+        //             return errorMsg;
+        //         }
+        //         return true;
+        //     },
+        //     minLength(val, len, errorMsg) {
+        //         if (val && val.length < len) {
+        //             return errorMsg
+        //         }
+        //         return true;
+        //     }
+        // }
+        // Validator.prototype.add = function (dom, showDom, strategyArr) {
+        //     let self = this;
+        //     this.warDom.push(showDom);
+        //     strategyArr.forEach((item, index) => {
+        //         self.cache.push(() => {
+        //             let arr = item.strategy.split(":");
+        //             // arr 1 ["isNonEmpty"] 2 ["maxlength","4"]
+        //             let type = arr.shift();
+        //             // 1 type = isNonEmpty , 2 type = maxlength
+        //             // arr 1 [] 2 ["4"]
+        //             arr.unshift(dom.value);
+        //             // arr 1 [value] 2 [value,"4"]
+        //             arr.push(item.errorMsg);
+        //             // arr 1 [value,errorMsg] 2 [value,"4",errorMsg]
+        //             let msg = self.strategies[type](...arr);
+        //             if (msg != true) {
+        //                 showDom.innerText = msg;
+        //             }
+        //             return msg;
+        //         })
+        //     })
+        // }
+
+        // Validator.prototype.start = function () {
+        //     // 标记是否能符合规则
+        //     this.warDom.forEach(item => {
+        //         item.innerText = "";
+        //     })
+        //     let flag = true;
+        //     this.cache.forEach(item => {
+        //         if (item() != true) {
+        //             flag = false;
+        //         }
+        //     })
+        //     return flag;
+        // }
+        // Validator.prototype.extend = function(config){
+        //     for(const prop in config){
+        //         this.strategies[prop] = config[prop];
+        //     }
+        // }
+
+        const validator = new Validator();
+        validator.extend({
+            isEmail(value, errorMsg) {
+                if (value && value.indexOf("@") == -1) {
+                    return errorMsg
+                }
+                return true;
+            },
+            isPhone(value, len, errorMsg) {
+                if (value && value.length > len) {
+                    return errorMsg
+                }
+                return true;
+            }
+        })
+        // 代理模式
+        const ProxySumit = (function () {
+            validator.add(userDom, showUser, [{
+                strategy: "isNonEmpty",
+                errorMsg: "用户名不为空！"
+            }, {
+                strategy: "maxLength:4",
+                errorMsg: "用户名不能超过四位"
+            }]);
+            validator.add(psDom, showCode, [{
+                strategy: "isNonEmpty",
+                errorMsg: "密码不为空！"
+            }, {
+                strategy: "minLength:6",
+                errorMsg: "密码不能小于四位"
+            }]);
+            validator.add(emDom, showEmail, [{
+                strategy: "isNonEmpty",
+                errorMsg: "邮箱不为空！"
+            }, {
+                strategy: "isEmail",
+                errorMsg: "邮箱格式不正确"
+            }]);
+            return function () {
+                if (validator.start() == true) {
+                    ajax();
+                }
+            }
+        })()
+
+        submit.onclick = ProxySumit;
+
+
+
+
+
+
+        // // 用户名不能为空 用户名不能小于四位
+        // // 密码不能为空 密码长度不能小于六位
+        // function isSubmit(flag) {
+        //     if (!user.value) {
+        //         flag = false;
+        //         showUser.innerText = "用户名不能为空"
+        //     } else if (user.value.length < 4) {
+        //         flag = false;
+        //         showUser.innerText = "用户名不能小于四位"
+        //     }
+
+        //     if (!ps.value) {
+        //         flag = false;
+        //         showCode.innerText = "密码不能为空"
+        //     } else if (ps.value.length < 6) {
+        //         flag = false;
+        //         showCode.innerText = "密码不能小于六位"
+        //     }
+        //     return flag;
+        // }
+
+
+        // submit.onclick = function () {
+        //     let flag = true;
+        //     let key = isSubmit(flag);
+        //     if (key) {
+        //         ajax();
+        //         showUser.innerText = ""
+        //         showCode.innerText = ""
+        //     }
+        // };
+    </script>
+    <script>
+        // 预加载和懒加载
+        // 一开始的时候 预加载一张图片占位置
+        // 懒加载 要监控要展示图片内容 是否有被加载成功
+        // let lineSrc = "https://i0.hdslb.com/bfs/sycp/creative_img/202009/bdc6eb53bdb584d1846bf0d9b3fd5912.jpg"
+
+        // function MyImage(_id) {
+        //     let img = new Image();
+        //     this.setSrc = function (src) {
+        //         img.src = src;
+        //     }
+        //     document.getElementById(_id).appendChild(img);
+        // }
+
+
+
+
+        // const ProxyImg = (function () {
+        //     let myImage = new MyImage("demo");
+        //     let oImg = new Image();
+        //     oImg.onload = function(){
+        //         myImage.setSrc(oImg.src);
+        //     }
+        //     return function (src) {
+        //         myImage.setSrc("./a2.jpg");
+        //         oImg.src = src; 
+        //     }
+        // })()
+        // ProxyImg(lineSrc)
+    </script>
+</body>
+
+</html>

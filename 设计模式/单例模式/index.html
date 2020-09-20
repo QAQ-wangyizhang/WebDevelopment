@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <script src="./single.js"></script>
+    <script>
+        // function Test (name){
+        //     // var this = Object.create(Test.prototype)
+        //     if(typeof Test.instance === "object"){
+        //         return Test.instance;
+        //     }
+        //     this.name = name;
+        //     Test.instance = this;
+        //     // return this;
+        // }
+        // 闭包
+        // function Test (name){
+        //     const instance = this;
+        //     this.name = name;
+        //     Test = function(){
+        //         return instance;
+        //     }
+        // }
+
+        // 圣杯 永生 闭包
+        // var Test = (function(){
+        //     let instance;
+        //     return function(name){
+        //         if(typeof instance === "object"){
+        //             return instance;
+        //         }
+        //         this.name = name;
+        //         instance = this;
+        //     }
+        // })()
+        // Test.prototype.qaq = "1";
+        // var a = new Test("one");
+        // var b = new Test();
+        // console.log(a === b);
+
+        btn.onclick = function () {
+            let oDiv = singleAlert("hello world");
+        }
+
+        var CreateAlert = function (text) {
+            let div = document.createElement("div");
+            div.style.display = "block";
+            div.innerText = text;
+            document.body.appendChild(div);
+            return div;
+        }
+
+        // var getSingle = function(func){
+        //     let result = null;
+        //     return function(text){
+        //         if(result){
+        //             return result;
+        //         }
+        //         result = func.apply(this,arguments);
+        //         return result;
+        //     }
+        // }
+        var singleAlert = single.getSingleFun(CreateAlert);
+
+        // var singleAlert = (function () {
+        //     let oDiv = null;
+        //     return function (text) {
+        //         if (oDiv) {
+        //             return oDiv;
+        //         }
+        //         oDiv = document.createElement("div");
+        //         oDiv.style.display = "block";
+        //         oDiv.innerText = text;
+        //         document.body.appendChild(oDiv);
+        //         return oDiv;
+        //     }
+        // })()
+    </script>
+
+    <!-- <script>
+        function Test(name) {
+            this.name = name;
+        }
+        var SingleTest = single.getSingleCon(Test)
+        let a = new SingleTest("hello");
+        let b = new SingleTest();
+        console.log(a === b);
+    </script> -->
+</body>
+
+</html>
